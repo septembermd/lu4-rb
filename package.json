@@ -1,0 +1,42 @@
+{
+  "name": "lu4-rb",
+  "version": "0.1.0",
+  "description": "Private clan raid intelligence for LU4",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts tests/*.test.mjs",
+    "preview": "vite preview",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "format": "prettier --write src tests scripts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/septembermd/lu4-rb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/septembermd/lu4-rb/issues"
+  },
+  "homepage": "https://github.com/septembermd/lu4-rb#readme",
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  }
+}
