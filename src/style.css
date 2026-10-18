@@ -765,3 +765,49 @@ select {
     padding: 20px;
   }
 }
+.live-workspace {
+  max-width: 1440px;
+  margin: auto;
+}
+.live-workspace .content-panel {
+  margin-bottom: 22px;
+}
+.credential-input {
+  display: block;
+  width: min(100%, 560px);
+  margin: 15px 0;
+  padding: 12px;
+  background: #101c20;
+  color: #e0e8e8;
+  border: 1px solid #425754;
+  border-radius: 5px;
+}
+.kill-entry {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.kill-entry h2 {
+  width: 100%;
+}
+.kill-entry label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.kill-entry input,
+.history input {
+  padding: 8px;
+  background: #1a2b2b;
+  color: #e0e8e8;
+  border: 1px solid #425754;
+  color-scheme: dark;
+}
+.live-workspace .history > div {
+  flex-wrap: wrap;
+  align-items: center;
+}
+.live-workspace .history form {
+  width: 100%;
+}

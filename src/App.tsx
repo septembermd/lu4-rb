@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LiveWorkspace } from "./LiveWorkspace.tsx";
 import {
   demoBosses,
   demoMember,
@@ -29,6 +30,7 @@ const localInput = (value: number) => {
 type Page = "map" | "history" | "agents" | "access";
 
 export function App() {
+  const [live, setLive] = useState(false);
   const [page, setPage] = useState<Page>("map");
   const [demo, setDemo] = useState(false);
   const [now, setNow] = useState(Date.now());
@@ -107,6 +109,7 @@ export function App() {
       setError(err instanceof Error ? err.message : "Не удалось сохранить");
     }
   }
+  if (live) return <LiveWorkspace onExit={() => setLive(false)} />;
   return (
     <div className="app">
       <aside className="sidebar">
@@ -156,6 +159,9 @@ export function App() {
       </aside>
       <main>
         <header>
+          <button className="button" onClick={() => setLive(true)}>
+            Подключить API
+          </button>
           <div>
             <span className="eyebrow">ОПЕРАТИВНАЯ КАРТА · GAMMA</span>
             <h1>

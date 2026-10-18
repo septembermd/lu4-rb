@@ -1,6 +1,6 @@
 # Контракт будущего IKAR API v1
 
-Этот документ — спецификация; HTTP endpoints пока не реализованы.
+POST наблюдений и пользовательские операции реализованы в server/api.ts. Lease-очередь, heartbeat и адаптер самого IKAR ещё не реализованы.
 
 POST /api/agent/v1/observations
 Authorization: Bearer <agent token>

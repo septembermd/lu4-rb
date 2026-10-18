@@ -1,6 +1,6 @@
 {
   "name": "lu4-rb",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Private clan raid intelligence for LU4",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,11 @@
     "test": "node --test tests/*.test.ts tests/*.test.mjs",
     "preview": "vite preview",
     "validate:catalog": "node scripts/validate-catalog.mjs",
-    "format": "prettier --write src tests scripts"
+    "format": "prettier --write src tests scripts",
+    "start:api": "node --env-file-if-exists=.env server/start.ts",
+    "migrate": "node --env-file-if-exists=.env scripts/migrate.ts",
+    "provision": "node --env-file-if-exists=.env scripts/provision.ts",
+    "import:catalog": "node --env-file-if-exists=.env scripts/import-catalog.mjs"
   },
   "repository": {
     "type": "git",
@@ -23,11 +27,14 @@
   },
   "homepage": "https://github.com/septembermd/lu4-rb#readme",
   "dependencies": {
+    "pg": "^8.23.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10",
     "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
