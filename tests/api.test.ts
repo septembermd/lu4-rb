@@ -42,7 +42,11 @@ const path = `/api/clans/${a}`;
 const iso = (delta = 0) => new Date(Date.now() + delta).toISOString();
 let killId: string;
 before(async () => {
-  for (const file of ["001_initial.sql", "002_api.sql"])
+  for (const file of [
+    "001_initial.sql",
+    "002_api.sql",
+    "003_scout_registry.sql",
+  ])
     await pg.exec(
       await readFile(new URL(`../db/${file}`, import.meta.url), "utf8"),
     );
@@ -266,6 +270,39 @@ test("service results require active matching grants, expiry takes effect immedi
   );
   assert.equal((await call(`${path}/observations`)).body.items.length, 1);
 });
+test("dead scouts remain valid and service failures are hidden from subscribers", async () => {
+  const dead = {
+    ...event,
+    clientEventId: id(30),
+    evidence: { ...event.evidence, characterAlive: false },
+  };
+  assert.equal(
+    (await call("/api/agent/v1/observations", "POST", dead, agentToken)).status,
+    201,
+  );
+  await pg.query(
+    "UPDATE service_grants SET boss_ids=ARRAY[1],until_at=now()+interval '1 hour' WHERE id=$1",
+    [id(12)],
+  );
+  const failed = {
+    ...event,
+    clientEventId: id(31),
+    result: "failed",
+    failureCode: "login_failed",
+  };
+  assert.equal(
+    (await call("/api/agent/v1/observations", "POST", failed, serviceToken))
+      .status,
+    201,
+  );
+  const rows = (await call(`${path}/observations`)).body.items;
+  assert.ok(
+    rows.some((r: any) => r.owner_clan_id === null && r.result === "alive"),
+  );
+  assert.ok(
+    !rows.some((r: any) => r.owner_clan_id === null && r.result === "failed"),
+  );
+});
 test("RLS filters rows even if SQL forgets explicit clan filter", async () => {
   await pg.transaction(async (tx) => {
     await tx.exec("SET LOCAL ROLE lu4_api");
@@ -280,6 +317,138 @@ test("RLS filters rows even if SQL forgets explicit clan filter", async () => {
     );
     assert.equal((await tx.query("SELECT * FROM observations")).rows.length, 0);
   });
+});
+test("scout inventory, private management, leases and respawn scheduling", async () => {
+  await pg.query("INSERT INTO operators VALUES($1)", [u]);
+  const endpoint = "/api/agent/v1/scouts/";
+  const report = {
+    accounts: [
+      {
+        key: "account-one",
+        label: "Account one",
+        characters: [{ slot: 0, name: "Scout" }],
+      },
+    ],
+  };
+  assert.equal(
+    (await call(endpoint + "inventory", "POST", report, agentToken)).status,
+    200,
+  );
+  let registry = (await call("/api/scouts")).body;
+  const account = registry.accounts[0],
+    character = registry.characters[0];
+  assert.equal(account.enabled, false);
+  assert.equal(
+    (await call("/api/scouts", "GET", undefined, tokenB)).body.accounts.length,
+    0,
+  );
+  assert.equal(
+    (
+      await call(
+        `/api/scouts/accounts/${account.id}`,
+        "PATCH",
+        { enabled: true },
+        tokenB,
+      )
+    ).status,
+    403,
+  );
+  assert.equal(
+    (
+      await call(`/api/scouts/accounts/${account.id}`, "PATCH", {
+        enabled: true,
+      })
+    ).status,
+    200,
+  );
+  assert.equal(
+    (
+      await call(`/api/scouts/characters/${character.id}`, "PATCH", {
+        enabled: true,
+        bossId: 1,
+        x: 1,
+        y: 2,
+        z: 3,
+        radius: 500,
+      })
+    ).status,
+    200,
+  );
+  assert.equal(
+    (
+      await call(`/api/scouts/fleets/${agent}`, "PATCH", {
+        running: true,
+        timerClanId: a,
+      })
+    ).status,
+    200,
+  );
+  const first = await call(
+    endpoint + "claim",
+    "POST",
+    { clientId: "one" },
+    agentToken,
+  );
+  assert.equal(first.status, 200, JSON.stringify(first.body));
+  assert.ok(first.body.lease);
+  assert.equal(
+    (await call(endpoint + "claim", "POST", { clientId: "two" }, agentToken))
+      .body.lease,
+    null,
+  );
+  assert.equal(
+    (await call(endpoint + "claim", "POST", { clientId: "one" }, agentToken))
+      .body.lease.id,
+    first.body.lease.id,
+  );
+  await pg.query(
+    "UPDATE scout_leases SET expires_at=now()-interval '1 second'",
+  );
+  const next = await call(
+    endpoint + "claim",
+    "POST",
+    { clientId: "two" },
+    agentToken,
+  );
+  assert.ok(next.body.lease);
+  assert.equal(
+    (
+      await call(
+        endpoint + "complete",
+        "POST",
+        { leaseId: first.body.lease.id },
+        agentToken,
+      )
+    ).status,
+    409,
+  );
+  assert.equal(
+    (
+      await call(
+        endpoint + "complete",
+        "POST",
+        { leaseId: next.body.lease.id },
+        agentToken,
+      )
+    ).status,
+    200,
+  );
+  const kill = await call(`${path}/kills`, "POST", {
+    bossId: 1,
+    serverId: "gamma",
+    killedAt: iso(-1000),
+  });
+  assert.equal(
+    (await call(endpoint + "claim", "POST", { clientId: "one" }, agentToken))
+      .body.lease,
+    null,
+  );
+  await call(`${path}/kills/${kill.body.id}`, "DELETE", { expectedVersion: 1 });
+  report.accounts[0].characters[0].name = "Replacement";
+  await call(endpoint + "inventory", "POST", report, agentToken);
+  registry = (await call("/api/scouts")).body;
+  assert.equal(registry.characters[0].enabled, false);
+  await pg.query("DELETE FROM operators WHERE user_id=$1", [u]);
 });
 test("revoked membership, session and expired subscription stop access", async () => {
   await pg.query("UPDATE memberships SET active=false WHERE clan_id=$1", [a]);

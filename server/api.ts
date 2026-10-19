@@ -1,3 +1,4 @@
+import { inventory, claim } from "./scouts.ts";
 import { createHash, randomUUID } from "node:crypto";
 import type { Database, Transactions } from "./db.ts";
 import { timestamp } from "../src/domain/rules.ts";
@@ -110,6 +111,46 @@ export function createApi(database: Transactions) {
         return json({ status: "ok" });
       return await database.transaction(async (db) => {
         if (
+          url.pathname.startsWith("/api/agent/v1/scouts/") &&
+          request.method === "POST"
+        ) {
+          const agent = await context(db, request, true);
+          const b = await body(request);
+          const action = url.pathname.split("/").at(-1);
+          if (action === "inventory") {
+            fields(b, ["accounts"]);
+            try {
+              await inventory(db, agent.id, b);
+            } catch (e) {
+              if ((e as { code?: string }).code) throw e;
+              fail(400, "Invalid inventory");
+            }
+            return json({ ok: true });
+          }
+          if (action === "claim") {
+            fields(b, ["clientId"]);
+            if (
+              typeof b.clientId !== "string" ||
+              !/^[a-zA-Z0-9_-]{1,64}$/.test(b.clientId)
+            )
+              fail(400, "Invalid client");
+            return json(await claim(db, agent.id, b.clientId));
+          }
+          if (action === "complete") {
+            fields(b, ["leaseId"]);
+            const leaseId = uuid(b.leaseId);
+            const lease = (
+              await db.query<{ character_id: string }>(
+                "UPDATE scout_leases SET finished_at=now() WHERE id=$1 AND agent_id=$2 AND finished_at IS NULL AND expires_at>now() RETURNING character_id",
+                [leaseId, agent.id],
+              )
+            ).rows[0];
+            if (!lease) fail(409, "Lease expired or completed");
+            return json({ ok: true });
+          }
+          fail(404, "Not found");
+        }
+        if (
           url.pathname === "/api/agent/v1/observations" &&
           request.method === "POST"
         ) {
@@ -146,7 +187,7 @@ export function createApi(database: Transactions) {
             fail(400, "Invalid evidence");
           if (
             result !== "failed" &&
-            ["worldLoaded", "characterAlive", "atExpectedLocation"].some(
+            ["worldLoaded", "atExpectedLocation"].some(
               (key) => evidence[key] !== true,
             )
           )
@@ -218,6 +259,91 @@ export function createApi(database: Transactions) {
           return json({ id, replayed: false }, 201);
         }
         const identity = await context(db, request);
+        if (url.pathname === "/api/scouts" && request.method === "GET") {
+          return json({
+            agents: (
+              await db.query(
+                "SELECT id,name,server_id,owner_clan_id,last_seen_at FROM agents WHERE revoked_at IS NULL",
+              )
+            ).rows,
+            accounts: (await db.query("SELECT * FROM scout_accounts")).rows,
+            characters: (await db.query("SELECT * FROM scout_characters")).rows,
+            settings: (await db.query("SELECT * FROM fleet_settings")).rows,
+          });
+        }
+        const scoutRoute =
+          /^\/api\/scouts\/(accounts|characters|fleets)\/([^/]+)$/.exec(
+            url.pathname,
+          );
+        if (scoutRoute && request.method === "PATCH") {
+          const id = uuid(scoutRoute[2]),
+            b = await body(request),
+            type = scoutRoute[1];
+          const table =
+            type === "accounts"
+              ? "scout_accounts"
+              : type === "characters"
+                ? "scout_characters"
+                : "agents";
+          const fleet = (
+            await db.query<{ agent_id: string }>(
+              `SELECT ${type === "fleets" ? "id" : "agent_id"} AS agent_id FROM ${table} WHERE id=$1`,
+              [id],
+            )
+          ).rows[0];
+          if (
+            !fleet ||
+            !(
+              await db.query<{ ok: boolean }>(
+                "SELECT fleet_manager($1) AS ok",
+                [fleet.agent_id],
+              )
+            ).rows[0]?.ok
+          )
+            fail(403, "Fleet access denied");
+          if (type === "fleets") {
+            fields(b, ["running", "timerClanId"]);
+            if (typeof b.running !== "boolean") fail(400, "running required");
+            const timer = b.timerClanId === null ? null : uuid(b.timerClanId);
+            if (
+              timer &&
+              !(
+                await db.query<{ ok: boolean }>(
+                  "SELECT is_operator() OR can_access($1,'manage_agents') AS ok",
+                  [timer],
+                )
+              ).rows[0]?.ok
+            )
+              fail(403, "Timer access denied");
+            await db.query(
+              "INSERT INTO fleet_settings(agent_id,running,timer_clan_id) VALUES($1,$2,$3) ON CONFLICT(agent_id) DO UPDATE SET running=excluded.running,timer_clan_id=excluded.timer_clan_id",
+              [id, b.running, timer],
+            );
+          } else if (type === "accounts") {
+            fields(b, ["enabled"]);
+            if (typeof b.enabled !== "boolean") fail(400, "enabled required");
+            await db.query("UPDATE scout_accounts SET enabled=$1 WHERE id=$2", [
+              b.enabled,
+              id,
+            ]);
+          } else {
+            fields(b, ["enabled", "bossId", "x", "y", "z", "radius"]);
+            if (
+              typeof b.enabled !== "boolean" ||
+              ![b.x, b.y, b.z].every(
+                (v) => typeof v === "number" && Number.isSafeInteger(v),
+              )
+            )
+              fail(400, "Position and enabled required");
+            const bossId = integer(b.bossId),
+              radius = integer(b.radius);
+            await db.query(
+              "UPDATE scout_characters SET enabled=$1,boss_id=$2,expected_x=$3,expected_y=$4,expected_z=$5,radius=$6 WHERE id=$7",
+              [b.enabled, bossId, b.x, b.y, b.z, radius, id],
+            );
+          }
+          return json({ ok: true });
+        }
         if (url.pathname === "/api/me" && request.method === "GET") {
           return json({
             userId: identity.id,
@@ -257,7 +383,7 @@ export function createApi(database: Transactions) {
             return json({
               items: (
                 await db.query(
-                  "SELECT * FROM (SELECT DISTINCT ON (boss_id,result) id,agent_id,owner_clan_id,server_id,boss_id,observed_at,result,failure_code FROM observations WHERE server_id=$1 AND observed_at<=now() ORDER BY boss_id,result,observed_at DESC,id DESC) latest ORDER BY observed_at DESC,id DESC LIMIT 500",
+                  "SELECT * FROM (SELECT DISTINCT ON (boss_id,result) id,agent_id,owner_clan_id,server_id,boss_id,observed_at,result,CASE WHEN owner_clan_id IS NOT NULL THEN failure_code ELSE NULL END AS failure_code FROM observations WHERE server_id=$1 AND observed_at<=now() AND (owner_clan_id IS NOT NULL OR result<>'failed') ORDER BY boss_id,result,observed_at DESC,id DESC) latest ORDER BY observed_at DESC,id DESC LIMIT 500",
                   [serverId],
                 )
               ).rows,

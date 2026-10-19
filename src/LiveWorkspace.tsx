@@ -1,3 +1,4 @@
+import { ScoutPanel } from "./ScoutPanel.tsx";
 import { useEffect, useRef, useState } from "react";
 import type { Boss, Kill } from "./domain/model.ts";
 import { respawnWindow } from "./domain/rules.ts";
@@ -159,6 +160,12 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
           Выйти из подключения
         </button>
       </header>
+      {token && (
+        <details>
+          <summary>Аккаунты и персонажи разведки</summary>
+          <ScoutPanel token={token} />
+        </details>
+      )}
       <div className="notice">
         Ранний доступ: вход по временному ключу оператора. Ключ хранится только
         в памяти вкладки. Карта Gamma ещё не импортирована.
