@@ -67,7 +67,12 @@ export async function inventory(
   );
 }
 
-export async function claim(db: Database, agentId: string, clientId: string) {
+export async function claim(
+  db: Database,
+  agentId: string,
+  clientId: string,
+  accountKey?: string,
+) {
   // Serialize all claims for this agent. Account and client unique indexes are an additional guard.
   await db.query("SELECT pg_advisory_xact_lock(hashtext($1))", [agentId]);
   await db.query(
@@ -90,11 +95,11 @@ export async function claim(db: Database, agentId: string, clientId: string) {
       name: string;
     }>(
       `SELECT c.*,a.local_key AS account_key FROM scout_characters c JOIN scout_accounts a ON a.id=c.account_id
-    WHERE c.agent_id=$1 AND scout_due(c.agent_id,c.boss_id) AND c.enabled AND a.enabled AND (c.retry_at IS NULL OR c.retry_at<=now())
+    WHERE c.agent_id=$1 AND ($2::text IS NULL OR a.local_key=$2) AND scout_due(c.agent_id,c.boss_id) AND c.enabled AND a.enabled AND (c.retry_at IS NULL OR c.retry_at<=now())
     AND EXISTS(SELECT 1 FROM agent_targets t WHERE t.agent_id=c.agent_id AND t.boss_id=c.boss_id)
     AND NOT EXISTS(SELECT 1 FROM scout_leases l WHERE l.account_id=c.account_id AND l.finished_at IS NULL)
     ORDER BY c.last_attempt_at NULLS FIRST,c.id LIMIT 1 FOR UPDATE OF c`,
-      [agentId],
+      [agentId, accountKey ?? null],
     )
   ).rows[0];
   if (!character) return { lease: null };

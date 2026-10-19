@@ -128,13 +128,27 @@ export function createApi(database: Transactions) {
             return json({ ok: true });
           }
           if (action === "claim") {
-            fields(b, ["clientId"]);
+            fields(b, ["clientId", "accountKey"]);
             if (
               typeof b.clientId !== "string" ||
               !/^[a-zA-Z0-9_-]{1,64}$/.test(b.clientId)
             )
               fail(400, "Invalid client");
-            return json(await claim(db, agent.id, b.clientId));
+            if (
+              b.accountKey !== undefined &&
+              (typeof b.accountKey !== "string" ||
+                !b.accountKey.trim() ||
+                b.accountKey.length > 128)
+            )
+              fail(400, "Invalid account key");
+            return json(
+              await claim(
+                db,
+                agent.id,
+                b.clientId,
+                b.accountKey as string | undefined,
+              ),
+            );
           }
           if (action === "heartbeat") {
             fields(b, ["leaseId", "clientId"]);

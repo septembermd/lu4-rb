@@ -1,0 +1,6 @@
+{
+  "apiUrl": "https://your-lu4-rb-host.example",
+  "agentToken": "REPLACE_LOCALLY",
+  "clientId": "client-1",
+  "accountKey": "gamma-account-1"
+}

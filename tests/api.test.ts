@@ -384,6 +384,17 @@ test("scout inventory, private management, leases and respawn scheduling", async
     ).status,
     200,
   );
+  assert.equal(
+    (
+      await call(
+        endpoint + "claim",
+        "POST",
+        { clientId: "one", accountKey: "not-connected" },
+        agentToken,
+      )
+    ).body.lease,
+    null,
+  );
   const first = await call(
     endpoint + "claim",
     "POST",
