@@ -80,10 +80,16 @@ export async function claim(db: Database, agentId: string, clientId: string) {
       [agentId, clientId],
     )
   ).rows[0];
-  if (existing) return { lease: existing, replayed: true };
+  if (existing)
+    return { lease: existing, character: existing.assignment, replayed: true };
   const character = (
-    await db.query<{ id: string; account_id: string }>(
-      `SELECT c.* FROM scout_characters c JOIN scout_accounts a ON a.id=c.account_id
+    await db.query<{
+      id: string;
+      account_id: string;
+      boss_id: number;
+      name: string;
+    }>(
+      `SELECT c.*,a.local_key AS account_key FROM scout_characters c JOIN scout_accounts a ON a.id=c.account_id
     WHERE c.agent_id=$1 AND scout_due(c.agent_id,c.boss_id) AND c.enabled AND a.enabled AND (c.retry_at IS NULL OR c.retry_at<=now())
     AND EXISTS(SELECT 1 FROM agent_targets t WHERE t.agent_id=c.agent_id AND t.boss_id=c.boss_id)
     AND NOT EXISTS(SELECT 1 FROM scout_leases l WHERE l.account_id=c.account_id AND l.finished_at IS NULL)
@@ -94,9 +100,18 @@ export async function claim(db: Database, agentId: string, clientId: string) {
   if (!character) return { lease: null };
   const lease = (
     await db.query(
-      `INSERT INTO scout_leases(id,agent_id,account_id,character_id,client_id,expires_at)
-    VALUES($1,$2,$3,$4,$5,now()+interval '2 minutes') RETURNING *`,
-      [randomUUID(), agentId, character.account_id, character.id, clientId],
+      `INSERT INTO scout_leases(id,agent_id,account_id,character_id,client_id,expires_at,boss_id,character_name,assignment)
+    VALUES($1,$2,$3,$4,$5,now()+interval '2 minutes',$6,$7,$8) RETURNING *`,
+      [
+        randomUUID(),
+        agentId,
+        character.account_id,
+        character.id,
+        clientId,
+        character.boss_id,
+        character.name,
+        JSON.stringify(character),
+      ],
     )
   ).rows[0];
   await db.query(

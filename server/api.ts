@@ -136,6 +136,20 @@ export function createApi(database: Transactions) {
               fail(400, "Invalid client");
             return json(await claim(db, agent.id, b.clientId));
           }
+          if (action === "heartbeat") {
+            fields(b, ["leaseId", "clientId"]);
+            const leaseId = uuid(b.leaseId);
+            if (typeof b.clientId !== "string") fail(400, "Client required");
+            const lease = (
+              await db.query(
+                `UPDATE scout_leases SET expires_at=least(now()+interval '2 minutes',created_at+interval '10 minutes')
+              WHERE id=$1 AND agent_id=$2 AND client_id=$3 AND finished_at IS NULL AND expires_at>now() AND created_at+interval '10 minutes'>now() RETURNING id,expires_at`,
+                [leaseId, agent.id, b.clientId],
+              )
+            ).rows[0];
+            if (!lease) fail(409, "Lease expired or completed");
+            return json(lease);
+          }
           if (action === "complete") {
             fields(b, ["leaseId"]);
             const leaseId = uuid(b.leaseId);
@@ -158,6 +172,8 @@ export function createApi(database: Transactions) {
           const b = await body(request);
           fields(b, [
             "clientEventId",
+            "leaseId",
+            "clientId",
             "bossId",
             "observedAt",
             "result",
@@ -202,7 +218,12 @@ export function createApi(database: Transactions) {
             fail(400, "Failure code required");
           if (result !== "failed" && b.failureCode !== undefined)
             fail(400, "Unexpected failure code");
+          const leaseId = b.leaseId === undefined ? null : uuid(b.leaseId);
+          if (leaseId && (typeof b.clientId !== "string" || !b.clientId))
+            fail(400, "Client required");
+          if (!leaseId && b.clientId !== undefined) fail(400, "Lease required");
           const canonical = {
+            ...(leaseId ? { leaseId, clientId: b.clientId } : {}),
             bossId,
             observedAt,
             result,
@@ -226,6 +247,28 @@ export function createApi(database: Transactions) {
               fail(409, "Event ID already used with another payload");
             return json({ id: previous.id, replayed: true });
           }
+          if (leaseId) {
+            const lease = (
+              await db.query<{ created_at: string }>(
+                `SELECT l.created_at FROM scout_leases l JOIN scout_characters c ON c.id=l.character_id
+              WHERE l.id=$1 AND l.agent_id=$2 AND l.client_id=$3 AND l.boss_id=$4 AND l.finished_at IS NULL AND l.expires_at>now()
+              AND c.name=l.character_name FOR UPDATE OF l`,
+                [leaseId, agent.id, b.clientId, bossId],
+              )
+            ).rows[0];
+            if (!lease)
+              fail(409, "Lease expired or does not match observation");
+            if (Date.parse(observedAt) < new Date(lease.created_at).getTime())
+              fail(400, "Observation predates assignment");
+          } else if (
+            (
+              await db.query("SELECT 1 FROM fleet_settings WHERE agent_id=$1", [
+                agent.id,
+              ])
+            ).rows.length
+          ) {
+            fail(400, "Managed fleet observations require a lease");
+          }
           const now = Date.now();
           if (
             Date.parse(observedAt) > now + 30_000 ||
@@ -242,8 +285,8 @@ export function createApi(database: Transactions) {
           const id = randomUUID();
           // The DB trigger derives owner/server from the authenticated agent.
           await db.query(
-            `INSERT INTO observations(id,agent_id,server_id,boss_id,observed_at,result,failure_code,client_event_id,evidence,payload_hash)
-            VALUES($1,$2,'',$3,$4,$5,$6,$7,$8,$9)`,
+            `INSERT INTO observations(id,agent_id,server_id,boss_id,observed_at,result,failure_code,client_event_id,evidence,payload_hash,lease_id)
+            VALUES($1,$2,'',$3,$4,$5,$6,$7,$8,$9,$10)`,
             [
               id,
               agent.id,
@@ -254,8 +297,19 @@ export function createApi(database: Transactions) {
               clientEventId,
               JSON.stringify(canonical.evidence),
               fingerprint,
+              leaseId,
             ],
           );
+          if (leaseId) {
+            await db.query(
+              "UPDATE scout_leases SET finished_at=now() WHERE id=$1",
+              [leaseId],
+            );
+            await db.query(
+              "UPDATE scout_characters SET retry_at=CASE WHEN $2::boolean THEN now()+interval '30 seconds' ELSE NULL END WHERE id=(SELECT character_id FROM scout_leases WHERE id=$1)",
+              [leaseId, result === "failed"],
+            );
+          }
           return json({ id, replayed: false }, 201);
         }
         const identity = await context(db, request);

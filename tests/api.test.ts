@@ -46,6 +46,7 @@ before(async () => {
     "001_initial.sql",
     "002_api.sql",
     "003_scout_registry.sql",
+    "004_lease_results.sql",
   ])
     await pg.exec(
       await readFile(new URL(`../db/${file}`, import.meta.url), "utf8"),
@@ -411,12 +412,46 @@ test("scout inventory, private management, leases and respawn scheduling", async
     agentToken,
   );
   assert.ok(next.body.lease);
+  const leasePayload = { leaseId: next.body.lease.id, clientId: "two" };
   assert.equal(
     (
       await call(
-        endpoint + "complete",
+        endpoint + "heartbeat",
         "POST",
-        { leaseId: first.body.lease.id },
+        { ...leasePayload, clientId: "wrong" },
+        agentToken,
+      )
+    ).status,
+    409,
+  );
+  assert.equal(
+    (await call(endpoint + "heartbeat", "POST", leasePayload, agentToken))
+      .status,
+    200,
+  );
+  assert.equal(
+    (
+      await call(
+        endpoint + "heartbeat",
+        "POST",
+        { leaseId: first.body.lease.id, clientId: "one" },
+        agentToken,
+      )
+    ).status,
+    409,
+  );
+  const result = {
+    ...event,
+    ...leasePayload,
+    clientEventId: id(40),
+    observedAt: iso(),
+  };
+  assert.equal(
+    (
+      await call(
+        "/api/agent/v1/observations",
+        "POST",
+        { ...result, leaseId: first.body.lease.id, clientId: "one" },
         agentToken,
       )
     ).status,
@@ -425,13 +460,52 @@ test("scout inventory, private management, leases and respawn scheduling", async
   assert.equal(
     (
       await call(
-        endpoint + "complete",
+        "/api/agent/v1/observations",
         "POST",
-        { leaseId: next.body.lease.id },
+        { ...result, bossId: 2 },
         agentToken,
       )
     ).status,
-    200,
+    409,
+  );
+  assert.equal(
+    (
+      await call(
+        "/api/agent/v1/observations",
+        "POST",
+        { ...result, observedAt: iso(-3600000) },
+        agentToken,
+      )
+    ).status,
+    400,
+  );
+  const accepted = await call(
+    "/api/agent/v1/observations",
+    "POST",
+    result,
+    agentToken,
+  );
+  assert.equal(accepted.status, 201, JSON.stringify(accepted.body));
+  assert.equal(
+    (await call("/api/agent/v1/observations", "POST", result, agentToken)).body
+      .replayed,
+    true,
+  );
+  assert.equal(
+    (await call(endpoint + "heartbeat", "POST", leasePayload, agentToken))
+      .status,
+    409,
+  );
+  assert.equal(
+    (
+      await call(
+        "/api/agent/v1/observations",
+        "POST",
+        { ...event, clientEventId: id(41) },
+        agentToken,
+      )
+    ).status,
+    400,
   );
   const kill = await call(`${path}/kills`, "POST", {
     bossId: 1,
