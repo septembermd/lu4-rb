@@ -1,0 +1,3802 @@
+{
+  "map": {
+    "width": 3004,
+    "height": 3004,
+    "image": "/maps/lu4-world.jpg",
+    "source": "LU4 Wiki"
+  },
+  "bosses": [
+    {
+      "id": 25372,
+      "name": "Discarded Guardian",
+      "level": 20,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25372-discarded-guardian",
+      "stats": {
+        "HP": 180654,
+        "MP": 8254,
+        "Физ. Атк.": 259,
+        "Маг. Атк.": 24,
+        "Физ. Защ.": 303,
+        "Маг. Защ.": 308,
+        "Exp": 300000,
+        "SP": 37265
+      },
+      "points": [
+        {
+          "x": 64.953508,
+          "y": 95.776065
+        }
+      ]
+    },
+    {
+      "id": 25375,
+      "name": "Zombie Lord Ferkel",
+      "level": 20,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25375-zombie-lord-ferkel",
+      "stats": {
+        "HP": 87696,
+        "MP": 8254,
+        "Физ. Атк.": 129,
+        "Маг. Атк.": 6,
+        "Физ. Защ.": 288,
+        "Маг. Защ.": 308,
+        "Exp": 300000,
+        "SP": 37265
+      },
+      "points": [
+        {
+          "x": 60.161404,
+          "y": 65.126912
+        }
+      ]
+    },
+    {
+      "id": 25378,
+      "name": "Madness Beast",
+      "level": 20,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25378-madness-beast",
+      "stats": {
+        "HP": 87696,
+        "MP": 8254,
+        "Физ. Атк.": 129,
+        "Маг. Атк.": 6,
+        "Физ. Защ.": 288,
+        "Маг. Защ.": 308,
+        "Exp": 300000,
+        "SP": 37265
+      },
+      "points": [
+        {
+          "x": 45.775125,
+          "y": 65.860961
+        }
+      ]
+    },
+    {
+      "id": 25146,
+      "name": "Serpent Demon Bifrons",
+      "level": 21,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25146-serpent-demon-bifrons",
+      "stats": {
+        "HP": 90170,
+        "MP": 1077,
+        "Физ. Атк.": 142,
+        "Маг. Атк.": 9,
+        "Физ. Защ.": 301,
+        "Маг. Защ.": 321,
+        "Exp": 330750,
+        "SP": 45688
+      },
+      "points": [
+        {
+          "x": 53.349207,
+          "y": 90.209288
+        }
+      ]
+    },
+    {
+      "id": 25357,
+      "name": "Sukar Wererat Chief",
+      "level": 21,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25357-sukar-wererat-chief",
+      "stats": {
+        "HP": 90170,
+        "MP": 8254,
+        "Физ. Атк.": 142,
+        "Маг. Атк.": 9,
+        "Физ. Защ.": 285,
+        "Маг. Защ.": 321,
+        "Exp": 330750,
+        "SP": 45688
+      },
+      "points": [
+        {
+          "x": 55.276392,
+          "y": 71.218225
+        }
+      ]
+    },
+    {
+      "id": 25373,
+      "name": "Malex Herald of Dagoniel",
+      "level": 21,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25373-malex-herald-of-dagoniel",
+      "stats": {
+        "HP": 90170,
+        "MP": 8254,
+        "Физ. Атк.": 142,
+        "Маг. Атк.": 10,
+        "Физ. Защ.": 285,
+        "Маг. Защ.": 321,
+        "Exp": 330750,
+        "SP": 45688
+      },
+      "points": [
+        {
+          "x": 57.742407,
+          "y": 64.477119
+        }
+      ]
+    },
+    {
+      "id": 25380,
+      "name": "Kaysha Herald of Icarus",
+      "level": 21,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25380-kaysha-herald-of-icarus",
+      "stats": {
+        "HP": 90170,
+        "MP": 8254,
+        "Физ. Атк.": 142,
+        "Маг. Атк.": 10,
+        "Физ. Защ.": 285,
+        "Маг. Защ.": 321,
+        "Exp": 330750,
+        "SP": 45688
+      },
+      "points": [
+        {
+          "x": 47.008508,
+          "y": 59.713414
+        }
+      ]
+    },
+    {
+      "id": 25001,
+      "name": "Greyclaw Kutus",
+      "level": 23,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25001-greyclaw-kutus",
+      "stats": {
+        "HP": 95986,
+        "MP": 1210,
+        "Физ. Атк.": 171,
+        "Маг. Атк.": 19,
+        "Физ. Защ.": 310,
+        "Маг. Защ.": 348,
+        "Exp": 391460,
+        "SP": 67170
+      },
+      "points": [
+        {
+          "x": 45.682217,
+          "y": 77.566258
+        }
+      ]
+    },
+    {
+      "id": 25362,
+      "name": "Tracker Leader Sharuk",
+      "level": 23,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25362-tracker-leader-sharuk",
+      "stats": {
+        "HP": 95986,
+        "MP": 8254,
+        "Физ. Атк.": 171,
+        "Маг. Атк.": 13,
+        "Физ. Защ.": 310,
+        "Маг. Защ.": 348,
+        "Exp": 391460,
+        "SP": 50860
+      },
+      "points": [
+        {
+          "x": 45.432643,
+          "y": 85.151437
+        }
+      ]
+    },
+    {
+      "id": 25366,
+      "name": "Kuroboros' Priest",
+      "level": 23,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25366-kuroboros-priest",
+      "stats": {
+        "HP": 95986,
+        "MP": 8254,
+        "Физ. Атк.": 171,
+        "Маг. Атк.": 13,
+        "Физ. Защ.": 310,
+        "Маг. Защ.": 348,
+        "Exp": 391460,
+        "SP": 50860
+      },
+      "points": [
+        {
+          "x": 44.200576,
+          "y": 83.772672
+        }
+      ]
+    },
+    {
+      "id": 25060,
+      "name": "Unrequited Kael",
+      "level": 24,
+      "category": "raid",
+      "group": "Боссы 20-24 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25060-unrequited-kael",
+      "stats": {
+        "HP": 99367,
+        "MP": 1277,
+        "Физ. Атк.": 188,
+        "Маг. Атк.": 18,
+        "Физ. Защ.": 274,
+        "Маг. Защ.": 362,
+        "Exp": 426240,
+        "SP": 51383
+      },
+      "points": [
+        {
+          "x": 44.560736,
+          "y": 85.40778
+        }
+      ]
+    },
+    {
+      "id": 25019,
+      "name": "Pan Dryad",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25019-pan-dryad",
+      "stats": {
+        "HP": 195876,
+        "MP": 1345,
+        "Физ. Атк.": 411,
+        "Маг. Атк.": 99,
+        "Физ. Защ.": 353,
+        "Маг. Защ.": 396,
+        "Exp": 459375,
+        "SP": 69595
+      },
+      "points": [
+        {
+          "x": 57.308147,
+          "y": 81.865799
+        }
+      ]
+    },
+    {
+      "id": 25076,
+      "name": "Princess Molrang",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25076-princess-molrang",
+      "stats": {
+        "HP": 103093,
+        "MP": 1345,
+        "Физ. Атк.": 206,
+        "Маг. Атк.": 23,
+        "Физ. Защ.": 353,
+        "Маг. Защ.": 377,
+        "Exp": 459375,
+        "SP": 69595
+      },
+      "points": [
+        {
+          "x": 44.445259,
+          "y": 73.950552
+        }
+      ]
+    },
+    {
+      "id": 25149,
+      "name": "Zombie Lord Crowl",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25149-zombie-lord-crowl",
+      "stats": {
+        "HP": 103093,
+        "MP": 1345,
+        "Физ. Атк.": 206,
+        "Маг. Атк.": 50,
+        "Физ. Защ.": 353,
+        "Маг. Защ.": 377,
+        "Exp": 459375,
+        "SP": 92883
+      },
+      "points": [
+        {
+          "x": 53.545743,
+          "y": 75.99171
+        }
+      ]
+    },
+    {
+      "id": 25166,
+      "name": "Ikuntai",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25166-ikuntai",
+      "stats": {
+        "HP": 134813,
+        "MP": 1345,
+        "Физ. Атк.": 382,
+        "Маг. Атк.": 103,
+        "Физ. Защ.": 353,
+        "Маг. Защ.": 377,
+        "Exp": 459375,
+        "SP": 108133
+      },
+      "points": [
+        {
+          "x": 51.829576,
+          "y": 78.599344
+        }
+      ]
+    },
+    {
+      "id": 25369,
+      "name": "Soul Scavenger",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25369-soul-scavenger",
+      "stats": {
+        "HP": 103093,
+        "MP": 8254,
+        "Физ. Атк.": 206,
+        "Маг. Атк.": 17,
+        "Физ. Защ.": 353,
+        "Маг. Защ.": 377,
+        "Exp": 459375,
+        "SP": 52699
+      },
+      "points": [
+        {
+          "x": 47.328045,
+          "y": 70.911102
+        }
+      ]
+    },
+    {
+      "id": 25426,
+      "name": "Betrayer of Urutu Freki",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25426-betrayer-of-urutu-freki",
+      "stats": {
+        "HP": 103093,
+        "MP": 8254,
+        "Физ. Атк.": 206,
+        "Маг. Атк.": 17,
+        "Физ. Защ.": 335,
+        "Маг. Защ.": 377,
+        "Exp": 459375,
+        "SP": 52699
+      },
+      "points": [
+        {
+          "x": 52.530148,
+          "y": 30.95308
+        }
+      ]
+    },
+    {
+      "id": 25429,
+      "name": "Mammon Collector Talos",
+      "level": 25,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25429-mammon-collector-talos",
+      "stats": {
+        "HP": 103093,
+        "MP": 8254,
+        "Физ. Атк.": 206,
+        "Маг. Атк.": 18,
+        "Физ. Защ.": 335,
+        "Маг. Защ.": 377,
+        "Exp": 459375,
+        "SP": 52699
+      },
+      "points": [
+        {
+          "x": 88.29696,
+          "y": 9.606401
+        }
+      ]
+    },
+    {
+      "id": 25360,
+      "name": "Tiger Hornet",
+      "level": 26,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25360-tiger-hornet",
+      "stats": {
+        "HP": 101827,
+        "MP": 8254,
+        "Физ. Атк.": 225,
+        "Маг. Атк.": 20,
+        "Физ. Защ.": 367,
+        "Маг. Защ.": 392,
+        "Exp": 490100,
+        "SP": 53601
+      },
+      "points": [
+        {
+          "x": 61.391591,
+          "y": 83.733177
+        }
+      ]
+    },
+    {
+      "id": 25365,
+      "name": "Patriarch Kuroboros",
+      "level": 26,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25365-patriarch-kuroboros",
+      "stats": {
+        "HP": 214372,
+        "MP": 8254,
+        "Физ. Атк.": 450,
+        "Маг. Атк.": 84,
+        "Физ. Защ.": 349,
+        "Маг. Защ.": 392,
+        "Exp": 490100,
+        "SP": 53601
+      },
+      "points": [
+        {
+          "x": 44.232737,
+          "y": 85.825867
+        }
+      ]
+    },
+    {
+      "id": 25038,
+      "name": "Tirak",
+      "level": 28,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25038-tirak",
+      "stats": {
+        "HP": 116582,
+        "MP": 1552,
+        "Физ. Атк.": 270,
+        "Маг. Атк.": 38,
+        "Физ. Защ.": 377,
+        "Маг. Защ.": 424,
+        "Exp": 560560,
+        "SP": 74683
+      },
+      "points": [
+        {
+          "x": 45.136428,
+          "y": 85.033515
+        }
+      ]
+    },
+    {
+      "id": 25272,
+      "name": "Partisan Leader Talakin",
+      "level": 28,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25272-partisan-leader-talakin",
+      "stats": {
+        "HP": 233164,
+        "MP": 3141,
+        "Физ. Атк.": 539,
+        "Маг. Атк.": 300,
+        "Физ. Защ.": 377,
+        "Маг. Защ.": 424,
+        "Exp": 588000,
+        "SP": 99579
+      },
+      "points": [
+        {
+          "x": 65.177503,
+          "y": 74.073176
+        }
+      ]
+    },
+    {
+      "id": 25095,
+      "name": "Elf Renoa",
+      "level": 29,
+      "category": "raid",
+      "group": "Боссы 25-29 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25095-elf-renoa",
+      "stats": {
+        "HP": 121941,
+        "MP": 1623,
+        "Физ. Атк.": 295,
+        "Маг. Атк.": 39,
+        "Физ. Защ.": 412,
+        "Маг. Защ.": 441,
+        "Exp": 597110,
+        "SP": 76955
+      },
+      "points": [
+        {
+          "x": 48.816456,
+          "y": 87.261053
+        }
+      ]
+    },
+    {
+      "id": 25004,
+      "name": "Turek Mercenary Captain",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25004-turek-mercenary-captain",
+      "stats": {
+        "HP": 168366,
+        "MP": 1694,
+        "Физ. Атк.": 602,
+        "Маг. Атк.": 216,
+        "Физ. Защ.": 406,
+        "Маг. Защ.": 458,
+        "Exp": 630000,
+        "SP": 129276
+      },
+      "points": [
+        {
+          "x": 38.227561,
+          "y": 68.852077
+        }
+      ]
+    },
+    {
+      "id": 25079,
+      "name": "Cat's Eye Bandit",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25079-cats-eye-bandit",
+      "stats": {
+        "HP": 168366,
+        "MP": 1694,
+        "Физ. Атк.": 602,
+        "Маг. Атк.": 163,
+        "Физ. Защ.": 406,
+        "Маг. Защ.": 458,
+        "Exp": 630000,
+        "SP": 122342
+      },
+      "points": [
+        {
+          "x": 66.04264,
+          "y": 69.30759
+        }
+      ]
+    },
+    {
+      "id": 25112,
+      "name": "Beleth's Agent, Meana",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25112-beleths-agent-meana",
+      "stats": {
+        "HP": 127782,
+        "MP": 1694,
+        "Физ. Атк.": 322,
+        "Маг. Атк.": 80,
+        "Физ. Защ.": 364,
+        "Маг. Защ.": 458,
+        "Exp": 630000,
+        "SP": 105037
+      },
+      "points": [
+        {
+          "x": 77.783107,
+          "y": 76.228306
+        }
+      ]
+    },
+    {
+      "id": 25169,
+      "name": "Ragraman",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25169-ragraman",
+      "stats": {
+        "HP": 336732,
+        "MP": 1694,
+        "Физ. Атк.": 1203,
+        "Маг. Атк.": 654,
+        "Физ. Защ.": 406,
+        "Маг. Защ.": 458,
+        "Exp": 765000,
+        "SP": 122342
+      },
+      "points": [
+        {
+          "x": 45.672249,
+          "y": 82.032807
+        }
+      ]
+    },
+    {
+      "id": 25188,
+      "name": "Apepi",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25188-apepi",
+      "stats": {
+        "HP": 255565,
+        "MP": 1694,
+        "Физ. Атк.": 643,
+        "Маг. Атк.": 154,
+        "Физ. Защ.": 428,
+        "Маг. Защ.": 458,
+        "Exp": 765000,
+        "SP": 78807
+      },
+      "points": [
+        {
+          "x": 72.495054,
+          "y": 83.15015
+        }
+      ]
+    },
+    {
+      "id": 25352,
+      "name": "Giant Wasteland Basilisk",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25352-giant-wasteland-basilisk",
+      "stats": {
+        "HP": 127782,
+        "MP": 8254,
+        "Физ. Атк.": 322,
+        "Маг. Атк.": 28,
+        "Физ. Защ.": 428,
+        "Маг. Защ.": 458,
+        "Exp": 630000,
+        "SP": 59660
+      },
+      "points": [
+        {
+          "x": 52.757717,
+          "y": 82.892114
+        }
+      ]
+    },
+    {
+      "id": 25501,
+      "name": "Boss Akata",
+      "level": 30,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25501-boss-akata",
+      "stats": {
+        "HP": 127782,
+        "MP": 731,
+        "Физ. Атк.": 322,
+        "Маг. Атк.": 60,
+        "Физ. Защ.": 406,
+        "Маг. Защ.": 458,
+        "Exp": 630000,
+        "SP": 111484
+      },
+      "points": [
+        {
+          "x": 67.963431,
+          "y": 79.250829
+        }
+      ]
+    },
+    {
+      "id": 25392,
+      "name": "Captain of Queen's Royal Guards",
+      "level": 32,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25392-captain-of-queens-royal-guards",
+      "stats": {
+        "HP": 141034,
+        "MP": 8254,
+        "Физ. Атк.": 383,
+        "Маг. Атк.": 54,
+        "Физ. Защ.": 438,
+        "Маг. Защ.": 494,
+        "Exp": 716800,
+        "SP": 71493
+      },
+      "points": [
+        {
+          "x": 61.547127,
+          "y": 70.16163
+        }
+      ]
+    },
+    {
+      "id": 25401,
+      "name": "Skyla",
+      "level": 32,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25401-skyla",
+      "stats": {
+        "HP": 141034,
+        "MP": 8254,
+        "Физ. Атк.": 383,
+        "Маг. Атк.": 54,
+        "Физ. Защ.": 438,
+        "Маг. Защ.": 494,
+        "Exp": 716800,
+        "SP": 71493
+      },
+      "points": [
+        {
+          "x": 78.082707,
+          "y": 69.361755
+        }
+      ]
+    },
+    {
+      "id": 25128,
+      "name": "Vuku Grand Seer Gharmash",
+      "level": 33,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25128-vuku-grand-seer-gharmash",
+      "stats": {
+        "HP": 148508,
+        "MP": 1909,
+        "Физ. Атк.": 417,
+        "Маг. Атк.": 78,
+        "Физ. Защ.": 386,
+        "Маг. Защ.": 512,
+        "Exp": 762300,
+        "SP": 97626
+      },
+      "points": [
+        {
+          "x": 59.248873,
+          "y": 83.690296
+        }
+      ]
+    },
+    {
+      "id": 25391,
+      "name": "Nurka's Messenger",
+      "level": 33,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25391-nurkas-messenger",
+      "stats": {
+        "HP": 297015,
+        "MP": 8254,
+        "Физ. Атк.": 833,
+        "Маг. Атк.": 243,
+        "Физ. Защ.": 454,
+        "Маг. Защ.": 512,
+        "Exp": 925650,
+        "SP": 73993
+      },
+      "points": [
+        {
+          "x": 64.50533,
+          "y": 72.70231
+        }
+      ]
+    },
+    {
+      "id": 25404,
+      "name": "Corsair Captain Kylon",
+      "level": 33,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25404-corsair-captain-kylon",
+      "stats": {
+        "HP": 148508,
+        "MP": 8254,
+        "Физ. Атк.": 417,
+        "Маг. Атк.": 58,
+        "Физ. Защ.": 478,
+        "Маг. Защ.": 512,
+        "Exp": 762300,
+        "SP": 73993
+      },
+      "points": [
+        {
+          "x": 62.705094,
+          "y": 85.988174
+        }
+      ]
+    },
+    {
+      "id": 25020,
+      "name": "Breka Warlock Pastu",
+      "level": 34,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25020-breka-warlock-pastu",
+      "stats": {
+        "HP": 156584,
+        "MP": 1982,
+        "Физ. Атк.": 454,
+        "Маг. Атк.": 181,
+        "Физ. Защ.": 400,
+        "Маг. Защ.": 531,
+        "Exp": 809200,
+        "SP": 135023
+      },
+      "points": [
+        {
+          "x": 73.482062,
+          "y": 73.450277
+        }
+      ]
+    },
+    {
+      "id": 25023,
+      "name": "Stakato Queen Zyrnna",
+      "level": 34,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25023-stakato-queen-zyrnna",
+      "stats": {
+        "HP": 208019,
+        "MP": 3141,
+        "Физ. Атк.": 849,
+        "Маг. Атк.": 362,
+        "Физ. Защ.": 471,
+        "Маг. Защ.": 531,
+        "Exp": 867000,
+        "SP": 156895
+      },
+      "points": [
+        {
+          "x": 61.037449,
+          "y": 69.151489
+        }
+      ]
+    },
+    {
+      "id": 25189,
+      "name": "Cronos's Servitor Mumu",
+      "level": 34,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25189-cronoss-servitor-mumu",
+      "stats": {
+        "HP": 156584,
+        "MP": 1982,
+        "Физ. Атк.": 454,
+        "Маг. Атк.": 86,
+        "Физ. Защ.": 471,
+        "Маг. Защ.": 531,
+        "Exp": 809200,
+        "SP": 100648
+      },
+      "points": [
+        {
+          "x": 68.841733,
+          "y": 88.206873
+        }
+      ]
+    },
+    {
+      "id": 25383,
+      "name": "Revenant of Sir Calibus",
+      "level": 34,
+      "category": "raid",
+      "group": "Боссы 30-34 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25383-revenant-of-sir-calibus",
+      "stats": {
+        "HP": 156584,
+        "MP": 8254,
+        "Физ. Атк.": 454,
+        "Маг. Атк.": 66,
+        "Физ. Защ.": 496,
+        "Маг. Защ.": 531,
+        "Exp": 982600,
+        "SP": 76283
+      },
+      "points": [
+        {
+          "x": 65.619287,
+          "y": 79.041316
+        }
+      ]
+    },
+    {
+      "id": 25041,
+      "name": "Remmel",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25041-remmel",
+      "stats": {
+        "HP": 165290,
+        "MP": 2058,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 94,
+        "Физ. Защ.": 488,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 103175
+      },
+      "points": [
+        {
+          "x": 57.904903,
+          "y": 73.864602
+        }
+      ]
+    },
+    {
+      "id": 25063,
+      "name": "Chertuba of Great Soul",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25063-chertuba-of-great-soul",
+      "stats": {
+        "HP": 330580,
+        "MP": 2058,
+        "Физ. Атк.": 986,
+        "Маг. Атк.": 378,
+        "Физ. Защ.": 488,
+        "Маг. Защ.": 551,
+        "Exp": 1041250,
+        "SP": 103175
+      },
+      "points": [
+        {
+          "x": 38.809083,
+          "y": 71.880243
+        }
+      ]
+    },
+    {
+      "id": 25098,
+      "name": "Sejarr's Servitor",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25098-sejarrs-servitor",
+      "stats": {
+        "HP": 330580,
+        "MP": 2058,
+        "Физ. Атк.": 986,
+        "Маг. Атк.": 378,
+        "Физ. Защ.": 488,
+        "Маг. Защ.": 551,
+        "Exp": 1041250,
+        "SP": 103175
+      },
+      "points": [
+        {
+          "x": 79.165632,
+          "y": 75.108894
+        }
+      ]
+    },
+    {
+      "id": 25118,
+      "name": "Guilotine, Warden of the Execution Grounds",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25118-guilotine-warden-of-the-execution-grounds",
+      "stats": {
+        "HP": 330580,
+        "MP": 3141,
+        "Физ. Атк.": 986,
+        "Маг. Атк.": 790,
+        "Физ. Защ.": 437,
+        "Маг. Защ.": 551,
+        "Exp": 1041250,
+        "SP": 138419
+      },
+      "points": [
+        {
+          "x": 65.495159,
+          "y": 77.602368
+        }
+      ]
+    },
+    {
+      "id": 25152,
+      "name": "Flame Lord Shadar",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25152-flame-lord-shadar",
+      "stats": {
+        "HP": 165290,
+        "MP": 2058,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 217,
+        "Физ. Защ.": 488,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 138419
+      },
+      "points": [
+        {
+          "x": 64.160592,
+          "y": 73.333672
+        }
+      ]
+    },
+    {
+      "id": 25185,
+      "name": "Tasaba Patriarch Hellena",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25185-tasaba-patriarch-hellena",
+      "stats": {
+        "HP": 165290,
+        "MP": 2058,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 197,
+        "Физ. Защ.": 415,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 138419
+      },
+      "points": [
+        {
+          "x": 72.502765,
+          "y": 81.28879
+        }
+      ]
+    },
+    {
+      "id": 25223,
+      "name": "Soul Collector Acheron",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25223-soul-collector-acheron",
+      "stats": {
+        "HP": 165290,
+        "MP": 2746,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 103,
+        "Физ. Защ.": 488,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 103175
+      },
+      "points": [
+        {
+          "x": 63.905189,
+          "y": 78.882394
+        }
+      ]
+    },
+    {
+      "id": 25354,
+      "name": "Gargoyle Lord Sirocco",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25354-gargoyle-lord-sirocco",
+      "stats": {
+        "HP": 165290,
+        "MP": 8254,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 197,
+        "Физ. Защ.": 514,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 138419
+      },
+      "points": [
+        {
+          "x": 52.899524,
+          "y": 84.660942
+        }
+      ]
+    },
+    {
+      "id": 25388,
+      "name": "Red Eye Captain Trakia",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25388-red-eye-captain-trakia",
+      "stats": {
+        "HP": 165290,
+        "MP": 8254,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 70,
+        "Физ. Защ.": 488,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 78199
+      },
+      "points": [
+        {
+          "x": 63.462276,
+          "y": 69.187035
+        }
+      ]
+    },
+    {
+      "id": 25398,
+      "name": "Beleth's Eye",
+      "level": 35,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25398-beleths-eye",
+      "stats": {
+        "HP": 170249,
+        "MP": 8254,
+        "Физ. Атк.": 493,
+        "Маг. Атк.": 70,
+        "Физ. Защ.": 539,
+        "Маг. Защ.": 551,
+        "Exp": 857500,
+        "SP": 78199
+      },
+      "points": [
+        {
+          "x": 56.865799,
+          "y": 85.545826
+        }
+      ]
+    },
+    {
+      "id": 25211,
+      "name": "Sebek",
+      "level": 36,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25211-sebek",
+      "stats": {
+        "HP": 174647,
+        "MP": 4385,
+        "Физ. Атк.": 536,
+        "Маг. Атк.": 221,
+        "Физ. Защ.": 532,
+        "Маг. Защ.": 571,
+        "Exp": 907200,
+        "SP": 142855
+      },
+      "points": [
+        {
+          "x": 70.305694,
+          "y": 86.340999
+        }
+      ]
+    },
+    {
+      "id": 25385,
+      "name": "Evil Spirit Tempest",
+      "level": 36,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25385-evil-spirit-tempest",
+      "stats": {
+        "HP": 174647,
+        "MP": 8254,
+        "Физ. Атк.": 536,
+        "Маг. Атк.": 90,
+        "Физ. Защ.": 506,
+        "Маг. Защ.": 571,
+        "Exp": 907200,
+        "SP": 80701
+      },
+      "points": [
+        {
+          "x": 66.084392,
+          "y": 77.094383
+        }
+      ]
+    },
+    {
+      "id": 25415,
+      "name": "Nakondas",
+      "level": 38,
+      "category": "raid",
+      "group": "Боссы 35-39 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25415-nakondas",
+      "stats": {
+        "HP": 229752,
+        "MP": 8254,
+        "Физ. Атк.": 728,
+        "Маг. Атк.": 58,
+        "Физ. Защ.": 632,
+        "Маг. Защ.": 614,
+        "Exp": 1010800,
+        "SP": 78199
+      },
+      "points": [
+        {
+          "x": 80.072897,
+          "y": 76.047003
+        }
+      ]
+    },
+    {
+      "id": 25170,
+      "name": "Lizardmen Leader Hellion",
+      "level": 40,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25170-lizardmen-leader-hellion",
+      "stats": {
+        "HP": 219172,
+        "MP": 2282,
+        "Физ. Атк.": 1047,
+        "Маг. Атк.": 130,
+        "Физ. Защ.": 468,
+        "Маг. Защ.": 622,
+        "Exp": 1152000,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 60.835647,
+          "y": 72.993071
+        }
+      ]
+    },
+    {
+      "id": 25394,
+      "name": "Premo Prime",
+      "level": 40,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25394-premo-prime",
+      "stats": {
+        "HP": 343144,
+        "MP": 8254,
+        "Физ. Атк.": 1439,
+        "Маг. Атк.": 409,
+        "Физ. Защ.": 551,
+        "Маг. Защ.": 622,
+        "Exp": 1440000,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 75.072408,
+          "y": 87.688731
+        }
+      ]
+    },
+    {
+      "id": 25506,
+      "name": "Rayito the Looter",
+      "level": 40,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25506-rayito-the-looter",
+      "stats": {
+        "HP": 208469,
+        "MP": 961,
+        "Физ. Атк.": 1097,
+        "Маг. Атк.": 146,
+        "Физ. Защ.": 536,
+        "Маг. Защ.": 606,
+        "Exp": 1152000,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 59.959978,
+          "y": 30.157906
+        }
+      ]
+    },
+    {
+      "id": 25082,
+      "name": "Leader of Cat Gang",
+      "level": 41,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25082-leader-of-cat-gang",
+      "stats": {
+        "HP": 230553,
+        "MP": 2358,
+        "Физ. Атк.": 1102,
+        "Маг. Атк.": 143,
+        "Физ. Защ.": 570,
+        "Маг. Защ.": 644,
+        "Exp": 1210320,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 72.580063,
+          "y": 76.451737
+        }
+      ]
+    },
+    {
+      "id": 25487,
+      "name": "Water Spirit Lian",
+      "level": 41,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25487-water-spirit-lian",
+      "stats": {
+        "HP": 230480,
+        "MP": 8254,
+        "Физ. Атк.": 1125,
+        "Маг. Атк.": 93,
+        "Физ. Защ.": 616,
+        "Маг. Защ.": 694,
+        "Exp": 1210320,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 71.51256,
+          "y": 84.46685
+        }
+      ]
+    },
+    {
+      "id": 25504,
+      "name": "Nellis' Vengeful Spirit",
+      "level": 41,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25504-nellis-vengeful-spirit",
+      "stats": {
+        "HP": 339049,
+        "MP": 1029,
+        "Физ. Атк.": 1102,
+        "Маг. Атк.": 168,
+        "Физ. Защ.": 570,
+        "Маг. Защ.": 644,
+        "Exp": 1210320,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 91.603474,
+          "y": 8.692177
+        }
+      ]
+    },
+    {
+      "id": 25064,
+      "name": "Wizard of Storm Teruk",
+      "level": 42,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25064-wizard-of-storm-teruk",
+      "stats": {
+        "HP": 242610,
+        "MP": 2486,
+        "Физ. Атк.": 1133,
+        "Маг. Атк.": 124,
+        "Физ. Защ.": 501,
+        "Маг. Защ.": 666,
+        "Exp": 1270080,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 73.324268,
+          "y": 65.961392
+        }
+      ]
+    },
+    {
+      "id": 25115,
+      "name": "Icarus Sample 1",
+      "level": 42,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25115-icarus-sample-1",
+      "stats": {
+        "HP": 303692,
+        "MP": 2486,
+        "Физ. Атк.": 1277,
+        "Маг. Атк.": 521,
+        "Физ. Защ.": 652,
+        "Маг. Защ.": 666,
+        "Exp": 1323000,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 73.586818,
+          "y": 87.170778
+        }
+      ]
+    },
+    {
+      "id": 25134,
+      "name": "Leto Chief Talkin",
+      "level": 42,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25134-leto-chief-talkin",
+      "stats": {
+        "HP": 242610,
+        "MP": 3823,
+        "Физ. Атк.": 1229,
+        "Маг. Атк.": 256,
+        "Физ. Защ.": 501,
+        "Маг. Защ.": 666,
+        "Exp": 1270080,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 72.373746,
+          "y": 64.303904
+        }
+      ]
+    },
+    {
+      "id": 25490,
+      "name": "Gwindorr",
+      "level": 42,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25490-gwindorr",
+      "stats": {
+        "HP": 242610,
+        "MP": 8254,
+        "Физ. Атк.": 1133,
+        "Маг. Атк.": 94,
+        "Физ. Защ.": 620,
+        "Маг. Защ.": 666,
+        "Exp": 1270080,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 72.200155,
+          "y": 90.79081
+        }
+      ]
+    },
+    {
+      "id": 25155,
+      "name": "Shaman King Selu",
+      "level": 43,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25155-shaman-king-selu",
+      "stats": {
+        "HP": 271046,
+        "MP": 2486,
+        "Физ. Атк.": 1286,
+        "Маг. Атк.": 700,
+        "Физ. Защ.": 594,
+        "Маг. Защ.": 671,
+        "Exp": 1331280,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 69.749938,
+          "y": 62.587736
+        }
+      ]
+    },
+    {
+      "id": 25208,
+      "name": "Water Couatle Ateka",
+      "level": 43,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25208-water-couatle-ateka",
+      "stats": {
+        "HP": 242610,
+        "MP": 3823,
+        "Физ. Атк.": 1238,
+        "Маг. Атк.": 260,
+        "Физ. Защ.": 625,
+        "Маг. Защ.": 671,
+        "Exp": 1331280,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 69.803163,
+          "y": 87.908965
+        }
+      ]
+    },
+    {
+      "id": 25214,
+      "name": "Fafurion's Page Sika",
+      "level": 43,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25214-fafurions-page-sika",
+      "stats": {
+        "HP": 259593,
+        "MP": 5257,
+        "Физ. Атк.": 1325,
+        "Маг. Атк.": 126,
+        "Физ. Защ.": 625,
+        "Маг. Защ.": 671,
+        "Exp": 1331280,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 77.001851,
+          "y": 89.497243
+        }
+      ]
+    },
+    {
+      "id": 25410,
+      "name": "Road Scavenger Leader",
+      "level": 43,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25410-road-scavenger-leader",
+      "stats": {
+        "HP": 242610,
+        "MP": 8254,
+        "Физ. Атк.": 1238,
+        "Маг. Атк.": 260,
+        "Физ. Защ.": 594,
+        "Маг. Защ.": 671,
+        "Exp": 1331280,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 69.474787,
+          "y": 73.598667
+        }
+      ]
+    },
+    {
+      "id": 25007,
+      "name": "Retreat Spider Cletu",
+      "level": 44,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25007-retreat-spider-cletu",
+      "stats": {
+        "HP": 292336,
+        "MP": 2358,
+        "Физ. Атк.": 1480,
+        "Маг. Атк.": 983,
+        "Физ. Защ.": 663,
+        "Маг. Защ.": 713,
+        "Exp": 1452000,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 79.287692,
+          "y": 64.190684
+        }
+      ]
+    },
+    {
+      "id": 25088,
+      "name": "Crazy Mechanic Golem",
+      "level": 44,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25088-crazy-mechanic-golem",
+      "stats": {
+        "HP": 478349,
+        "MP": 4527,
+        "Физ. Атк.": 2550,
+        "Маг. Атк.": 5912,
+        "Физ. Защ.": 714,
+        "Маг. Защ.": 731,
+        "Exp": 1839200,
+        "SP": 273103
+      },
+      "points": [
+        {
+          "x": 73.002099,
+          "y": 53.089478
+        }
+      ]
+    },
+    {
+      "id": 25192,
+      "name": "Earth Protector Panathen",
+      "level": 44,
+      "category": "raid",
+      "group": "Боссы 40-44 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25192-earth-protector-panathen",
+      "stats": {
+        "HP": 282649,
+        "MP": 2877,
+        "Физ. Атк.": 1264,
+        "Маг. Атк.": 552,
+        "Физ. Защ.": 680,
+        "Маг. Защ.": 731,
+        "Exp": 1393920,
+        "SP": 350000
+      },
+      "points": [
+        {
+          "x": 79.602338,
+          "y": 85.788816
+        }
+      ]
+    },
+    {
+      "id": 25085,
+      "name": "Timak Orc Chief Ranger",
+      "level": 45,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25085-timak-orc-chief-ranger",
+      "stats": {
+        "HP": 347920,
+        "MP": 3008,
+        "Физ. Атк.": 1898,
+        "Маг. Атк.": 1275,
+        "Физ. Защ.": 667,
+        "Маг. Защ.": 755,
+        "Exp": 1518750,
+        "SP": 262175
+      },
+      "points": [
+        {
+          "x": 68.518811,
+          "y": 62.66936
+        }
+      ]
+    },
+    {
+      "id": 25099,
+      "name": "Rotting Tree Repiro",
+      "level": 45,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25099-rotting-tree-repiro",
+      "stats": {
+        "HP": 320974,
+        "MP": 3008,
+        "Физ. Атк.": 1472,
+        "Маг. Атк.": 305,
+        "Физ. Защ.": 703,
+        "Маг. Защ.": 755,
+        "Exp": 1488380,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 67.984495,
+          "y": 53.026285
+        }
+      ]
+    },
+    {
+      "id": 25418,
+      "name": "Dread Avenger Kraven",
+      "level": 45,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25418-dread-avenger-kraven",
+      "stats": {
+        "HP": 320974,
+        "MP": 8254,
+        "Физ. Атк.": 1472,
+        "Маг. Атк.": 237,
+        "Физ. Защ.": 703,
+        "Маг. Защ.": 755,
+        "Exp": 1488380,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 67.676431,
+          "y": 51.535617
+        }
+      ]
+    },
+    {
+      "id": 25431,
+      "name": "Flamestone Golem",
+      "level": 45,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25431-flamestone-golem",
+      "stats": {
+        "HP": 330603,
+        "MP": 8254,
+        "Физ. Атк.": 1472,
+        "Маг. Атк.": 237,
+        "Физ. Защ.": 738,
+        "Маг. Защ.": 755,
+        "Exp": 1488380,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 70.921258,
+          "y": 53.476344
+        }
+      ]
+    },
+    {
+      "id": 25057,
+      "name": "Beacon of Blue Sky",
+      "level": 46,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25057-beacon-of-blue-sky",
+      "stats": {
+        "HP": 336016,
+        "MP": 4962,
+        "Физ. Атк.": 1584,
+        "Маг. Атк.": 350,
+        "Физ. Защ.": 725,
+        "Маг. Защ.": 780,
+        "Exp": 1555260,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 76.045875,
+          "y": 81.657225
+        }
+      ]
+    },
+    {
+      "id": 25102,
+      "name": "Shacram",
+      "level": 46,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25102-shacram",
+      "stats": {
+        "HP": 576831,
+        "MP": 3823,
+        "Физ. Атк.": 2516,
+        "Маг. Атк.": 2898,
+        "Физ. Защ.": 725,
+        "Маг. Защ.": 780,
+        "Exp": 2010200,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 77.316873,
+          "y": 65.847984
+        }
+      ]
+    },
+    {
+      "id": 25260,
+      "name": "Iron Giant Totem",
+      "level": 46,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25260-iron-giant-totem",
+      "stats": {
+        "HP": 404773,
+        "MP": 3823,
+        "Физ. Атк.": 2372,
+        "Маг. Атк.": 1457,
+        "Физ. Защ.": 762,
+        "Маг. Защ.": 780,
+        "Exp": 1587000,
+        "SP": 267898
+      },
+      "points": [
+        {
+          "x": 73.435419,
+          "y": 53.67006
+        }
+      ]
+    },
+    {
+      "id": 25438,
+      "name": "Thief Kelbar",
+      "level": 46,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25438-thief-kelbar",
+      "stats": {
+        "HP": 320974,
+        "MP": 8254,
+        "Физ. Атк.": 1483,
+        "Маг. Атк.": 241,
+        "Физ. Защ.": 672,
+        "Маг. Защ.": 761,
+        "Exp": 1555260,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 76.04926,
+          "y": 67.30273
+        }
+      ]
+    },
+    {
+      "id": 25173,
+      "name": "Tiger King Karuta",
+      "level": 47,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25173-tiger-king-karuta",
+      "stats": {
+        "HP": 359816,
+        "MP": 1356,
+        "Физ. Атк.": 1662,
+        "Маг. Атк.": 387,
+        "Физ. Защ.": 731,
+        "Маг. Защ.": 786,
+        "Exp": 1623620,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 70.189277,
+          "y": 70.859005
+        }
+      ]
+    },
+    {
+      "id": 25395,
+      "name": "Archon Suscepter",
+      "level": 47,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25395-archon-suscepter",
+      "stats": {
+        "HP": 370610,
+        "MP": 8254,
+        "Физ. Атк.": 1629,
+        "Маг. Атк.": 273,
+        "Физ. Защ.": 767,
+        "Маг. Защ.": 786,
+        "Exp": 1623620,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 58.737126,
+          "y": 72.362086
+        }
+      ]
+    },
+    {
+      "id": 25437,
+      "name": "Timak Orc Gosmos",
+      "level": 47,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25437-timak-orc-gosmos",
+      "stats": {
+        "HP": 576831,
+        "MP": 8254,
+        "Физ. Атк.": 2535,
+        "Маг. Атк.": 1098,
+        "Физ. Защ.": 694,
+        "Маг. Защ.": 786,
+        "Exp": 2098550,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 68.578618,
+          "y": 62.081067
+        }
+      ]
+    },
+    {
+      "id": 25441,
+      "name": "Evil Spirit Cyrion",
+      "level": 47,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25441-evil-spirit-cyrion",
+      "stats": {
+        "HP": 377806,
+        "MP": 8254,
+        "Физ. Атк.": 1662,
+        "Маг. Атк.": 273,
+        "Физ. Защ.": 767,
+        "Маг. Защ.": 746,
+        "Exp": 1623620,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 76.88769,
+          "y": 65.601985
+        }
+      ]
+    },
+    {
+      "id": 25498,
+      "name": "Fafurion's Henchman Istary",
+      "level": 47,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25498-fafurions-henchman-istary",
+      "stats": {
+        "HP": 359816,
+        "MP": 8254,
+        "Физ. Атк.": 1662,
+        "Маг. Атк.": 273,
+        "Физ. Защ.": 731,
+        "Маг. Защ.": 786,
+        "Exp": 1623620,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 79.749223,
+          "y": 82.81143
+        }
+      ]
+    },
+    {
+      "id": 25158,
+      "name": "King Tarlk",
+      "level": 48,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25158-king-tarlk",
+      "stats": {
+        "HP": 679652,
+        "MP": 3823,
+        "Физ. Атк.": 3259,
+        "Маг. Атк.": 8939,
+        "Физ. Защ.": 791,
+        "Маг. Защ.": 851,
+        "Exp": 2188800,
+        "SP": 456000
+      },
+      "points": [
+        {
+          "x": 70.439038,
+          "y": 51.02782
+        }
+      ]
+    },
+    {
+      "id": 25412,
+      "name": "Necrosentinel Royal Guard",
+      "level": 48,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25412-necrosentinel-royal-guard",
+      "stats": {
+        "HP": 391191,
+        "MP": 8254,
+        "Физ. Атк.": 2597,
+        "Маг. Атк.": 357,
+        "Физ. Защ.": 773,
+        "Маг. Защ.": 831,
+        "Exp": 1693440,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 71.322041,
+          "y": 71.296652
+        }
+      ]
+    },
+    {
+      "id": 25026,
+      "name": "Ketra Commander Atis",
+      "level": 49,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25026-ketra-commander-atis",
+      "stats": {
+        "HP": 423821,
+        "MP": 3685,
+        "Физ. Атк.": 2787,
+        "Маг. Атк.": 1251,
+        "Физ. Защ.": 775,
+        "Маг. Защ.": 877,
+        "Exp": 1764740,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 73.394796,
+          "y": 51.507406
+        }
+      ]
+    },
+    {
+      "id": 25420,
+      "name": "Orfen's Handmaiden",
+      "level": 49,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25420-orfens-handmaiden",
+      "stats": {
+        "HP": 387018,
+        "MP": 8254,
+        "Физ. Атк.": 2699,
+        "Маг. Атк.": 1127,
+        "Физ. Защ.": 797,
+        "Маг. Защ.": 857,
+        "Exp": 1764740,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 63.824129,
+          "y": 54.535948
+        }
+      ]
+    },
+    {
+      "id": 25456,
+      "name": "Mirror of Oblivion",
+      "level": 49,
+      "category": "raid",
+      "group": "Боссы 45-49 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25456-mirror-of-oblivion",
+      "stats": {
+        "HP": 402630,
+        "MP": 8254,
+        "Физ. Атк.": 2787,
+        "Маг. Атк.": 467,
+        "Физ. Защ.": 816,
+        "Маг. Защ.": 921,
+        "Exp": 1764740,
+        "SP": 380000
+      },
+      "points": [
+        {
+          "x": 81.057272,
+          "y": 66.376846
+        }
+      ]
+    },
+    {
+      "id": 25119,
+      "name": "Messenger of Fairy Queen Berun",
+      "level": 52,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25119-messenger-of-fairy-queen-berun",
+      "stats": {
+        "HP": 504531,
+        "MP": 3823,
+        "Физ. Атк.": 4310,
+        "Маг. Атк.": 4433,
+        "Физ. Защ.": 853,
+        "Маг. Защ.": 963,
+        "Exp": 2433600,
+        "SP": 450000
+      },
+      "points": [
+        {
+          "x": 78.837633,
+          "y": 62.05154
+        }
+      ]
+    },
+    {
+      "id": 25131,
+      "name": "Carnage Lord Gato",
+      "level": 52,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25131-carnage-lord-gato",
+      "stats": {
+        "HP": 464210,
+        "MP": 3141,
+        "Физ. Атк.": 3284,
+        "Маг. Атк.": 1243,
+        "Физ. Защ.": 810,
+        "Маг. Защ.": 917,
+        "Exp": 2163200,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 70.11085,
+          "y": 48.249039
+        }
+      ]
+    },
+    {
+      "id": 25217,
+      "name": "Cursed Clara",
+      "level": 52,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25217-cursed-clara",
+      "stats": {
+        "HP": 464210,
+        "MP": 3823,
+        "Физ. Атк.": 3284,
+        "Маг. Атк.": 597,
+        "Физ. Защ.": 725,
+        "Маг. Защ.": 917,
+        "Exp": 2163200,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 72.82926,
+          "y": 69.891557
+        }
+      ]
+    },
+    {
+      "id": 25484,
+      "name": "Zaken's Chief Mate Tillion",
+      "level": 52,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25484-zakens-chief-mate-tillion",
+      "stats": {
+        "HP": 464210,
+        "MP": 8254,
+        "Физ. Атк.": 3284,
+        "Маг. Атк.": 461,
+        "Физ. Защ.": 853,
+        "Маг. Защ.": 917,
+        "Exp": 2163200,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 64.028,
+          "y": 91.448314
+        }
+      ]
+    },
+    {
+      "id": 25067,
+      "name": "Captain of Red Flag Shaka",
+      "level": 53,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25067-captain-of-red-flag-shaka",
+      "stats": {
+        "HP": 602240,
+        "MP": 3548,
+        "Физ. Атк.": 4714,
+        "Маг. Атк.": 3832,
+        "Физ. Защ.": 853,
+        "Маг. Защ.": 967,
+        "Exp": 2528100,
+        "SP": 450000
+      },
+      "points": [
+        {
+          "x": 73.798213,
+          "y": 45.655322
+        }
+      ]
+    },
+    {
+      "id": 25460,
+      "name": "Deadman Ereve",
+      "level": 53,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25460-deadman-ereve",
+      "stats": {
+        "HP": 480870,
+        "MP": 8254,
+        "Физ. Атк.": 3405,
+        "Маг. Атк.": 644,
+        "Физ. Защ.": 878,
+        "Маг. Защ.": 945,
+        "Exp": 2247200,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 84.218594,
+          "y": 62.726158
+        }
+      ]
+    },
+    {
+      "id": 25496,
+      "name": "Fafurion's Envoy Pingolpin",
+      "level": 53,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25496-fafurions-envoy-pingolpin",
+      "stats": {
+        "HP": 472643,
+        "MP": 8254,
+        "Физ. Атк.": 3161,
+        "Маг. Атк.": 711,
+        "Физ. Защ.": 898,
+        "Маг. Защ.": 967,
+        "Exp": 2247200,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 72.552228,
+          "y": 98.565378
+        }
+      ]
+    },
+    {
+      "id": 25029,
+      "name": "Atraiban",
+      "level": 54,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25029-atraiban",
+      "stats": {
+        "HP": 620050,
+        "MP": 4242,
+        "Физ. Атк.": 4945,
+        "Маг. Атк.": 5883,
+        "Физ. Защ.": 971,
+        "Маг. Защ.": 995,
+        "Exp": 2624400,
+        "SP": 450000
+      },
+      "points": [
+        {
+          "x": 66.431763,
+          "y": 88.777863
+        }
+      ]
+    },
+    {
+      "id": 25159,
+      "name": "Paniel the Unicorn",
+      "level": 54,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25159-paniel-the-unicorn",
+      "stats": {
+        "HP": 482856,
+        "MP": 4385,
+        "Физ. Атк.": 3399,
+        "Маг. Атк.": 2453,
+        "Физ. Защ.": 843,
+        "Маг. Защ.": 966,
+        "Exp": 2332800,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 79.445861,
+          "y": 58.134352
+        }
+      ]
+    },
+    {
+      "id": 25481,
+      "name": "Magus Kenishee",
+      "level": 54,
+      "category": "raid",
+      "group": "Боссы 50-54 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25481-magus-kenishee",
+      "stats": {
+        "HP": 490274,
+        "MP": 8254,
+        "Физ. Атк.": 3289,
+        "Маг. Атк.": 898,
+        "Физ. Защ.": 878,
+        "Маг. Защ.": 995,
+        "Exp": 2332800,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 65.963649,
+          "y": 88.639817
+        }
+      ]
+    },
+    {
+      "id": 25010,
+      "name": "Furious Thieles",
+      "level": 55,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25010-furious-thieles",
+      "stats": {
+        "HP": 648264,
+        "MP": 4527,
+        "Физ. Атк.": 5398,
+        "Маг. Атк.": 5491,
+        "Физ. Защ.": 1020,
+        "Маг. Защ.": 994,
+        "Exp": 2722500,
+        "SP": 450000
+      },
+      "points": [
+        {
+          "x": 77.37969,
+          "y": 59.963739
+        }
+      ]
+    },
+    {
+      "id": 25070,
+      "name": "Enchanted Forest Watcher Ruell",
+      "level": 55,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25070-enchanted-forest-watcher-ruell",
+      "stats": {
+        "HP": 498991,
+        "MP": 4527,
+        "Физ. Атк.": 3536,
+        "Маг. Атк.": 1315,
+        "Физ. Защ.": 1020,
+        "Маг. Защ.": 994,
+        "Exp": 2420000,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 79.547421,
+          "y": 59.422465
+        }
+      ]
+    },
+    {
+      "id": 25103,
+      "name": "Sorcerer Isirr",
+      "level": 55,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25103-sorcerer-isirr",
+      "stats": {
+        "HP": 498991,
+        "MP": 4527,
+        "Физ. Атк.": 3536,
+        "Маг. Атк.": 1315,
+        "Физ. Защ.": 785,
+        "Маг. Защ.": 1046,
+        "Exp": 2420000,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 81.47423,
+          "y": 67.782129
+        }
+      ]
+    },
+    {
+      "id": 25137,
+      "name": "Beleth's Seer, Sephia",
+      "level": 55,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25137-beleths-seer-sephia",
+      "stats": {
+        "HP": 498991,
+        "MP": 4527,
+        "Физ. Атк.": 3536,
+        "Маг. Атк.": 3002,
+        "Физ. Защ.": 923,
+        "Маг. Защ.": 1046,
+        "Exp": 2420000,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 79.477458,
+          "y": 69.303076
+        }
+      ]
+    },
+    {
+      "id": 25176,
+      "name": "Black Lily",
+      "level": 56,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25176-black-lily",
+      "stats": {
+        "HP": 498991,
+        "MP": 4527,
+        "Физ. Атк.": 3560,
+        "Маг. Атк.": 1466,
+        "Физ. Защ.": 930,
+        "Маг. Защ.": 1054,
+        "Exp": 2508800,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 73.319566,
+          "y": 71.66866
+        }
+      ]
+    },
+    {
+      "id": 25241,
+      "name": "Harit Hero Tamash",
+      "level": 56,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25241-harit-hero-tamash",
+      "stats": {
+        "HP": 648264,
+        "MP": 5859,
+        "Физ. Атк.": 5436,
+        "Маг. Атк.": 5567,
+        "Физ. Защ.": 930,
+        "Маг. Защ.": 1054,
+        "Exp": 2822400,
+        "SP": 450000
+      },
+      "points": [
+        {
+          "x": 87.137113,
+          "y": 66.588428
+        }
+      ]
+    },
+    {
+      "id": 25259,
+      "name": "Zaken's Butcher Krantz",
+      "level": 56,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25259-zakens-butcher-krantz",
+      "stats": {
+        "HP": 1081693,
+        "MP": 4527,
+        "Физ. Атк.": 8617,
+        "Маг. Атк.": 22270,
+        "Физ. Защ.": 979,
+        "Маг. Защ.": 1054,
+        "Exp": 3136000,
+        "SP": 560000
+      },
+      "points": [
+        {
+          "x": 63.835413,
+          "y": 89.137459
+        }
+      ]
+    },
+    {
+      "id": 25434,
+      "name": "Bandit Leader Barda",
+      "level": 56,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25434-bandit-leader-barda",
+      "stats": {
+        "HP": 522791,
+        "MP": 8254,
+        "Физ. Атк.": 3560,
+        "Маг. Атк.": 1030,
+        "Физ. Защ.": 930,
+        "Маг. Защ.": 1054,
+        "Exp": 2508800,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 75.49482,
+          "y": 46.839995
+        }
+      ]
+    },
+    {
+      "id": 25493,
+      "name": "Eva's Spirit Niniel",
+      "level": 56,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25493-evas-spirit-niniel",
+      "stats": {
+        "HP": 522791,
+        "MP": 8254,
+        "Физ. Атк.": 3560,
+        "Маг. Атк.": 1030,
+        "Физ. Защ.": 930,
+        "Маг. Защ.": 1054,
+        "Exp": 2508800,
+        "SP": 420000
+      },
+      "points": [
+        {
+          "x": 71.393885,
+          "y": 97.373935
+        }
+      ]
+    },
+    {
+      "id": 25122,
+      "name": "Refugee Applicant Leo",
+      "level": 58,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25122-refugee-applicant-leo",
+      "stats": {
+        "HP": 610008,
+        "MP": 4962,
+        "Физ. Атк.": 5519,
+        "Маг. Атк.": 1499,
+        "Физ. Защ.": 818,
+        "Маг. Защ.": 1093,
+        "Exp": 2960320,
+        "SP": 630000
+      },
+      "points": [
+        {
+          "x": 72.156146,
+          "y": 48.4578
+        }
+      ]
+    },
+    {
+      "id": 25273,
+      "name": "Carnamakos",
+      "level": 58,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25273-carnamakos",
+      "stats": {
+        "HP": 620560,
+        "MP": 4671,
+        "Физ. Атк.": 5565,
+        "Маг. Атк.": 8301,
+        "Физ. Защ.": 1063,
+        "Маг. Защ.": 1093,
+        "Exp": 2960320,
+        "SP": 630000
+      },
+      "points": [
+        {
+          "x": 60.401574,
+          "y": 72.474742
+        }
+      ]
+    },
+    {
+      "id": 25230,
+      "name": "Timak Seer Ragoth",
+      "level": 59,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25230-timak-seer-ragoth",
+      "stats": {
+        "HP": 601650,
+        "MP": 4815,
+        "Физ. Атк.": 5675,
+        "Маг. Атк.": 3444,
+        "Физ. Защ.": 840,
+        "Маг. Защ.": 1120,
+        "Exp": 3063280,
+        "SP": 630000
+      },
+      "points": [
+        {
+          "x": 68.454866,
+          "y": 58.790351
+        }
+      ]
+    },
+    {
+      "id": 25463,
+      "name": "Harit Guardian Garangky",
+      "level": 59,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25463-harit-guardian-garangky",
+      "stats": {
+        "HP": 610008,
+        "MP": 8254,
+        "Физ. Атк.": 5560,
+        "Маг. Атк.": 1175,
+        "Физ. Защ.": 969,
+        "Маг. Защ.": 1101,
+        "Exp": 3063280,
+        "SP": 630000
+      },
+      "points": [
+        {
+          "x": 87.184131,
+          "y": 62.839378
+        }
+      ]
+    },
+    {
+      "id": 25016,
+      "name": "The 3rd Underwater Guardian",
+      "level": 60,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25016-the-3rd-underwater-guardian",
+      "stats": {
+        "HP": 679342,
+        "MP": 5257,
+        "Физ. Атк.": 6401,
+        "Маг. Атк.": 10951,
+        "Физ. Защ.": 992,
+        "Маг. Защ.": 1197,
+        "Exp": 3240000,
+        "SP": 650000
+      },
+      "points": [
+        {
+          "x": 70.367006,
+          "y": 96.223679
+        }
+      ]
+    },
+    {
+      "id": 25089,
+      "name": "Soulless Wild Boar",
+      "level": 60,
+      "category": "raid",
+      "group": "Боссы 55-59 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25089-soulless-wild-boar",
+      "stats": {
+        "HP": 631193,
+        "MP": 5108,
+        "Физ. Атк.": 5605,
+        "Маг. Атк.": 4213,
+        "Физ. Защ.": 1036,
+        "Маг. Защ.": 1174,
+        "Exp": 3168000,
+        "SP": 630000
+      },
+      "points": [
+        {
+          "x": 87.034237,
+          "y": 67.649913
+        }
+      ]
+    },
+    {
+      "id": 25407,
+      "name": "Lord Ishka",
+      "level": 61,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25407-lord-ishka",
+      "stats": {
+        "HP": 645218,
+        "MP": 8254,
+        "Физ. Атк.": 6506,
+        "Маг. Атк.": 1544,
+        "Физ. Защ.": 1119,
+        "Маг. Защ.": 1205,
+        "Exp": 3274480,
+        "SP": 630000
+      },
+      "points": [
+        {
+          "x": 77.566446,
+          "y": 71.108202
+        }
+      ]
+    },
+    {
+      "id": 25423,
+      "name": "Fairy Queen Timiniel",
+      "level": 61,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25423-fairy-queen-timiniel",
+      "stats": {
+        "HP": 625770,
+        "MP": 8254,
+        "Физ. Атк.": 5912,
+        "Маг. Атк.": 1344,
+        "Физ. Защ.": 1142,
+        "Маг. Защ.": 1290,
+        "Exp": 3162850,
+        "SP": 575000
+      },
+      "points": [
+        {
+          "x": 77.268915,
+          "y": 58.850158
+        }
+      ]
+    },
+    {
+      "id": 25032,
+      "name": "Eva's Guardian Millenu",
+      "level": 64,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25032-evas-guardian-millenu",
+      "stats": {
+        "HP": 809320,
+        "MP": 6010,
+        "Физ. Атк.": 9423,
+        "Маг. Атк.": 28299,
+        "Физ. Защ.": 1044,
+        "Маг. Защ.": 1183,
+        "Exp": 4710400,
+        "SP": 700000
+      },
+      "points": [
+        {
+          "x": 89.97382,
+          "y": 52.746244
+        }
+      ]
+    },
+    {
+      "id": 25179,
+      "name": "Guardian of the Statue of Giant Karum",
+      "level": 64,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25179-guardian-of-the-statue-of-giant-karum",
+      "stats": {
+        "HP": 868645,
+        "MP": 5257,
+        "Физ. Атк.": 9091,
+        "Маг. Атк.": 4328,
+        "Физ. Защ.": 1143,
+        "Маг. Защ.": 1231,
+        "Exp": 4710400,
+        "SP": 700000
+      },
+      "points": [
+        {
+          "x": 90.313104,
+          "y": 59.842432
+        }
+      ]
+    },
+    {
+      "id": 25226,
+      "name": "Roaring Lord Kastor",
+      "level": 64,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25226-roaring-lord-kastor",
+      "stats": {
+        "HP": 911338,
+        "MP": 5554,
+        "Физ. Атк.": 10061,
+        "Маг. Атк.": 14562,
+        "Физ. Защ.": 959,
+        "Маг. Защ.": 1279,
+        "Exp": 4710400,
+        "SP": 700000
+      },
+      "points": [
+        {
+          "x": 75.513252,
+          "y": 49.320304
+        }
+      ]
+    },
+    {
+      "id": 25256,
+      "name": "Taik High Prefect Arak",
+      "level": 64,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25256-taik-high-prefect-arak",
+      "stats": {
+        "HP": 811818,
+        "MP": 5257,
+        "Физ. Атк.": 8496,
+        "Маг. Атк.": 4328,
+        "Физ. Защ.": 1086,
+        "Маг. Защ.": 1231,
+        "Exp": 4710400,
+        "SP": 700000
+      },
+      "points": [
+        {
+          "x": 87.953162,
+          "y": 58.024517
+        }
+      ]
+    },
+    {
+      "id": 25162,
+      "name": "Giant Marpanak",
+      "level": 65,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25162-giant-marpanak",
+      "stats": {
+        "HP": 1818907,
+        "MP": 5257,
+        "Физ. Атк.": 12962,
+        "Маг. Атк.": 35227,
+        "Физ. Защ.": 1150,
+        "Маг. Защ.": 1239,
+        "Exp": 6337500,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 92.393193,
+          "y": 60.18134
+        }
+      ]
+    },
+    {
+      "id": 25182,
+      "name": "Demon Kuri",
+      "level": 65,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25182-demon-kuri",
+      "stats": {
+        "HP": 869194,
+        "MP": 6010,
+        "Физ. Атк.": 10287,
+        "Маг. Атк.": 8136,
+        "Физ. Защ.": 1072,
+        "Маг. Защ.": 1215,
+        "Exp": 4858750,
+        "SP": 720000
+      },
+      "points": [
+        {
+          "x": 79.901186,
+          "y": 55.488915
+        }
+      ]
+    },
+    {
+      "id": 25234,
+      "name": "Ancient Drake",
+      "level": 65,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25234-ancient-drake",
+      "stats": {
+        "HP": 2004698,
+        "MP": 6010,
+        "Физ. Атк.": 12238,
+        "Маг. Атк.": 25475,
+        "Физ. Защ.": 1208,
+        "Маг. Защ.": 1177,
+        "Exp": 6337500,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 78.492895,
+          "y": 70.94251
+        }
+      ]
+    },
+    {
+      "id": 25238,
+      "name": "Abyss Brukunt",
+      "level": 65,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25238-abyss-brukunt",
+      "stats": {
+        "HP": 912654,
+        "MP": 6318,
+        "Физ. Атк.": 10287,
+        "Маг. Атк.": 7991,
+        "Физ. Защ.": 1184,
+        "Маг. Защ.": 1154,
+        "Exp": 4858750,
+        "SP": 720000
+      },
+      "points": [
+        {
+          "x": 85.076771,
+          "y": 66.061447
+        }
+      ]
+    },
+    {
+      "id": 34141,
+      "name": "Kaldrak, Fire Spirit",
+      "level": 65,
+      "category": "subclass",
+      "group": "Подкласс",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/34141-kaldrak-fire-spirit",
+      "stats": {
+        "HP": 1461913,
+        "MP": 5257,
+        "Физ. Атк.": 9494,
+        "Маг. Атк.": 35227,
+        "Физ. Защ.": 1208,
+        "Маг. Защ.": 1177,
+        "Exp": 5408000,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 48.449525,
+          "y": 83.720388
+        }
+      ]
+    },
+    {
+      "id": 34142,
+      "name": "Naerith, Water Spirit",
+      "level": 65,
+      "category": "subclass",
+      "group": "Подкласс",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/34142-naerith-water-spirit",
+      "stats": {
+        "HP": 1461913,
+        "MP": 5257,
+        "Физ. Атк.": 9494,
+        "Маг. Атк.": 35227,
+        "Физ. Защ.": 1208,
+        "Маг. Защ.": 1177,
+        "Exp": 5408000,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 76.019356,
+          "y": 86.351531
+        }
+      ]
+    },
+    {
+      "id": 34143,
+      "name": "Erdrath, Earth Spirit",
+      "level": 65,
+      "category": "subclass",
+      "group": "Подкласс",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/34143-erdrath-earth-spirit",
+      "stats": {
+        "HP": 1461913,
+        "MP": 5257,
+        "Физ. Атк.": 9494,
+        "Маг. Атк.": 35227,
+        "Физ. Защ.": 1208,
+        "Маг. Защ.": 1177,
+        "Exp": 5408000,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 49.780519,
+          "y": 87.441791
+        }
+      ]
+    },
+    {
+      "id": 34144,
+      "name": "Zephrath, Wind Spirit",
+      "level": 65,
+      "category": "subclass",
+      "group": "Подкласс",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/34144-zephrath-wind-spirit",
+      "stats": {
+        "HP": 1461913,
+        "MP": 5257,
+        "Физ. Атк.": 9494,
+        "Маг. Атк.": 35227,
+        "Физ. Защ.": 1208,
+        "Маг. Защ.": 1177,
+        "Exp": 5408000,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 38.819427,
+          "y": 66.754309
+        }
+      ]
+    },
+    {
+      "id": 25051,
+      "name": "Rahha",
+      "level": 66,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25051-rahha",
+      "stats": {
+        "HP": 1033159,
+        "MP": 6010,
+        "Физ. Атк.": 10981,
+        "Маг. Атк.": 14245,
+        "Физ. Защ.": 1207,
+        "Маг. Защ.": 1369,
+        "Exp": 5009400,
+        "SP": 750000
+      },
+      "points": [
+        {
+          "x": 78.548752,
+          "y": 54.704086
+        }
+      ]
+    },
+    {
+      "id": 25106,
+      "name": "Ghost of the Well Lidia",
+      "level": 66,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25106-ghost-of-the-well-lidia",
+      "stats": {
+        "HP": 954618,
+        "MP": 5705,
+        "Физ. Атк.": 10867,
+        "Маг. Атк.": 6650,
+        "Физ. Защ.": 1100,
+        "Маг. Защ.": 1247,
+        "Exp": 5009400,
+        "SP": 740000
+      },
+      "points": [
+        {
+          "x": 88.627593,
+          "y": 47.853709
+        }
+      ]
+    },
+    {
+      "id": 25125,
+      "name": "Fierce Tiger King Angel",
+      "level": 66,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25125-fierce-tiger-king-angel",
+      "stats": {
+        "HP": 1994918,
+        "MP": 6010,
+        "Физ. Атк.": 14430,
+        "Маг. Атк.": 90914,
+        "Физ. Защ.": 1207,
+        "Маг. Защ.": 1369,
+        "Exp": 6534000,
+        "SP": 1100000
+      },
+      "points": [
+        {
+          "x": 88.016167,
+          "y": 66.050727
+        }
+      ]
+    },
+    {
+      "id": 25467,
+      "name": "Gorgolos",
+      "level": 66,
+      "category": "raid",
+      "group": "Боссы 60-64 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25467-gorgolos",
+      "stats": {
+        "HP": 961867,
+        "MP": 8254,
+        "Физ. Атк.": 10679,
+        "Маг. Атк.": 2318,
+        "Физ. Защ.": 1310,
+        "Маг. Защ.": 1345,
+        "Exp": 5009400,
+        "SP": 740000
+      },
+      "points": [
+        {
+          "x": 90.946535,
+          "y": 61.562549
+        }
+      ]
+    },
+    {
+      "id": 25140,
+      "name": "Hekaton Prime",
+      "level": 67,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25140-hekaton-prime",
+      "stats": {
+        "HP": 1211238,
+        "MP": 6010,
+        "Физ. Атк.": 11431,
+        "Маг. Атк.": 13118,
+        "Физ. Защ.": 1343,
+        "Маг. Защ.": 1378,
+        "Exp": 5162350,
+        "SP": 770000
+      },
+      "points": [
+        {
+          "x": 91.993538,
+          "y": 60.569147
+        }
+      ]
+    },
+    {
+      "id": 25255,
+      "name": "Gargoyle Lord Tiphon",
+      "level": 67,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25255-gargoyle-lord-tiphon",
+      "stats": {
+        "HP": 1994918,
+        "MP": 6010,
+        "Физ. Атк.": 13765,
+        "Маг. Атк.": 52475,
+        "Физ. Защ.": 1279,
+        "Маг. Защ.": 1378,
+        "Exp": 6733500,
+        "SP": 1100000
+      },
+      "points": [
+        {
+          "x": 87.878121,
+          "y": 45.308327
+        }
+      ]
+    },
+    {
+      "id": 25444,
+      "name": "Enmity Ghost Ramdal",
+      "level": 67,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25444-enmity-ghost-ramdal",
+      "stats": {
+        "HP": 945136,
+        "MP": 8254,
+        "Физ. Атк.": 11650,
+        "Маг. Атк.": 2424,
+        "Физ. Защ.": 1279,
+        "Маг. Защ.": 1378,
+        "Exp": 5162350,
+        "SP": 770000
+      },
+      "points": [
+        {
+          "x": 77.21174,
+          "y": 53.297675
+        }
+      ]
+    },
+    {
+      "id": 25478,
+      "name": "Shilen's Priest Hisilrome",
+      "level": 67,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25478-shilens-priest-hisilrome",
+      "stats": {
+        "HP": 945136,
+        "MP": 8254,
+        "Физ. Атк.": 11650,
+        "Маг. Атк.": 2424,
+        "Физ. Защ.": 1279,
+        "Маг. Защ.": 1378,
+        "Exp": 5162350,
+        "SP": 770000
+      },
+      "points": [
+        {
+          "x": 89.591844,
+          "y": 50.868146
+        }
+      ]
+    },
+    {
+      "id": 25263,
+      "name": "Kernon's Faithful Servant Kelone",
+      "level": 68,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25263-kernons-faithful-servant-kelone",
+      "stats": {
+        "HP": 1015389,
+        "MP": 6318,
+        "Физ. Атк.": 12033,
+        "Маг. Атк.": 14372,
+        "Физ. Защ.": 1133,
+        "Маг. Защ.": 1436,
+        "Exp": 5317600,
+        "SP": 800000
+      },
+      "points": [
+        {
+          "x": 85.685376,
+          "y": 45.396345
+        }
+      ]
+    },
+    {
+      "id": 25322,
+      "name": "Demon's Agent Falston",
+      "level": 68,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25322-demons-agent-falston",
+      "stats": {
+        "HP": 1000831,
+        "MP": 8254,
+        "Физ. Атк.": 12533,
+        "Маг. Атк.": 26557,
+        "Физ. Защ.": 1244,
+        "Маг. Защ.": 1412,
+        "Exp": 5317600,
+        "SP": 770000
+      },
+      "points": [
+        {
+          "x": 91.31497,
+          "y": 50.482031
+        }
+      ]
+    },
+    {
+      "id": 25470,
+      "name": "Last Titan Utenus",
+      "level": 68,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25470-last-titan-utenus",
+      "stats": {
+        "HP": 1022812,
+        "MP": 8254,
+        "Физ. Атк.": 12293,
+        "Маг. Атк.": 2539,
+        "Физ. Защ.": 1310,
+        "Маг. Защ.": 1412,
+        "Exp": 5317600,
+        "SP": 780000
+      },
+      "points": [
+        {
+          "x": 91.196108,
+          "y": 61.433343
+        }
+      ]
+    },
+    {
+      "id": 25035,
+      "name": "Shilen's Messenger Cabrio",
+      "level": 70,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25035-shilens-messenger-cabrio",
+      "stats": {
+        "HP": 1840659,
+        "MP": 2988,
+        "Физ. Атк.": 17985,
+        "Маг. Атк.": 11684,
+        "Физ. Защ.": 1347,
+        "Маг. Защ.": 1529,
+        "Exp": 6370000,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 89.239018,
+          "y": 50.655247
+        }
+      ]
+    },
+    {
+      "id": 25073,
+      "name": "Bloody Priest Rudelto",
+      "level": 70,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25073-bloody-priest-rudelto",
+      "stats": {
+        "HP": 1827949,
+        "MP": 6631,
+        "Физ. Атк.": 17732,
+        "Маг. Атк.": 30266,
+        "Физ. Защ.": 1325,
+        "Маг. Защ.": 1504,
+        "Exp": 6370000,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 82.999503,
+          "y": 70.755753
+        }
+      ]
+    },
+    {
+      "id": 25092,
+      "name": "Korim",
+      "level": 70,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25092-korim",
+      "stats": {
+        "HP": 1840659,
+        "MP": 2988,
+        "Физ. Атк.": 17985,
+        "Маг. Атк.": 10622,
+        "Физ. Защ.": 1145,
+        "Маг. Защ.": 1529,
+        "Exp": 6370000,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 77.904414,
+          "y": 53.207964
+        }
+      ]
+    },
+    {
+      "id": 25233,
+      "name": "Spirit of Andras, the Betrayer",
+      "level": 70,
+      "category": "raid",
+      "group": "Боссы 65-69 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25233-spirit-of-andras-the-betrayer",
+      "stats": {
+        "HP": 2446672,
+        "MP": 8087,
+        "Физ. Атк.": 18341,
+        "Маг. Атк.": 32275,
+        "Физ. Защ.": 1395,
+        "Маг. Защ.": 1504,
+        "Exp": 8330000,
+        "SP": 1600000
+      },
+      "points": [
+        {
+          "x": 90.869425,
+          "y": 45.016061
+        }
+      ]
+    },
+    {
+      "id": 25163,
+      "name": "Roaring Skylancer",
+      "level": 71,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25163-roaring-skylancer",
+      "stats": {
+        "HP": 2740834,
+        "MP": 2988,
+        "Физ. Атк.": 24532,
+        "Маг. Атк.": 43022,
+        "Физ. Защ.": 1498,
+        "Маг. Защ.": 1461,
+        "Exp": 8569700,
+        "SP": 1600000
+      },
+      "points": [
+        {
+          "x": 80.462961,
+          "y": 61.119825
+        }
+      ]
+    },
+    {
+      "id": 25198,
+      "name": "Fafurion's Herald Lokness",
+      "level": 71,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25198-fafurions-herald-lokness",
+      "stats": {
+        "HP": 2740834,
+        "MP": 2988,
+        "Физ. Атк.": 24532,
+        "Маг. Атк.": 43022,
+        "Физ. Защ.": 1498,
+        "Маг. Защ.": 1461,
+        "Exp": 8569700,
+        "SP": 1600000
+      },
+      "points": [
+        {
+          "x": 75.273646,
+          "y": 79.587104
+        }
+      ]
+    },
+    {
+      "id": 25252,
+      "name": "Palibati Queen Themis",
+      "level": 71,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25252-palibati-queen-themis",
+      "stats": {
+        "HP": 1840659,
+        "MP": 2988,
+        "Физ. Атк.": 15745,
+        "Маг. Атк.": 10756,
+        "Физ. Защ.": 1213,
+        "Маг. Защ.": 1538,
+        "Exp": 6553300,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 92.187253,
+          "y": 54.215472
+        }
+      ]
+    },
+    {
+      "id": 25453,
+      "name": "Meanas Anor",
+      "level": 71,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25453-meanas-anor",
+      "stats": {
+        "HP": 1932692,
+        "MP": 2988,
+        "Физ. Атк.": 18098,
+        "Маг. Атк.": 10756,
+        "Физ. Защ.": 1498,
+        "Маг. Защ.": 1461,
+        "Exp": 6553300,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 85.393675,
+          "y": 48.8473
+        }
+      ]
+    },
+    {
+      "id": 25248,
+      "name": "Doom Blade Tanatos",
+      "level": 72,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25248-doom-blade-tanatos",
+      "stats": {
+        "HP": 2610669,
+        "MP": 3130,
+        "Физ. Атк.": 25669,
+        "Маг. Атк.": 54346,
+        "Физ. Защ.": 1407,
+        "Маг. Защ.": 1597,
+        "Exp": 8812800,
+        "SP": 1600000
+      },
+      "points": [
+        {
+          "x": 79.59632,
+          "y": 49.35284
+        }
+      ]
+    },
+    {
+      "id": 25269,
+      "name": "Beast Lord Behemoth",
+      "level": 72,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25269-beast-lord-behemoth",
+      "stats": {
+        "HP": 1969505,
+        "MP": 2988,
+        "Физ. Атк.": 19486,
+        "Маг. Атк.": 10891,
+        "Физ. Защ.": 1436,
+        "Маг. Защ.": 1548,
+        "Exp": 6739200,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 80.521828,
+          "y": 57.874999
+        }
+      ]
+    },
+    {
+      "id": 25281,
+      "name": "Anakim's Nemesis Zakaron",
+      "level": 72,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25281-anakims-nemesis-zakaron",
+      "stats": {
+        "HP": 2610318,
+        "MP": 2988,
+        "Физ. Атк.": 24686,
+        "Маг. Атк.": 47918,
+        "Физ. Защ.": 1364,
+        "Маг. Защ.": 1548,
+        "Exp": 8812800,
+        "SP": 1600000
+      },
+      "points": [
+        {
+          "x": 81.219203,
+          "y": 48.533217
+        }
+      ]
+    },
+    {
+      "id": 25447,
+      "name": "Immortal Savior Mardil",
+      "level": 72,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25447-immortal-savior-mardil",
+      "stats": {
+        "HP": 1835954,
+        "MP": 3059,
+        "Физ. Атк.": 18368,
+        "Маг. Атк.": 3859,
+        "Физ. Защ.": 1386,
+        "Маг. Защ.": 1573,
+        "Exp": 6739200,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 77.217382,
+          "y": 53.297487
+        }
+      ]
+    },
+    {
+      "id": 25109,
+      "name": "Antharas Priest Cloe",
+      "level": 73,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25109-antharas-priest-cloe",
+      "stats": {
+        "HP": 1887092,
+        "MP": 3275,
+        "Физ. Атк.": 19278,
+        "Маг. Атк.": 14403,
+        "Физ. Защ.": 1240,
+        "Маг. Защ.": 1656,
+        "Exp": 6927700,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 84.561451,
+          "y": 70.762148
+        }
+      ]
+    },
+    {
+      "id": 25199,
+      "name": "Water Dragon Seer Sheshark",
+      "level": 73,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25199-water-dragon-seer-sheshark",
+      "stats": {
+        "HP": 1864635,
+        "MP": 3130,
+        "Физ. Атк.": 18819,
+        "Маг. Атк.": 12505,
+        "Физ. Защ.": 1416,
+        "Маг. Защ.": 1607,
+        "Exp": 6927700,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 76.153077,
+          "y": 79.537829
+        }
+      ]
+    },
+    {
+      "id": 25220,
+      "name": "Death Lord Hallate",
+      "level": 73,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25220-death-lord-hallate",
+      "stats": {
+        "HP": 1876023,
+        "MP": 3202,
+        "Физ. Атк.": 19053,
+        "Маг. Атк.": 12827,
+        "Физ. Защ.": 1513,
+        "Маг. Защ.": 1632,
+        "Exp": 6927700,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 77.20685,
+          "y": 53.294101
+        }
+      ]
+    },
+    {
+      "id": 25235,
+      "name": "Vanor Chief Kandra",
+      "level": 73,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25235-vanor-chief-kandra",
+      "stats": {
+        "HP": 1626635,
+        "MP": 3130,
+        "Физ. Атк.": 18819,
+        "Маг. Атк.": 12505,
+        "Физ. Защ.": 1416,
+        "Маг. Защ.": 1607,
+        "Exp": 6927700,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 79.95554,
+          "y": 51.10004
+        }
+      ]
+    },
+    {
+      "id": 25202,
+      "name": "Krokian Padisha Sobekk",
+      "level": 74,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25202-krokian-padisha-sobekk",
+      "stats": {
+        "HP": 1887092,
+        "MP": 3275,
+        "Физ. Атк.": 19397,
+        "Маг. Атк.": 13255,
+        "Физ. Защ.": 1468,
+        "Маг. Защ.": 1666,
+        "Exp": 7118800,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 78.43967,
+          "y": 79.504352
+        }
+      ]
+    },
+    {
+      "id": 25524,
+      "name": "Flamestone Giant",
+      "level": 74,
+      "category": "raid",
+      "group": "Боссы 70-74 ур.",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/25524-flamestone-giant",
+      "stats": {
+        "HP": 1941231,
+        "MP": 3421,
+        "Физ. Атк.": 19812,
+        "Маг. Атк.": 13818,
+        "Физ. Защ.": 1669,
+        "Маг. Защ.": 1715,
+        "Exp": 7118800,
+        "SP": 1270000
+      },
+      "points": [
+        {
+          "x": 83.120811,
+          "y": 48.965598
+        }
+      ]
+    },
+    {
+      "id": 29001,
+      "name": "Queen Ant",
+      "level": 75,
+      "category": "epic",
+      "group": "Эпические Боссы",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/29001-queen-ant",
+      "stats": {
+        "HP": 24462500,
+        "MP": 10550,
+        "Физ. Атк.": 18856,
+        "Маг. Атк.": 3302,
+        "Физ. Защ.": 1975,
+        "Маг. Защ.": 2076,
+        "Exp": 19687500,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 51.861172,
+          "y": 84.152956
+        }
+      ]
+    },
+    {
+      "id": 29006,
+      "name": "Core",
+      "level": 75,
+      "category": "epic",
+      "group": "Эпические Боссы",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/29006-core",
+      "stats": {
+        "HP": 39222400,
+        "MP": 1277,
+        "Физ. Атк.": 576,
+        "Маг. Атк.": 1960,
+        "Физ. Защ.": 2073,
+        "Маг. Защ.": 2184,
+        "Exp": 21375000,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 59.259217,
+          "y": 70.483987
+        }
+      ]
+    },
+    {
+      "id": 29014,
+      "name": "Orfen",
+      "level": 75,
+      "category": "epic",
+      "group": "Эпические Боссы",
+      "sourceUrl": "https://masterwork.wiki/lu4-gamma/npc/29014-orfen",
+      "stats": {
+        "HP": 31654000,
+        "MP": 3685,
+        "Физ. Атк.": 30606,
+        "Маг. Атк.": 486,
+        "Физ. Защ.": 1975,
+        "Маг. Защ.": 2294,
+        "Exp": 19687500,
+        "SP": 1000000
+      },
+      "points": [
+        {
+          "x": 66.27397,
+          "y": 53.266455
+        }
+      ]
+    }
+  ]
+}
