@@ -1,3 +1,4 @@
+import "./boss-map.css";
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as MapPointerEvent, WheelEvent as MapWheelEvent } from 'react';
 
