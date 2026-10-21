@@ -3,6 +3,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as MapPointerEvent, WheelEvent as MapWheelEvent } from 'react';
 
 type Point = { x: number; y: number };
+type DropEntry = { id: number; name: string; quantity: string; chance: number | null; groupChance: number | null; icon: string | null };
+type Drops = Record<string, { gamma?: DropEntry[]; bwc?: DropEntry[] }>;
+
 type BossMapEntry = { id: number; name: string; level: number; category: string; group: string; sourceUrl: string; stats: Record<string, number>; points: Point[] };
 type MapData = { map: { width: number; height: number; image: string; source: string }; bosses: BossMapEntry[] };
 
@@ -11,6 +14,11 @@ type MapData = { map: { width: number; height: number; image: string; source: st
 export function BossWorldMap({ assignments = {} }: { assignments?: Record<number, string[]> }) {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
+  const [drops, setDrops] = useState<Drops | null>(null);
+  const [dropsError, setDropsError] = useState('');
+  const [dropServer, setDropServer] = useState<'gamma'|'bwc'>('gamma');
+  const [dropQuery, setDropQuery] = useState('');
+  const [dropExpanded, setDropExpanded] = useState(true);
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState('all');
   const [onlyAssigned, setOnlyAssigned] = useState(false);
@@ -81,6 +89,14 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
       .catch(e => { if (!ctrl.signal.aborted) setError(String(e)); });
     return () => ctrl.abort();
   }, []);
+  useEffect(() => {
+    const ctrl = new AbortController();
+    fetch('/data/raid-boss-drops.json', {signal:ctrl.signal})
+      .then(r => {if(!r.ok) throw new Error('HTTP '+r.status);return r.json() as Promise<Drops>;})
+      .then(v => {if(!ctrl.signal.aborted)setDrops(v);})
+      .catch(e => {if(!ctrl.signal.aborted)setDropsError(String(e));});
+    return ()=>ctrl.abort();
+  },[]);
   const groups = useMemo(() => [...new Set(data?.bosses.map(b => b.group) ?? [])], [data]);
   const filtered = useMemo(() => (data?.bosses ?? []).filter(b =>
     (group === 'all' || b.group === group) &&
@@ -88,7 +104,24 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
     (`${b.name} ${b.id} ${b.group}`).toLowerCase().includes(query.trim().toLowerCase())
   ), [data, group, onlyAssigned, query, assignments]);
   const boss = data?.bosses.find(b => b.id === selected);
+  const bossDrops = boss ? (drops?.[String(boss.id)]?.[dropServer] ?? []) : [];
+  const shownDrops = bossDrops.filter(d => `${d.name} ${d.id}`.toLowerCase().includes(dropQuery.toLowerCase()));
+  const highlightBoss = (id: number) => {
+    setSelected(id);
+    const target = data?.bosses.find(b => b.id === id)?.points[0];
+    if (!target) return;
+    const r = viewport.current?.getBoundingClientRect();
+    if (!r) return;
+    const zoom = Math.max(1.35, stateRef.current.zoom);
+    updateView(bounded({ zoom, x: (0.5-target.x/100)*r.width*zoom, y: (0.5-target.y/100)*r.width*zoom }));
+  };
   return <section className="rb-map-page" aria-label="Карта рейдовых боссов">
+    <div className="rb-map-summary">
+      <div><small>В справочнике</small><strong>{data?.bosses.length ?? 0}<span>РБ</span></strong></div>
+      <div><small>Точек на карте</small><strong>{data?.bosses.reduce((sum,b)=>sum+b.points.length,0)??0}</strong></div>
+      <div><small>Назначено персонажам</small><strong>{Object.keys(assignments).filter(key=>(assignments[Number(key)]?.length??0)>0).length}</strong></div>
+      <div><small>Статус разведки</small><strong className="rb-summary-muted">Не подключена</strong></div>
+    </div>
     <div className="rb-map-toolbar">
       <input aria-label="Поиск босса" placeholder="Имя или NPC ID" value={query} onChange={e => setQuery(e.target.value)} />
       <select aria-label="Категория" value={group} onChange={e => setGroup(e.target.value)}>
@@ -99,18 +132,48 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
     </div>
     {error && <p role="alert">Не удалось загрузить карту: {error}</p>}
     <div className="rb-map-layout">
-      <div className="rb-map-list">{filtered.map(b => <button className={b.id === selected ? 'chosen' : ''} key={b.id} onClick={() => setSelected(b.id)}><strong>{b.name}</strong><small>Lv. {b.level} · #{b.id}</small></button>)}</div>
+      <div className="rb-map-list">{filtered.map(b => <button className={b.id === selected ? 'chosen' : ''} key={b.id} onClick={() => highlightBoss(b.id)}><span className="rb-map-row-level">{b.level}</span><span><strong>{b.name}</strong><small>{b.group}</small><small className="rb-map-unknown">Нет свежих наблюдений</small></span></button>)}</div>
       <div className="rb-map-viewport" ref={viewport} onWheel={onWheel} onPointerDown={onPointerDown}
         onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}
         onClickCapture={e=>{if(suppressClick.current){e.stopPropagation();e.preventDefault();suppressClick.current=false;}}}
         onDoubleClick={e=>{e.preventDefault();zoomAt(1.6,e.clientX,e.clientY);}}>
         {data && <div className="rb-map-image" style={{ transform: `translate(-50%, -50%) translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}>
           <img src={data.map.image} alt="Карта мира LU4" draggable={false} />
-          {filtered.flatMap(b => b.points.map((p, i) => <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`} aria-label={`${b.name}: точка ${i + 1}`} className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} onClick={() => setSelected(b.id)}>{b.level}</button>))}
+          {filtered.flatMap(b => b.points.map((p, i) => <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`} aria-label={`${b.name}: точка ${i + 1}`} className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} onClick={() => highlightBoss(b.id)}><span className="rb-map-pin-number">{b.level}</span><span className="rb-map-pin-tooltip" role="tooltip">{b.name}</span></button>))}
         </div>}
         <div className="rb-map-zoom" onPointerDown={e=>e.stopPropagation()}><button type="button" aria-label="Увеличить" disabled={view.zoom>=5} onClick={() => centerZoom(1.3)}>+</button><button type="button" aria-label="Уменьшить" disabled={view.zoom<=1} onClick={() => centerZoom(1/1.3)}>−</button><button type="button" aria-label="Сбросить масштаб" onClick={() => updateView({zoom:1,x:0,y:0})}>↺</button><span>{Math.round(view.zoom*100)}%</span></div>
       </div>
-      <aside className="rb-map-detail">{boss ? <><small>NPC #{boss.id} · Уровень {boss.level}</small><h2>{boss.name}</h2><p>{boss.group}</p><p>Точек появления: {boss.points.length}</p><p>Назначенные персонажи: {assignments[boss.id]?.join(', ') || 'нет'}</p><a href={boss.sourceUrl} target="_blank" rel="noopener noreferrer">Открыть на LU4 Wiki ↗</a><h3>Характеристики</h3>{Object.entries(boss.stats).map(([k,v]) => <div className="rb-stat" key={k}><span>{k}</span><b>{v.toLocaleString('ru-RU')}</b></div>)}</> : <p>Выберите босса</p>}</aside>
+      <aside className="rb-map-detail">{boss ? <>
+        <div className="rb-map-detail-header"><small>УРОВЕНЬ {boss.level} · NPC #{boss.id}</small><h2>{boss.name}</h2><span className="rb-map-tag">{boss.group}</span></div>
+        <div className="rb-map-info"><small>Статус разведки</small><strong>Нет свежих данных</strong><p>Результаты будут отображаться после подключения API.</p></div>
+        <div className="rb-map-info"><small>Окно респауна</small><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></div>
+        <div className="rb-map-info"><small>Назначенные персонажи</small><strong>{assignments[boss.id]?.join(', ') || 'Нет назначений'}</strong></div>
+        <details className="rb-map-accordion"><summary>Характеристики <span>{Object.keys(boss.stats).length}</span></summary>
+          {Object.entries(boss.stats).map(([k,v]) => <div className="rb-stat" key={k}><span>{k}</span><b>{v.toLocaleString('ru-RU')}</b></div>)}
+        </details>
+        <div className="rb-map-drop">
+          <button type="button" className="rb-map-drop-heading" onClick={()=>setDropExpanded(x=>!x)} aria-expanded={dropExpanded}>
+            Возможный дроп <span>{bossDrops.length} {dropExpanded ? '⌄' : '›'}</span>
+          </button>
+          {dropExpanded && <>
+            <div className="rb-map-drop-controls">
+              <select aria-label="Сервер дропа" value={dropServer} onChange={e=>setDropServer(e.target.value as 'gamma'|'bwc')}>
+                <option value="gamma">Gamma</option><option value="bwc">Black / White / Carmine</option>
+              </select>
+              <input aria-label="Поиск предмета" placeholder="Поиск дропа" value={dropQuery} onChange={e=>setDropQuery(e.target.value)}/>
+            </div>
+            {dropsError && <p className="rb-map-drop-note">Дроп ещё не загружен: файл raid-boss-drops.json отсутствует.</p>}
+            {!dropsError && !drops && <p className="rb-map-drop-note">Загрузка дропа…</p>}
+            {drops && shownDrops.length===0 && <p className="rb-map-drop-note">Предметы не найдены.</p>}
+            <div className="rb-map-drop-items">{shownDrops.map((d,i)=><div className="rb-map-drop-row" key={`${d.id}-${d.groupChance}-${i}`}>
+              {d.icon ? <img src={`https://masterwork.wiki${d.icon}`} loading="lazy" alt="" /> : <span className="rb-map-drop-placeholder">◇</span>}
+              <div><a href={`https://masterwork.wiki/lu4-gamma/item/${d.id}`} target="_blank" rel="noreferrer">{d.name}</a><small>Кол-во: {d.quantity} · Шанс: {d.chance===null?'—':`${d.chance}%`}</small>
+              {d.groupChance!==null&&<small>Шанс группы: {d.groupChance}%</small>}</div>
+            </div>)}</div>
+          </>}
+        </div>
+        <a className="rb-map-source" href={boss.sourceUrl} target="_blank" rel="noopener noreferrer">Открыть на LU4 Wiki ↗</a>
+      </> : <p>Выберите босса</p>}</aside>
     </div>
   </section>;
 }
