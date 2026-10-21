@@ -139,7 +139,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
         onDoubleClick={e=>{e.preventDefault();zoomAt(1.6,e.clientX,e.clientY);}}>
         {data && <div className="rb-map-image" style={{ transform: `translate(-50%, -50%) translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}>
           <img src={data.map.image} alt="Карта мира LU4" draggable={false} />
-          {filtered.flatMap(b => b.points.map((p, i) => <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`} aria-label={`${b.name}: точка ${i + 1}`} className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} onClick={() => highlightBoss(b.id)}>{b.level}</button>))}
+          {filtered.flatMap(b => b.points.map((p, i) => <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`} aria-label={`${b.name}: точка ${i + 1}`} className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} onClick={() => highlightBoss(b.id)}><span className="rb-map-pin-number">{b.level}</span><span className="rb-map-pin-tooltip" role="tooltip">{b.name}</span></button>))}
         </div>}
         <div className="rb-map-zoom" onPointerDown={e=>e.stopPropagation()}><button type="button" aria-label="Увеличить" disabled={view.zoom>=5} onClick={() => centerZoom(1.3)}>+</button><button type="button" aria-label="Уменьшить" disabled={view.zoom<=1} onClick={() => centerZoom(1/1.3)}>−</button><button type="button" aria-label="Сбросить масштаб" onClick={() => updateView({zoom:1,x:0,y:0})}>↺</button><span>{Math.round(view.zoom*100)}%</span></div>
       </div>
