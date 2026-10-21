@@ -1,3 +1,4 @@
+import { BossWorldMap } from "./BossWorldMap.tsx";
 import { useEffect, useState } from "react";
 import { LiveWorkspace } from "./LiveWorkspace.tsx";
 import {
@@ -184,9 +185,10 @@ export function App() {
         <div className="notice">
           {demo
             ? "Демонстрация: боссы, координаты, дроп и наблюдения вымышлены. Изменения хранятся только до перезагрузки."
-            : "Справочник Gamma ещё не импортирован. Подключение аккаунтов, оплаты и IKAR будет доступно на следующих этапах."}
+            : "На карте показан справочник LU4. Для рабочих наблюдений и таймеров подключите API."}
         </div>
-        {page === "map" && (
+        {page === "map" && !demo && <BossWorldMap />}
+        {page === "map" && demo && (
           <>
             <section className="stats">
               <div>
