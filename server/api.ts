@@ -461,6 +461,7 @@ export function createApi(database: Transactions) {
               await db.query(
                 `SELECT b.*,r.min_minutes,r.max_minutes,
             (SELECT coalesce(jsonb_agg(jsonb_build_object('x',p.x,'y',p.y,'z',p.z)),'[]') FROM spawn_points p WHERE p.boss_id=b.id) AS spawns,
+            (SELECT coalesce(jsonb_agg(jsonb_build_object('x',p.map_x_percent,'y',p.map_y_percent) ORDER BY p.point_index),'[]'::jsonb) FROM boss_map_points p WHERE p.boss_id=b.id) AS map_points,
             (SELECT coalesce(jsonb_agg(jsonb_build_object('itemId',d.item_id,'name',d.name,'min',d.quantity_min,'max',d.quantity_max,'chancePercent',d.chance_percent)),'[]') FROM drops d WHERE d.boss_id=b.id) AS drops
             FROM bosses b JOIN boss_rules r ON r.boss_id=b.id WHERE r.server_id=$1 ORDER BY b.level DESC,b.id LIMIT 1000`,
                 [serverId],
