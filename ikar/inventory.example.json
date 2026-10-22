@@ -1,0 +1,28 @@
+{
+  "accounts": [
+    {
+      "key": "gamma-account-1",
+      "label": "Gamma scout account 1",
+      "characters": [
+        {
+          "slot": 0,
+          "name": "ScoutNearBossA"
+        },
+        {
+          "slot": 1,
+          "name": "ScoutNearBossB"
+        }
+      ]
+    },
+    {
+      "key": "gamma-account-2",
+      "label": "Gamma scout account 2",
+      "characters": [
+        {
+          "slot": 0,
+          "name": "ScoutNearBossC"
+        }
+      ]
+    }
+  ]
+}
