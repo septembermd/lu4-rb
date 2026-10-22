@@ -4,7 +4,8 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-const script = new URL('../ikar/tools/register-inventory.mjs', import.meta.url).pathname;
+import { fileURLToPath } from 'node:url';
+const script = fileURLToPath(new URL('../ikar/tools/register-inventory.mjs', import.meta.url));
 
 function execute(inventory) {
   const dir=mkdtempSync(join(tmpdir(),'rb-inventory-'));
