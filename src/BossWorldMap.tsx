@@ -1,6 +1,5 @@
 import "./boss-map.css";
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { CSSProperties } from 'react';
 import type { PointerEvent as MapPointerEvent, WheelEvent as MapWheelEvent } from 'react';
 
 type Point = { x: number; y: number };
@@ -36,6 +35,7 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
 
   const [selected, setSelected] = useState<number | null>(null);
   const [view, setView] = useState({ zoom: 1, x: 0, y: 0 });
+  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const viewport = useRef<HTMLDivElement>(null);
   const stateRef = useRef(view);
   const dragging = useRef<{ id: number; lastX: number; lastY: number; originX: number; originY: number; moved: boolean } | null>(null);
@@ -91,7 +91,9 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
   };
   useEffect(()=>{
     const el=viewport.current;if (!el) return;
-    const observer=new ResizeObserver(()=>updateView(bounded(stateRef.current)));
+    const measure=()=>{setViewportSize({width:el.clientWidth,height:el.clientHeight});updateView(bounded(stateRef.current));};
+    const observer=new ResizeObserver(measure);
+    measure();
     observer.observe(el);return ()=>observer.disconnect();
   }, []);
 
@@ -151,10 +153,26 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
         onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}
         onClickCapture={e=>{if(suppressClick.current){e.stopPropagation();e.preventDefault();suppressClick.current=false;}}}
         onDoubleClick={e=>{e.preventDefault();zoomAt(1.6,e.clientX,e.clientY);}}>
-        {data && <div className="rb-map-image" style={{ transform: `translate(-50%, -50%) translate(${view.x}px, ${view.y}px) scale(${view.zoom})`, '--rb-inverse-zoom': String(1 / view.zoom) } as CSSProperties}>
-          <img src={data.map.image} alt="Карта мира LU4" draggable={false} />
-          {filtered.flatMap(b => b.points.map((p, i) => <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`} aria-label={`${b.name}: точка ${i + 1}`} className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} onPointerDown={e => e.stopPropagation()} onClick={() => highlightBoss(b.id)}><span className="rb-map-pin-number">{b.level}</span><span className="rb-map-pin-tooltip" role="tooltip">{b.name}</span></button>))}
-        </div>}
+        {data && <>
+          <div className="rb-map-image" style={{ transform: `translate(-50%, -50%) translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}>
+            <img src={data.map.image} alt="Карта мира LU4" draggable={false} />
+          </div>
+          <div className="rb-map-overlay">
+            {viewportSize.width > 0 && filtered.flatMap(b => b.points.map((p, i) => {
+              const left = viewportSize.width / 2 + view.x + (p.x / 100 - 0.5) * viewportSize.width * view.zoom;
+              const top = viewportSize.height / 2 + view.y + (p.y / 100 - 0.5) * viewportSize.width * view.zoom;
+              if (left < -32 || left > viewportSize.width + 32 || top < -32 || top > viewportSize.height + 32) return null;
+              return <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`}
+                aria-label={`${b.name}: точка ${i + 1}`}
+                className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`}
+                style={{ left: `${left}px`, top: `${top}px` }}
+                onPointerDown={e => e.stopPropagation()} onClick={() => highlightBoss(b.id)}>
+                <span className="rb-map-pin-number">{b.level}</span>
+                <span className="rb-map-pin-tooltip" role="tooltip">{b.name}</span>
+              </button>;
+            }))}
+          </div>
+        </>}
         <div className="rb-map-zoom" onPointerDown={e=>e.stopPropagation()}><button type="button" aria-label="Увеличить" disabled={view.zoom>=5} onClick={() => centerZoom(1.3)}>+</button><button type="button" aria-label="Уменьшить" disabled={view.zoom<=1} onClick={() => centerZoom(1/1.3)}>−</button><button type="button" aria-label="Сбросить масштаб" onClick={() => updateView({zoom:1,x:0,y:0})}>↺</button><span>{Math.round(view.zoom*100)}%</span></div>
       </div>
       <aside className="rb-map-detail">{boss ? <>
