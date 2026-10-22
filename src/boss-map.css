@@ -170,3 +170,26 @@
   .rb-map-viewport{height:500px;max-height:none;min-height:0}
   .rb-map-detail{grid-column:1;height:350px;max-height:none}
 }
+
+
+/* The map layer scales, while each vector/CSS marker counter-scales.
+   This keeps the center anchored to the exact spawn coordinate at every zoom. */
+.rb-map-pin{
+  box-sizing:border-box;
+  width:20px;
+  height:20px;
+  min-width:20px;
+  min-height:20px;
+  padding:0;
+  transform:translate(-50%,-50%) scale(var(--rb-inverse-zoom,1));
+  transform-origin:center center;
+  border-width:1px;
+  border-radius:50%;
+  background:rgba(19,50,36,.92);
+  box-shadow:0 0 0 1px #0b2414,0 2px 5px #0008;
+}
+.rb-map-pin-number{font-size:9px;line-height:1;font-weight:700}
+.rb-map-pin.selected{
+  box-shadow:0 0 0 2px #b5e6b8,0 0 0 4px #1b382dcc;
+}
+.rb-map-pin-tooltip{bottom:calc(100% + 7px)}
