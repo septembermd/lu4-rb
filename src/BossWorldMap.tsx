@@ -134,7 +134,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
     </div>
     {error && <p role="alert">Не удалось загрузить карту: {error}</p>}
     <div className="rb-map-layout">
-      <div className="rb-map-list">{filtered.map(b => <button className={b.id === selected ? 'chosen' : ''} key={b.id} onClick={() => highlightBoss(b.id)}><span className="rb-map-row-level">{b.level}</span><span><strong>{b.name}</strong><small>{b.group}</small><small className="rb-map-unknown">Нет свежих наблюдений</small></span></button>)}</div>
+      <div className="rb-map-list">{filtered.map(b => <button type="button" className={`boss-row ${b.id === selected ? 'selected' : ''}`} key={b.id} onClick={() => highlightBoss(b.id)}><span className="level">{b.level}</span><span className="rb-map-list-label"><b>{b.name}</b><small>Нет свежих наблюдений</small></span></button>)}</div>
       <div className="rb-map-viewport" ref={viewport} onWheel={onWheel} onPointerDown={onPointerDown}
         onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}
         onClickCapture={e=>{if(suppressClick.current){e.stopPropagation();e.preventDefault();suppressClick.current=false;}}}
