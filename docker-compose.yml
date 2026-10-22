@@ -1,0 +1,56 @@
+# Local development only. Both ports are bound to loopback.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: lu4_owner
+      POSTGRES_PASSWORD: local-development-owner-password
+      POSTGRES_DB: lu4_rb
+    volumes:
+      - lu4_rb_pgdata:/var/lib/postgresql/data
+      - ./docker/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lu4_owner -d lu4_rb"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      MIGRATION_DATABASE_URL: postgresql://lu4_owner:local-development-owner-password@db:5432/lu4_rb
+    command: ["sh", "-c", "node scripts/migrate.ts && node scripts/grant-runtime.ts"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      DATABASE_URL: postgresql://rb_runtime:local-development-runtime-password@db:5432/lu4_rb
+      HOST: 0.0.0.0
+      PORT: 3001
+    command: ["node", "server/start.ts"]
+    ports:
+      - "127.0.0.1:3001:3001"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    ports:
+      - "127.0.0.1:5173:5173"
+    depends_on:
+      api:
+        condition: service_started
+    restart: unless-stopped
+volumes:
+  lu4_rb_pgdata:
