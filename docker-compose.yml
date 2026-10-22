@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile.local
     environment:
       MIGRATION_DATABASE_URL: postgresql://lu4_owner:local-development-owner-password@db:5432/lu4_rb
-    command: ["sh", "-c", "node scripts/migrate.ts && node scripts/grant-runtime.ts"]
+    command: ["sh", "-c", "node scripts/migrate.ts && node scripts/import-map-catalog.mjs && node scripts/grant-runtime.ts"]
     depends_on:
       db:
         condition: service_healthy
