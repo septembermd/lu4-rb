@@ -11,7 +11,7 @@ docker compose up --build -d
 Docker автоматически:
 1. создаёт PostgreSQL и базу `lu4_rb` (если том ещё пуст);
 2. создаёт ограниченную роль `rb_runtime`;
-3. выполняет все SQL-миграции `db/*.sql` в порядке имени через `schema_migrations`;
+3. выполняет все SQL-миграции `db/*.sql` в порядке имени через `schema_migrations` и импортирует 158 боссов с координатами карты;
 4. выдаёт runtime-роли нужные права;
 5. запускает API и Vite.
 
@@ -34,7 +34,14 @@ New-Item -ItemType Directory -Force .credentials | Out-Null
 '@ | Set-Content -Encoding utf8 .credentials/provision-input.json
 ```
 
-Затем используйте локальный провижининг с доступом к БД Docker (он не включён в обычный запуск, чтобы не создавать новых пользователей при каждом рестарте). Не копируйте sessionToken и agentToken в репозиторий или чат.
+Затем создайте пользователя и ключ локально (это дополнительная однократная команда, чтобы при каждом запуске не появлялся новый пользователь):
+
+```powershell
+Get-Content -Raw .credentials/provision-input.json | docker compose run -T --rm provision
+Get-Content .credentials/clan.json
+```
+
+Возьмите `sessionToken` из `.credentials/clan.json` и введите на странице «Подключить API». Сессия действует до семи дней; файл с существующим ключом не будет перезаписан. Не копируйте sessionToken и agentToken в репозиторий или чат.
 
 ## Безопасность
 
