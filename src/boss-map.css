@@ -239,3 +239,16 @@
   .rb-map-pin{width:28px;height:28px;min-width:28px;min-height:28px}
   .rb-map-pin-number{font-size:13px}
 }
+
+
+/* Independent, untransformed overlay: the browser rasterizes pin text at native DPI. */
+.rb-map-overlay{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.rb-map-overlay .rb-map-pin{
+  pointer-events:auto;
+  transform:translate(-50%,-50%);
+  transform-origin:center;
+  will-change:auto;
+}
+.rb-map-overlay .rb-map-pin:hover,
+.rb-map-overlay .rb-map-pin:focus-visible{z-index:21}
+.rb-map-overlay .rb-map-pin.selected{z-index:12}
