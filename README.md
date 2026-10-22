@@ -1,5 +1,14 @@
 # LU4 RB
 
+## Быстрый локальный запуск (Windows / Docker Desktop)
+
+```powershell
+docker compose up --build -d
+```
+
+После первого запуска: сайт http://localhost:5173, API http://localhost:3001/health. Docker создаёт PostgreSQL, применяет миграции и импортирует карту боссов. Данные сохраняются при обычном `docker compose down`. Для первого ключа доступа см. [docs/LOCAL-DOCKER.md](docs/LOCAL-DOCKER.md).
+
+
 Закрытая разведка рейдовых боссов для кланов LU4: карта, ручные таймеры, наблюдения IKAR и подписка на клан.
 
 ## Состояние v0.2
