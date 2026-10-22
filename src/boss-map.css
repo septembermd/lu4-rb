@@ -193,3 +193,11 @@
   box-shadow:0 0 0 2px #b5e6b8,0 0 0 4px #1b382dcc;
 }
 .rb-map-pin-tooltip{bottom:calc(100% + 7px)}
+
+
+.rb-map-status-alive{color:#a1e1b4!important}
+.rb-map-record,.rb-map-kill-form button{margin-top:12px;width:100%;border:1px solid #678e74;border-radius:6px;background:#294d37;color:#e2f2e6;padding:10px;font-size:11px;cursor:pointer}
+.rb-map-kill-form{margin-top:9px;display:grid;gap:8px}
+.rb-map-kill-form label{display:grid;gap:6px;font-size:10px;color:#b9d2c4}
+.rb-map-kill-form input{width:100%;min-width:0;box-sizing:border-box;color:#e7f1e9;background:#142629;border:1px solid #496257;padding:8px;border-radius:5px}
+.rb-map-kill-form p[role=alert]{color:#ffb9b9;font-size:11px}
