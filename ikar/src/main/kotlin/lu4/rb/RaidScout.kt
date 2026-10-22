@@ -35,8 +35,11 @@ class RaidScout : IkaScript {
         }
         suspend fun deliver(payload: JsonObject): Boolean {
             val (code, _) = post("/api/agent/v1/observations", payload)
-            if (code in 200..299 || code == 409 || code == 400) { Files.deleteIfExists(pending); return true }
-            if (code == 401 || code == 403) error("Agent access denied")
+            if (code in 200..299) { Files.deleteIfExists(pending); return true }
+            // Never drop unacknowledged evidence. 400/409 can indicate a stale lease or payload bug.
+            // Keep it on disk for operator inspection rather than silently losing the observation.
+            if (code == 400 || code == 409) error("Observation rejected by API (HTTP $code); pending payload preserved: $pending")
+            if (code == 401 || code == 403) error("Agent access denied; pending payload preserved")
             return false
         }
         bot.disableAutomation()
@@ -57,7 +60,9 @@ class RaidScout : IkaScript {
                 val leaseId = lease.get("id").asString
                 val heartbeat = JsonObject().apply { addProperty("leaseId", leaseId); addProperty("clientId", clientId) }
                 // Bound all game work below the initial 2-minute lease; heartbeat confirms ownership first.
-                if (post("/api/agent/v1/scouts/heartbeat", heartbeat).first !in 200..299) continue
+                val heartbeatCode = post("/api/agent/v1/scouts/heartbeat", heartbeat).first
+                if (heartbeatCode == 401 || heartbeatCode == 403 || heartbeatCode == 409) error("Lease heartbeat rejected (HTTP $heartbeatCode); stop this client")
+                if (heartbeatCode !in 200..299) { delay(5000); continue }
                 val expectedName = c.get("name").asString
                 var world = false
                 var position = false
@@ -88,7 +93,7 @@ class RaidScout : IkaScript {
                 val tmp = pending.resolveSibling(pending.fileName.toString()+".tmp")
                 Files.writeString(tmp,payload.toString())
                 Files.move(tmp,pending,StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.ATOMIC_MOVE)
-                deliver(payload)
+                if (!deliver(payload)) bot.log("LU4 RB: observation queued locally; retrying delivery")
                 delay(1000)
             } catch(e: CancellationException) { throw e }
               catch(e: IllegalArgumentException) { throw e }
