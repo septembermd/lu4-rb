@@ -41,10 +41,26 @@ services:
       migrate:
         condition: service_completed_successfully
     restart: unless-stopped
+  provision:
+    profiles: ["tools"]
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      MIGRATION_DATABASE_URL: postgresql://lu4_owner:local-development-owner-password@db:5432/lu4_rb
+      CREDENTIAL_OUTPUT: /app/.credentials/clan.json
+    volumes:
+      - ./.credentials:/app/.credentials
+    command: ["node", "scripts/provision.ts"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
   web:
     build:
       context: .
       dockerfile: Dockerfile.local
+    environment:
+      VITE_API_PROXY_TARGET: http://api:3001
     command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
     ports:
       - "127.0.0.1:5173:5173"
