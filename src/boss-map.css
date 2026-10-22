@@ -201,3 +201,41 @@
 .rb-map-kill-form label{display:grid;gap:6px;font-size:10px;color:#b9d2c4}
 .rb-map-kill-form input{width:100%;min-width:0;box-sizing:border-box;color:#e7f1e9;background:#142629;border:1px solid #496257;padding:8px;border-radius:5px}
 .rb-map-kill-form p[role=alert]{color:#ffb9b9;font-size:11px}
+
+
+/* Readable, crisp level badges at all map zoom factors.
+   The counter-scale stays on the button; its unscaled font is rasterized by the browser. */
+.rb-map-pin{
+  width:26px;
+  height:26px;
+  min-width:26px;
+  min-height:26px;
+  border:2px solid #f0fff4;
+  background:#103a2c;
+  color:#ffffff;
+  box-shadow:0 0 0 1px #071d18,0 2px 7px #000b;
+  font-variant-numeric:tabular-nums;
+}
+.rb-map-pin-number{
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:0;
+  color:inherit;
+  text-shadow:0 1px 1px #000b;
+}
+.rb-map-pin.selected{
+  background:#e0f5cb;
+  color:#11271b;
+  border-color:#ffffff;
+  box-shadow:0 0 0 2px #194c32,0 0 0 5px #b7f5a57a;
+}
+.rb-map-pin.selected .rb-map-pin-number{text-shadow:none}
+.rb-map-pin:hover,.rb-map-pin:focus-visible{
+  border-color:#f9e8a1;
+  box-shadow:0 0 0 2px #182d22,0 0 0 4px #f9e8a18c;
+}
+@media (max-width:650px){
+  .rb-map-pin{width:28px;height:28px;min-width:28px;min-height:28px}
+  .rb-map-pin-number{font-size:13px}
+}
