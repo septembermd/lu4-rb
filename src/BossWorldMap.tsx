@@ -165,8 +165,8 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
               return <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`}
                 aria-label={`${b.name}: точка ${i + 1}`}
                 className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`}
-                style={{ left: `${left}px`, top: `${top}px` }}
-                onPointerDown={e => e.stopPropagation()} onClick={() => highlightBoss(b.id)}>
+                style={{ left: `${Math.round(left)}px`, top: `${Math.round(top)}px` }}
+                onPointerDown={e => { suppressClick.current = false; e.stopPropagation(); }} onClick={() => highlightBoss(b.id)}>
                 <span className="rb-map-pin-number">{b.level}</span>
                 <span className="rb-map-pin-tooltip" role="tooltip">{b.name}</span>
               </button>;
