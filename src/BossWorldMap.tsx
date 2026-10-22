@@ -12,7 +12,7 @@ type MapData = { map: { width: number; height: number; image: string; source: st
 
 /** World map pixels are normalized against the original 3004px wiki image.
  *  The supplied 2048px image uses the same proportions, so no XYZ conversion is needed. */
-export function BossWorldMap() {
+export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
   const [drops, setDrops] = useState<Drops | null>(null);
@@ -148,7 +148,8 @@ export function BossWorldMap() {
       <aside className="rb-map-detail">{boss ? <>
         <div className="rb-map-detail-header"><small>УРОВЕНЬ {boss.level} · NPC #{boss.id}</small><h2>{boss.name}</h2><span className="rb-map-tag">{boss.group}</span></div>
         <div className="rb-map-info"><small>Статус разведки</small><strong>Нет свежих данных</strong><p>Результаты будут отображаться после подключения API.</p></div>
-        <div className="rb-map-info"><small>Окно респауна</small><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></div>
+        <div className="rb-map-info"><small>Окно респауна</small><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p>
+{onOpenLive && <button type="button" className="rb-map-record" onClick={onOpenLive}>Отметить убийство через API</button>}</div>
         
         <details className="rb-map-accordion"><summary>Характеристики <span>{Object.keys(boss.stats).length}</span></summary>
           {Object.entries(boss.stats).map(([k,v]) => <div className="rb-stat" key={k}><span>{k}</span><b>{v.toLocaleString('ru-RU')}</b></div>)}
