@@ -1,3 +1,4 @@
+import { BossWorldMap } from "./BossWorldMap.tsx";
 import { ScoutPanel } from "./ScoutPanel.tsx";
 import { useEffect, useRef, useState } from "react";
 import type { Boss, Kill } from "./domain/model.ts";
@@ -54,6 +55,17 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
   const generation = useRef(0);
   const selectedClan = clans.find((c) => c.id === clanId);
   const canRecord = selectedClan?.capabilities.includes("record_kill");
+  const mapObservations = Object.fromEntries(bosses.flatMap(b => {
+    const recent = observations.find(o=>o.boss_id===b.id && o.result!=='failed' && Date.now()-Date.parse(o.observed_at)<900_000);
+    return recent ? [[b.id,{result:recent.result as 'alive'|'not_found',observedAt:recent.observed_at,source:recent.owner_clan_id?'Бот клана':'Разведка сервиса'}]] : [];
+  }));
+  const mapWindows = Object.fromEntries(bosses.flatMap(b => {
+    const event = kills.find(k=>k.boss_id===b.id&&!k.voided_at);
+    const domainBoss: Boss = {id:b.id,name:b.name,level:b.level,location:b.location,respawnMinMinutes:b.min_minutes,respawnMaxMinutes:b.max_minutes,spawns:b.spawns,drops:b.drops,sourceUrl:b.source_url,verifiedAt:b.verified_at};
+    const domainKill: Kill | undefined = event ? {id:event.id,clanId:event.clan_id,serverId:event.server_id,bossId:event.boss_id,killedAt:event.killed_at,recordedAt:event.recorded_at,authorId:event.author_id,version:event.version} : undefined;
+    const window = respawnWindow(domainBoss,domainKill,Date.now());
+    return window ? [[b.id,{start:window.start,end:window.end,lastKill:event?.killed_at??null}]] : [];
+  }));
   async function request<T>(
     path: string,
     credential: string,
@@ -227,6 +239,14 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
             </div>
           ) : (
             <>
+              <BossWorldMap
+                observations={mapObservations}
+                windows={mapWindows}
+                onRecordKill={canRecord ? async (bossId, killedAt) => {
+                  await request(`/api/clans/${clanId}/kills`,token,{method:'POST',body:JSON.stringify({bossId,serverId:'gamma',killedAt})});
+                  setRevision(v=>v+1);
+                } : undefined}
+              />
               <section className="content-panel">
                 <h2>Цели и наблюдения</h2>
                 {!bosses.length ? (

@@ -170,3 +170,34 @@
   .rb-map-viewport{height:500px;max-height:none;min-height:0}
   .rb-map-detail{grid-column:1;height:350px;max-height:none}
 }
+
+
+/* The map layer scales, while each vector/CSS marker counter-scales.
+   This keeps the center anchored to the exact spawn coordinate at every zoom. */
+.rb-map-pin{
+  box-sizing:border-box;
+  width:20px;
+  height:20px;
+  min-width:20px;
+  min-height:20px;
+  padding:0;
+  transform:translate(-50%,-50%) scale(var(--rb-inverse-zoom,1));
+  transform-origin:center center;
+  border-width:1px;
+  border-radius:50%;
+  background:rgba(19,50,36,.92);
+  box-shadow:0 0 0 1px #0b2414,0 2px 5px #0008;
+}
+.rb-map-pin-number{font-size:9px;line-height:1;font-weight:700}
+.rb-map-pin.selected{
+  box-shadow:0 0 0 2px #b5e6b8,0 0 0 4px #1b382dcc;
+}
+.rb-map-pin-tooltip{bottom:calc(100% + 7px)}
+
+
+.rb-map-status-alive{color:#a1e1b4!important}
+.rb-map-record,.rb-map-kill-form button{margin-top:12px;width:100%;border:1px solid #678e74;border-radius:6px;background:#294d37;color:#e2f2e6;padding:10px;font-size:11px;cursor:pointer}
+.rb-map-kill-form{margin-top:9px;display:grid;gap:8px}
+.rb-map-kill-form label{display:grid;gap:6px;font-size:10px;color:#b9d2c4}
+.rb-map-kill-form input{width:100%;min-width:0;box-sizing:border-box;color:#e7f1e9;background:#142629;border:1px solid #496257;padding:8px;border-radius:5px}
+.rb-map-kill-form p[role=alert]{color:#ffb9b9;font-size:11px}

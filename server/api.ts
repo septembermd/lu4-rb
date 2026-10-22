@@ -328,15 +328,28 @@ export function createApi(database: Transactions) {
         }
         const identity = await context(db, request);
         if (url.pathname === "/api/scouts" && request.method === "GET") {
+          // Do not expose scout identities/locations to subscribers or unrelated clans.
+          // fleet_manager is the same server-side authorization used for fleet updates.
+          const allowed = (await db.query<{ id: string }>(
+            "SELECT id FROM agents WHERE revoked_at IS NULL AND fleet_manager(id)"
+          )).rows.map(a => a.id);
           return json({
-            agents: (
-              await db.query(
-                "SELECT id,name,server_id,owner_clan_id,last_seen_at FROM agents WHERE revoked_at IS NULL",
-              )
-            ).rows,
-            accounts: (await db.query("SELECT * FROM scout_accounts")).rows,
-            characters: (await db.query("SELECT * FROM scout_characters")).rows,
-            settings: (await db.query("SELECT * FROM fleet_settings")).rows,
+            agents: (await db.query(
+              "SELECT id,name,server_id,owner_clan_id,last_seen_at FROM agents WHERE id=ANY($1::uuid[])",
+              [allowed]
+            )).rows,
+            accounts: (await db.query(
+              "SELECT id,agent_id,label,enabled FROM scout_accounts WHERE agent_id=ANY($1::uuid[])",
+              [allowed]
+            )).rows,
+            characters: (await db.query(
+              "SELECT id,agent_id,account_id,name,slot,enabled,boss_id,expected_x,expected_y,expected_z,radius FROM scout_characters WHERE agent_id=ANY($1::uuid[])",
+              [allowed]
+            )).rows,
+            settings: (await db.query(
+              "SELECT * FROM fleet_settings WHERE agent_id=ANY($1::uuid[])",
+              [allowed]
+            )).rows,
           });
         }
         const scoutRoute =
