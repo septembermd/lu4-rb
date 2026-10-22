@@ -12,7 +12,14 @@ type MapData = { map: { width: number; height: number; image: string; source: st
 
 /** World map pixels are normalized against the original 3004px wiki image.
  *  The supplied 2048px image uses the same proportions, so no XYZ conversion is needed. */
-export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
+type MapObservation = { result: 'alive' | 'not_found'; observedAt: string; source: string };
+type MapWindow = { start: number | string; end: number | string; lastKill: string | null };
+export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill }: {
+  onOpenLive?: () => void;
+  observations?: Record<number, MapObservation>;
+  windows?: Record<number, MapWindow>;
+  onRecordKill?: (bossId: number, killedAt: string) => Promise<void>;
+}) {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
   const [drops, setDrops] = useState<Drops | null>(null);
@@ -20,6 +27,10 @@ export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
   const [dropServer, setDropServer] = useState<'gamma'|'bwc'>('gamma');
   const [dropQuery, setDropQuery] = useState('');
   const [dropExpanded, setDropExpanded] = useState(true);
+  const [killForm, setKillForm] = useState(false);
+  const [killTime, setKillTime] = useState('');
+  const [killError, setKillError] = useState('');
+  const [killBusy, setKillBusy] = useState(false);
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState('all');
 
@@ -110,6 +121,7 @@ export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
   const shownDrops = bossDrops.filter(d => `${d.name} ${d.id}`.toLowerCase().includes(dropQuery.toLowerCase()));
   const highlightBoss = (id: number) => {
     setSelected(id);
+    setKillForm(false);
     const target = data?.bosses.find(b => b.id === id)?.points[0];
     if (!target) return;
     const r = viewport.current?.getBoundingClientRect();
@@ -121,7 +133,7 @@ export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
     <div className="rb-map-summary">
       <div><small>В справочнике</small><strong>{data?.bosses.length ?? 0}<span>РБ</span></strong></div>
       <div><small>Точек на карте</small><strong>{data?.bosses.reduce((sum,b)=>sum+b.points.length,0)??0}</strong></div>
-      <div><small>Подтверждённые наблюдения</small><strong>—</strong></div>
+      <div><small>Подтверждённые наблюдения</small><strong>{Object.keys(observations).length}</strong></div>
       <div><small>Статус разведки</small><strong className="rb-summary-muted">Не подключена</strong></div>
     </div>
     <div className="rb-map-toolbar">
@@ -134,7 +146,7 @@ export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
     </div>
     {error && <p role="alert">Не удалось загрузить карту: {error}</p>}
     <div className="rb-map-layout">
-      <div className="rb-map-list">{filtered.map(b => <button type="button" className={`boss-row ${b.id === selected ? 'selected' : ''}`} key={b.id} onClick={() => highlightBoss(b.id)}><span className="level">{b.level}</span><span className="rb-map-list-label"><b>{b.name}</b><small>Нет свежих наблюдений</small></span></button>)}</div>
+      <div className="rb-map-list">{filtered.map(b => <button type="button" className={`boss-row ${b.id === selected ? 'selected' : ''}`} key={b.id} onClick={() => highlightBoss(b.id)}><span className="level">{b.level}</span><span className="rb-map-list-label"><b>{b.name}</b><small>{observations[b.id]?.result === 'alive' ? 'Обнаружен' : observations[b.id]?.result === 'not_found' ? 'Не обнаружен' : 'Нет свежих наблюдений'}</small></span></button>)}</div>
       <div className="rb-map-viewport" ref={viewport} onWheel={onWheel} onPointerDown={onPointerDown}
         onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}
         onClickCapture={e=>{if(suppressClick.current){e.stopPropagation();e.preventDefault();suppressClick.current=false;}}}
@@ -147,9 +159,13 @@ export function BossWorldMap({ onOpenLive }: { onOpenLive?: () => void }) {
       </div>
       <aside className="rb-map-detail">{boss ? <>
         <div className="rb-map-detail-header"><small>УРОВЕНЬ {boss.level} · NPC #{boss.id}</small><h2>{boss.name}</h2><span className="rb-map-tag">{boss.group}</span></div>
-        <div className="rb-map-info"><small>Статус разведки</small><strong>Нет свежих данных</strong><p>Результаты будут отображаться после подключения API.</p></div>
-        <div className="rb-map-info"><small>Окно респауна</small><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p>
-{onOpenLive && <button type="button" className="rb-map-record" onClick={onOpenLive}>Отметить убийство через API</button>}</div>
+        <div className="rb-map-info"><small>Статус разведки</small><strong className={boss && observations[boss.id]?.result === 'alive' ? 'rb-map-status-alive' : ''}>{boss && observations[boss.id] ? observations[boss.id].result === 'alive' ? 'Обнаружен' : 'Не обнаружен' : 'Нет свежих данных'}</strong>
+{boss && observations[boss.id] ? <p>{new Date(observations[boss.id].observedAt).toLocaleString('ru-RU')} · {observations[boss.id].source}</p> : <p>Подтверждённых наблюдений пока нет.</p>}</div>
+        <div className="rb-map-info"><small>Окно респауна</small>
+{boss && windows[boss.id] ? <><strong>{new Date(windows[boss.id].start).toLocaleString('ru-RU')} — {new Date(windows[boss.id].end).toLocaleString('ru-RU')}</strong>{windows[boss.id].lastKill && <p>Последнее убийство: {new Date(windows[boss.id].lastKill!).toLocaleString('ru-RU')}</p>}</> : <><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></>}
+{onRecordKill ? <><button type="button" className="rb-map-record" onClick={()=>{setKillForm(v=>!v);setKillTime(new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16));setKillError('');}}>Отметить убийство</button>
+{killForm && <form className="rb-map-kill-form" onSubmit={async event=>{event.preventDefault();if(!boss)return;setKillBusy(true);setKillError('');try{await onRecordKill(boss.id,new Date(killTime).toISOString());setKillForm(false)}catch(error){setKillError(error instanceof Error?error.message:'Не удалось сохранить')}finally{setKillBusy(false)}}}><label>Время убийства<input required type="datetime-local" max={new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)} value={killTime} onChange={e=>setKillTime(e.target.value)}/></label><button type="submit" disabled={killBusy}>Сохранить</button>{killError&&<p role="alert">{killError}</p>}</form>}</> : onOpenLive && <button type="button" className="rb-map-record" onClick={onOpenLive}>Отметить убийство через API</button>}
+</div>
         
         <details className="rb-map-accordion"><summary>Характеристики <span>{Object.keys(boss.stats).length}</span></summary>
           {Object.entries(boss.stats).map(([k,v]) => <div className="rb-stat" key={k}><span>{k}</span><b>{v.toLocaleString('ru-RU')}</b></div>)}
