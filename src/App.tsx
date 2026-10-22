@@ -187,7 +187,7 @@ export function App() {
             ? "Демонстрация: боссы, координаты, дроп и наблюдения вымышлены. Изменения хранятся только до перезагрузки."
             : "На карте показан справочник LU4. Для рабочих наблюдений и таймеров подключите API."}
         </div>
-        {page === "map" && !demo && <BossWorldMap />}
+        {page === "map" && !demo && <BossWorldMap onOpenLive={() => setLive(true)} />}
         {page === "map" && demo && (
           <>
             <section className="stats">
