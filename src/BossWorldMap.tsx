@@ -1,5 +1,6 @@
 import "./boss-map.css";
 import { useEffect, useMemo, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
 import type { PointerEvent as MapPointerEvent, WheelEvent as MapWheelEvent } from 'react';
 
 type Point = { x: number; y: number };
@@ -11,7 +12,7 @@ type MapData = { map: { width: number; height: number; image: string; source: st
 
 /** World map pixels are normalized against the original 3004px wiki image.
  *  The supplied 2048px image uses the same proportions, so no XYZ conversion is needed. */
-export function BossWorldMap({ assignments = {} }: { assignments?: Record<number, string[]> }) {
+export function BossWorldMap() {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
   const [drops, setDrops] = useState<Drops | null>(null);
@@ -21,7 +22,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
   const [dropExpanded, setDropExpanded] = useState(true);
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState('all');
-  const [onlyAssigned, setOnlyAssigned] = useState(false);
+
   const [selected, setSelected] = useState<number | null>(null);
   const [view, setView] = useState({ zoom: 1, x: 0, y: 0 });
   const viewport = useRef<HTMLDivElement>(null);
@@ -102,9 +103,8 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
   const groups = useMemo(() => [...new Set(data?.bosses.map(b => b.group) ?? [])], [data]);
   const filtered = useMemo(() => (data?.bosses ?? []).filter(b =>
     (group === 'all' || b.group === group) &&
-    (!onlyAssigned || (assignments[b.id]?.length ?? 0) > 0) &&
     (`${b.name} ${b.id} ${b.group}`).toLowerCase().includes(query.trim().toLowerCase())
-  ), [data, group, onlyAssigned, query, assignments]);
+  ), [data, group, query]);
   const boss = data?.bosses.find(b => b.id === selected);
   const bossDrops = boss ? (drops?.[String(boss.id)]?.[dropServer] ?? []) : [];
   const shownDrops = bossDrops.filter(d => `${d.name} ${d.id}`.toLowerCase().includes(dropQuery.toLowerCase()));
@@ -121,7 +121,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
     <div className="rb-map-summary">
       <div><small>В справочнике</small><strong>{data?.bosses.length ?? 0}<span>РБ</span></strong></div>
       <div><small>Точек на карте</small><strong>{data?.bosses.reduce((sum,b)=>sum+b.points.length,0)??0}</strong></div>
-      <div><small>Назначено персонажам</small><strong>{Object.keys(assignments).filter(key=>(assignments[Number(key)]?.length??0)>0).length}</strong></div>
+      <div><small>Подтверждённые наблюдения</small><strong>—</strong></div>
       <div><small>Статус разведки</small><strong className="rb-summary-muted">Не подключена</strong></div>
     </div>
     <div className="rb-map-toolbar">
@@ -129,7 +129,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
       <select aria-label="Категория" value={group} onChange={e => setGroup(e.target.value)}>
         <option value="all">Все категории</option>{groups.map(v => <option key={v} value={v}>{v}</option>)}
       </select>
-      <label><input type="checkbox" checked={onlyAssigned} onChange={e => setOnlyAssigned(e.target.checked)} /> Только назначенные</label>
+      
       <span>{filtered.length} / {data?.bosses.length ?? 0} боссов</span><small>Колесо — масштаб · перетаскивание — перемещение</small>
     </div>
     {error && <p role="alert">Не удалось загрузить карту: {error}</p>}
@@ -139,7 +139,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
         onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}
         onClickCapture={e=>{if(suppressClick.current){e.stopPropagation();e.preventDefault();suppressClick.current=false;}}}
         onDoubleClick={e=>{e.preventDefault();zoomAt(1.6,e.clientX,e.clientY);}}>
-        {data && <div className="rb-map-image" style={{ transform: `translate(-50%, -50%) translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}>
+        {data && <div className="rb-map-image" style={{ transform: `translate(-50%, -50%) translate(${view.x}px, ${view.y}px) scale(${view.zoom})`, '--rb-inverse-zoom': String(1 / view.zoom) } as CSSProperties}>
           <img src={data.map.image} alt="Карта мира LU4" draggable={false} />
           {filtered.flatMap(b => b.points.map((p, i) => <button key={`${b.id}:${i}`} type="button" title={`${b.name} — Lv. ${b.level}`} aria-label={`${b.name}: точка ${i + 1}`} className={`rb-map-pin ${b.id === selected ? 'selected' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} onPointerDown={e => e.stopPropagation()} onClick={() => highlightBoss(b.id)}><span className="rb-map-pin-number">{b.level}</span><span className="rb-map-pin-tooltip" role="tooltip">{b.name}</span></button>))}
         </div>}
@@ -149,7 +149,7 @@ export function BossWorldMap({ assignments = {} }: { assignments?: Record<number
         <div className="rb-map-detail-header"><small>УРОВЕНЬ {boss.level} · NPC #{boss.id}</small><h2>{boss.name}</h2><span className="rb-map-tag">{boss.group}</span></div>
         <div className="rb-map-info"><small>Статус разведки</small><strong>Нет свежих данных</strong><p>Результаты будут отображаться после подключения API.</p></div>
         <div className="rb-map-info"><small>Окно респауна</small><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></div>
-        <div className="rb-map-info"><small>Назначенные персонажи</small><strong>{assignments[boss.id]?.join(', ') || 'Нет назначений'}</strong></div>
+        
         <details className="rb-map-accordion"><summary>Характеристики <span>{Object.keys(boss.stats).length}</span></summary>
           {Object.entries(boss.stats).map(([k,v]) => <div className="rb-stat" key={k}><span>{k}</span><b>{v.toLocaleString('ru-RU')}</b></div>)}
         </details>
