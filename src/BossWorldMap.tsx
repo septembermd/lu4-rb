@@ -13,11 +13,12 @@ type MapData = { map: { width: number; height: number; image: string; source: st
  *  The supplied 2048px image uses the same proportions, so no XYZ conversion is needed. */
 type MapObservation = { result: 'alive' | 'not_found'; observedAt: string; source: string };
 type MapWindow = { start: number | string; end: number | string; lastKill: string | null };
-export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill }: {
+export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill, lastKills = {} }: {
   onOpenLive?: () => void;
   observations?: Record<number, MapObservation>;
   windows?: Record<number, MapWindow>;
   onRecordKill?: (bossId: number, killedAt: string) => Promise<void>;
+  lastKills?: Record<number, string>;
 }) {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
@@ -180,7 +181,8 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
         <div className="rb-map-info"><small>Статус разведки</small><strong className={boss && observations[boss.id]?.result === 'alive' ? 'rb-map-status-alive' : ''}>{boss && observations[boss.id] ? observations[boss.id].result === 'alive' ? 'Обнаружен' : 'Не обнаружен' : 'Нет свежих данных'}</strong>
 {boss && observations[boss.id] ? <p>{new Date(observations[boss.id].observedAt).toLocaleString('ru-RU')} · {observations[boss.id].source}</p> : <p>Подтверждённых наблюдений пока нет.</p>}</div>
         <div className="rb-map-info"><small>Окно респауна</small>
-{boss && windows[boss.id] ? <><strong>{new Date(windows[boss.id].start).toLocaleString('ru-RU')} — {new Date(windows[boss.id].end).toLocaleString('ru-RU')}</strong>{windows[boss.id].lastKill && <p>Последнее убийство: {new Date(windows[boss.id].lastKill!).toLocaleString('ru-RU')}</p>}</> : <><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></>}
+{boss && windows[boss.id] ? <><strong>{new Date(windows[boss.id].start).toLocaleString('ru-RU')} — {new Date(windows[boss.id].end).toLocaleString('ru-RU')}</strong></> : <><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></>}
+{boss && lastKills[boss.id] && <p>Последнее убийство: {new Date(lastKills[boss.id]).toLocaleString('ru-RU')}</p>}
 {onRecordKill ? <><button type="button" className="rb-map-record" onClick={()=>{setKillForm(v=>!v);setKillTime(new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16));setKillError('');}}>Отметить убийство</button>
 {killForm && <form className="rb-map-kill-form" onSubmit={async event=>{event.preventDefault();if(!boss)return;setKillBusy(true);setKillError('');try{await onRecordKill(boss.id,new Date(killTime).toISOString());setKillForm(false)}catch(error){setKillError(error instanceof Error?error.message:'Не удалось сохранить')}finally{setKillBusy(false)}}}><label>Время убийства<input required type="datetime-local" max={new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)} value={killTime} onChange={e=>setKillTime(e.target.value)}/></label><button type="submit" disabled={killBusy}>Сохранить</button>{killError&&<p role="alert">{killError}</p>}</form>}</> : onOpenLive && <button type="button" className="rb-map-record" onClick={onOpenLive}>Отметить убийство через API</button>}
 </div>
