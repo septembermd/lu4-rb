@@ -235,7 +235,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
             </div>
           ) : (
             <>
-              <BossWorldMap
+              <BossWorldMap connected
                 lastKills={Object.fromEntries(kills.filter(k => !k.voided_at).map(k => [k.boss_id, k.killed_at]))}
                 observations={mapObservations}
                 windows={mapWindows}
