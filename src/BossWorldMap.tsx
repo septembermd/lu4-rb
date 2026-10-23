@@ -13,13 +13,15 @@ type MapData = { map: { width: number; height: number; image: string; source: st
  *  The supplied 2048px image uses the same proportions, so no XYZ conversion is needed. */
 type MapObservation = { result: 'alive' | 'not_found'; observedAt: string; source: string };
 type MapWindow = { start: number | string; end: number | string; lastKill: string | null };
-export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill, lastKills = {}, connected = false }: {
+export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill, lastKills = {}, connected = false, respawnRules = {}, onSaveRespawn }: {
   onOpenLive?: () => void;
   observations?: Record<number, MapObservation>;
   windows?: Record<number, MapWindow>;
   onRecordKill?: (bossId: number, killedAt: string) => Promise<void>;
   lastKills?: Record<number, string>;
   connected?: boolean;
+  respawnRules?: Record<number, {min: number | null; max: number | null}>;
+  onSaveRespawn?: (bossId: number, min: number | null, max: number | null) => Promise<void>;
 }) {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
@@ -184,6 +186,24 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
         <div className="rb-map-info"><small>Окно респауна</small>
 {boss && windows[boss.id] ? <><strong>{new Date(windows[boss.id].start).toLocaleString('ru-RU')} — {new Date(windows[boss.id].end).toLocaleString('ru-RU')}</strong></> : <><strong>Не определено</strong><p>Для расчёта необходимы подтверждённые правила респауна и последнее убийство.</p></>}
 {boss && lastKills[boss.id] && <p>Последнее убийство: {new Date(lastKills[boss.id]).toLocaleString('ru-RU')}</p>}
+{onSaveRespawn && boss && <form key={boss.id} className="rb-map-rule-form" onSubmit={async e => {
+  e.preventDefault();
+  const data = new FormData(e.currentTarget);
+  const minValue = String(data.get('min') ?? '').trim();
+  const maxValue = String(data.get('max') ?? '').trim();
+  if ((minValue === '') !== (maxValue === '')) {setKillError('Заполните оба значения или оставьте оба пустыми');return;}
+  const min = minValue === '' ? null : Number(minValue);
+  const max = maxValue === '' ? null : Number(maxValue);
+  if (min !== null && (!Number.isSafeInteger(min) || !Number.isSafeInteger(max) || min < 0 || max! < min)) {setKillError('Укажите корректный интервал в минутах');return;}
+  setKillBusy(true);setKillError('');
+  try { await onSaveRespawn(boss.id,min,max); } catch (error) {setKillError(error instanceof Error ? error.message : 'Не удалось сохранить интервал');} finally {setKillBusy(false);}
+}}>
+  <strong>Правило респауна · Gamma</strong>
+  <div><label>От, минут<input name="min" type="number" min="0" step="1" defaultValue={respawnRules[boss.id]?.min ?? ''}/></label>
+  <label>До, минут<input name="max" type="number" min="0" step="1" defaultValue={respawnRules[boss.id]?.max ?? ''}/></label></div>
+  <button type="submit" disabled={killBusy}>Сохранить интервал</button>
+  <small>Только оператор. Вводите подтверждённые игровые значения.</small>
+</form>}
 {onRecordKill ? <><button type="button" className="rb-map-record" onClick={()=>{setKillForm(v=>!v);setKillTime(new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16));setKillError('');}}>Отметить убийство</button>
 {killForm && <form className="rb-map-kill-form" onSubmit={async event=>{event.preventDefault();if(!boss)return;setKillBusy(true);setKillError('');try{await onRecordKill(boss.id,new Date(killTime).toISOString());setKillForm(false)}catch(error){setKillError(error instanceof Error?error.message:'Не удалось сохранить')}finally{setKillBusy(false)}}}><label>Время убийства<input required type="datetime-local" max={new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)} value={killTime} onChange={e=>setKillTime(e.target.value)}/></label><button type="submit" disabled={killBusy}>Сохранить</button>{killError&&<p role="alert">{killError}</p>}</form>}</> : onOpenLive && <button type="button" className="rb-map-record" onClick={onOpenLive}>Отметить убийство через API</button>}
 </div>
