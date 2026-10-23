@@ -110,7 +110,6 @@ export function App() {
       setError(err instanceof Error ? err.message : "Не удалось сохранить");
     }
   }
-  if (live) return <LiveWorkspace onExit={() => setLive(false)} />;
   return (
     <div className="app">
       <aside className="sidebar">
@@ -142,7 +141,7 @@ export function App() {
             <button
               key={id}
               className={page === id ? "active" : ""}
-              onClick={() => setPage(id)}
+              onClick={() => { setPage(id); if (live) setLive(false); }}
             >
               <span aria-hidden="true">{icon}</span>
               {label}
@@ -159,6 +158,7 @@ export function App() {
         </div>
       </aside>
       <main>
+        {live ? <LiveWorkspace onExit={() => setLive(false)} /> : <>
         <header>
           <button className="button" onClick={() => setLive(true)}>
             Подключить API
@@ -594,6 +594,7 @@ export function App() {
             </p>
           </section>
         )}
+        </>}
       </main>
     </div>
   );
