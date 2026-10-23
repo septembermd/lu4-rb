@@ -47,9 +47,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
   const [bosses, setBosses] = useState<ApiBoss[]>([]),
     [kills, setKills] = useState<ApiKill[]>([]),
     [observations, setObservations] = useState<ApiObservation[]>([]);
-  const [selected, setSelected] = useState(""),
-    [date, setDate] = useState(inputTime()),
-    [error, setError] = useState(""),
+  const [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
     [revision, setRevision] = useState(0);
   const generation = useRef(0);
@@ -114,7 +112,6 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
     setBosses([]);
     setKills([]);
     setObservations([]);
-    setSelected("");
     if (!token || !clanId) return;
     const abort = new AbortController();
     setBusy(true);
@@ -135,7 +132,6 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
         setBosses(catalog.items);
         setKills(history.items);
         setObservations(intel.items);
-        setSelected(String(catalog.items[0]?.id ?? ""));
       })
       .catch((e) => {
         if (!abort.signal.aborted) setError(e.message);
@@ -240,6 +236,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
           ) : (
             <>
               <BossWorldMap
+                lastKills={Object.fromEntries(kills.filter(k => !k.voided_at).map(k => [k.boss_id, k.killed_at]))}
                 observations={mapObservations}
                 windows={mapWindows}
                 onRecordKill={canRecord ? async (bossId, killedAt) => {
@@ -247,51 +244,6 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
                   setRevision(v=>v+1);
                 } : undefined}
               />
-              {false && canRecord && bosses.length > 0 && (
-                <form
-                  className="content-panel kill-entry"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    void mutate(base, "POST", {
-                      bossId: Number(selected),
-                      serverId: "gamma",
-                      killedAt: new Date(date).toISOString(),
-                    });
-                  }}
-                >
-                  <h2>Отметить убийство</h2>
-                  <label>
-                    Босс
-                    <select
-                      value={selected}
-                      onChange={(e) => setSelected(e.target.value)}
-                    >
-                      {bosses.map((b) => (
-                        <option key={b.id} value={b.id}>
-                          {b.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Время убийства
-                    <input
-                      required
-                      type="datetime-local"
-                      max={inputTime()}
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                  </label>
-                  <small>
-                    Часовой пояс:{" "}
-                    {Intl.DateTimeFormat().resolvedOptions().timeZone}
-                  </small>
-                  <button className="button primary" disabled={busy}>
-                    Сохранить
-                  </button>
-                </form>
-              )}
               <section className="content-panel">
                 <h2>История ручных отметок</h2>
                 <p className="muted">
