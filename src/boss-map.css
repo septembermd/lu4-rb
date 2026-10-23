@@ -252,3 +252,12 @@
 .rb-map-overlay .rb-map-pin:hover,
 .rb-map-overlay .rb-map-pin:focus-visible{z-index:21}
 .rb-map-overlay .rb-map-pin.selected{z-index:12}
+
+
+.rb-map-rule-form{margin-top:12px;padding:12px;border:1px solid #365549;border-radius:6px;display:grid;gap:10px;background:#162b25}
+.rb-map-rule-form > strong{font-size:11px}
+.rb-map-rule-form > div{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rb-map-rule-form label{display:grid;gap:5px;font-size:10px;color:#acc4b8}
+.rb-map-rule-form input{width:100%;min-width:0;padding:8px;color:#e4f1e8;border:1px solid #456154;border-radius:5px;background:#10221e}
+.rb-map-rule-form button{padding:9px;border:1px solid #689179;border-radius:5px;background:#294d37;color:#e5f2e8;font-size:11px}
+.rb-map-rule-form small{font-size:9px;color:#95aea1;line-height:1.5}

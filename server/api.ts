@@ -428,12 +428,33 @@ export function createApi(database: Transactions) {
         if (url.pathname === "/api/me" && request.method === "GET") {
           return json({
             userId: identity.id,
+            operator: (await db.query<{ allowed: boolean }>("SELECT is_operator() AS allowed")).rows[0]?.allowed === true,
             clans: (
               await db.query(
                 "SELECT c.id,c.name,m.capabilities FROM clans c JOIN memberships m ON m.clan_id=c.id WHERE m.user_id=api_user()",
               )
             ).rows,
           });
+        }
+        const ruleMatch = /^\/api\/operator\/bosses\/([0-9]+)\/respawn$/.exec(url.pathname);
+        if (ruleMatch) {
+          if (request.method !== "PATCH") fail(405, "Method not allowed");
+          const isOperator = (await db.query<{ allowed: boolean }>("SELECT is_operator() AS allowed")).rows[0]?.allowed;
+          if (!isOperator) fail(403, "Operator permission required");
+          const bossId = integer(Number(ruleMatch[1]));
+          const payload = await body(request);
+          fields(payload, ["serverId", "minMinutes", "maxMinutes"]);
+          if (payload.serverId !== "gamma") fail(400, "Unsupported server");
+          const min = payload.minMinutes, max = payload.maxMinutes;
+          if (min !== null && (!Number.isSafeInteger(min) || (min as number) < 0)) fail(400, "Invalid minMinutes");
+          if (max !== null && (!Number.isSafeInteger(max) || (max as number) < 0)) fail(400, "Invalid maxMinutes");
+          if ((min === null) !== (max === null) || (min !== null && (max as number) < (min as number))) fail(400, "Invalid respawn interval");
+          const updated = await db.query(
+            "UPDATE boss_rules SET min_minutes=$1,max_minutes=$2,verified_at=now() WHERE server_id=$3 AND boss_id=$4 RETURNING boss_id,min_minutes,max_minutes",
+            [min,max,"gamma",bossId],
+          );
+          if (!updated.rows.length) fail(404, "Boss rule not found");
+          return json(updated.rows[0]);
         }
         const route =
           /^\/api\/clans\/([^/]+)\/(kills|observations|catalog)(?:\/([^/]+))?$/.exec(

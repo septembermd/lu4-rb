@@ -72,7 +72,7 @@ export function ScoutPanel({ token }: { token: string }) {
     }
   }
   return (
-    <section className="panel">
+    <section className="scout-panel">
       <h2>Управление разведкой</h2>
       <p>
         Здесь показаны только доступные вам агенты. Новые персонажи требуют
@@ -87,7 +87,7 @@ export function ScoutPanel({ token }: { token: string }) {
           {data.agents.map((agent) => {
             const settings = data.settings.find((s) => s.agent_id === agent.id);
             return (
-              <section key={agent.id}>
+              <section className="scout-fleet" key={agent.id}>
                 <h3>{agent.name}</h3>
                 <button
                   disabled={busy}
@@ -105,7 +105,7 @@ export function ScoutPanel({ token }: { token: string }) {
                 {data.accounts
                   .filter((a) => a.agent_id === agent.id)
                   .map((account) => (
-                    <section key={account.id}>
+                    <section className="scout-account" key={account.id}>
                       <h4>
                         <label>
                           <input
@@ -125,7 +125,8 @@ export function ScoutPanel({ token }: { token: string }) {
                         .filter((c) => c.account_id === account.id)
                         .map((c) => (
                           <form
-                            key={`${c.id}-${JSON.stringify(c)}`}
+                            className="scout-character"
+                            key={`${c.id}-${JSON.stringify(c)}`
                             onSubmit={(e) => {
                               e.preventDefault();
                               const f = new FormData(e.currentTarget);
@@ -137,13 +138,6 @@ export function ScoutPanel({ token }: { token: string }) {
                                 z: Number(f.get("z")),
                                 radius: Number(f.get("radius")),
                               });
-                            }}
-                            style={{
-                              display: "flex",
-                              gap: 12,
-                              flexWrap: "wrap",
-                              alignItems: "end",
-                              marginBottom: 16,
                             }}
                           >
                             <strong>

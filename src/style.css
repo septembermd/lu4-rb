@@ -811,3 +811,36 @@ select {
 .live-workspace .history form {
   width: 100%;
 }
+
+
+/* Connected workspace uses the same spacing rhythm as the public map. */
+.app > main{min-width:0}
+.live-workspace{width:100%;max-width:none;margin:0;display:grid;gap:18px;align-content:start}
+.live-workspace > header{margin:0;min-height:54px}
+.live-workspace > .notice,.live-workspace > .toolbar{margin:0}
+.live-workspace > .rb-map-page{min-width:0}
+.live-workspace > .content-panel{margin:0}
+.live-workspace > details{border:1px solid #304145;border-radius:8px;background:#152125;padding:0}
+.live-workspace > details > summary{padding:14px 18px;cursor:pointer;font-size:13px;font-weight:700;color:#dcebe1}
+.live-workspace > details[open] > summary{border-bottom:1px solid #304145}
+.live-workspace .scout-panel{padding:20px;display:grid;gap:16px}
+.live-workspace .scout-panel > h2,.live-workspace .scout-panel > p{margin:0}
+.live-workspace .scout-fleet{display:grid;gap:14px;padding:18px;border:1px solid #365049;border-radius:8px;background:#192b2b}
+.live-workspace .scout-fleet > h3{margin:0;font-size:15px}
+.live-workspace .scout-account{border-top:1px solid #344943;padding-top:14px}
+.live-workspace .scout-account > h4{margin:0 0 12px}
+.live-workspace .scout-character{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:0;padding:14px 0;border-top:1px solid #30423e}
+.live-workspace .scout-character label{display:grid;gap:6px;color:#99b3ad;font-size:11px}
+.live-workspace .scout-character label:first-of-type{display:flex;align-items:center;gap:8px}
+.live-workspace .scout-character strong{min-width:140px;font-size:12px}
+.live-workspace .scout-character input[type=number]{width:92px;padding:8px;background:#102125;color:#e3eee7;border:1px solid #456158;border-radius:5px}
+.live-workspace .scout-character button,.live-workspace .scout-fleet > button{width:max-content;padding:9px 14px;background:#294d37;border:1px solid #678e74;border-radius:6px;color:#e2f2e6}
+.live-workspace .history > div{gap:12px;justify-content:flex-start}
+.live-workspace .history > div > b{min-width:160px}
+.live-workspace .history > div > span{min-width:175px}
+@media(max-width:700px){
+  .live-workspace{gap:14px}
+  .live-workspace > header{align-items:start;flex-wrap:wrap}
+  .live-workspace .scout-panel{padding:12px}
+  .live-workspace .scout-fleet{padding:12px}
+}
