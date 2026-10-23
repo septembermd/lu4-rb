@@ -162,7 +162,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
   }
   const base = `/api/clans/${clanId}/kills`;
   return (
-    <main className="live-workspace">
+    <div className="live-workspace">
       <header>
         <div>
           <span className="eyebrow">LU4 RB · GAMMA</span>
@@ -180,7 +180,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
       )}
       <div className="notice">
         Ранний доступ: вход по временному ключу оператора. Ключ хранится только
-        в памяти вкладки. Карта Gamma ещё не импортирована.
+        в памяти вкладки. Карта Gamma загружается из каталога LU4. Расписание респауна рассчитывается только для боссов с известными правилами.
       </div>
       {error && (
         <p className="error" role="alert">
@@ -247,100 +247,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
                   setRevision(v=>v+1);
                 } : undefined}
               />
-              <section className="content-panel">
-                <h2>Цели и наблюдения</h2>
-                {!bosses.length ? (
-                  <p className="muted">
-                    Справочник сервера пуст. После проверенного импорта здесь
-                    появятся боссы и дроп.
-                  </p>
-                ) : (
-                  <div className="cards">
-                    {bosses.map((b) => {
-                      const latestKill = kills.find(
-                        (k) => k.boss_id === b.id && !k.voided_at,
-                      );
-                      const boss: Boss = {
-                        id: b.id,
-                        name: b.name,
-                        level: b.level,
-                        location: b.location,
-                        respawnMinMinutes: b.min_minutes,
-                        respawnMaxMinutes: b.max_minutes,
-                        spawns: b.spawns,
-                        drops: b.drops,
-                        sourceUrl: b.source_url,
-                        verifiedAt: b.verified_at,
-                      };
-                      const kill: Kill | undefined = latestKill
-                        ? {
-                            id: latestKill.id,
-                            clanId: latestKill.clan_id,
-                            serverId: latestKill.server_id,
-                            bossId: latestKill.boss_id,
-                            killedAt: latestKill.killed_at,
-                            recordedAt: latestKill.recorded_at,
-                            authorId: latestKill.author_id,
-                            version: latestKill.version,
-                          }
-                        : undefined;
-                      const window = respawnWindow(boss, kill, Date.now());
-                      const attempts = observations.filter(
-                          (o) => o.boss_id === b.id,
-                        ),
-                        observation = attempts.find(
-                          (o) => o.result !== "failed",
-                        );
-                      const stale =
-                        !observation ||
-                        Date.now() - Date.parse(observation.observed_at) >
-                          900_000;
-                      return (
-                        <article key={b.id}>
-                          <span className="eyebrow">
-                            УРОВЕНЬ {b.level} · {b.location}
-                          </span>
-                          <h3>{b.name}</h3>
-                          <strong>
-                            {stale
-                              ? "Нет свежих данных"
-                              : observation.result === "alive"
-                                ? "Обнаружен"
-                                : "Не обнаружен"}
-                          </strong>
-                          {observation && (
-                            <p>
-                              {fmt(observation.observed_at)} ·{" "}
-                              {observation.owner_clan_id
-                                ? "Бот клана"
-                                : "Разведка сервиса"}
-                            </p>
-                          )}
-                          {attempts[0]?.result === "failed" && (
-                            <p>Последняя проверка не удалась.</p>
-                          )}
-                          <p>
-                            {window
-                              ? `${fmt(window.start)} — ${fmt(window.end)}`
-                              : "Нет рассчитанного окна респауна"}
-                          </p>
-                          <p>
-                            {b.drops.length
-                              ? b.drops
-                                  .map(
-                                    (d) =>
-                                      `${d.name} · ${d.min}–${d.max} · ${d.chancePercent === null ? "шанс неизвестен" : d.chancePercent + "%"}`,
-                                  )
-                                  .join("; ")
-                              : "Дроп ещё не импортирован."}
-                          </p>
-                        </article>
-                      );
-                    })}
-                  </div>
-                )}
-              </section>
-              {canRecord && bosses.length > 0 && (
+              {false && canRecord && bosses.length > 0 && (
                 <form
                   className="content-panel kill-entry"
                   onSubmit={(e) => {
@@ -420,7 +327,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
           )}
         </>
       )}
-    </main>
+    </div>
   );
 }
 function KillRow({
