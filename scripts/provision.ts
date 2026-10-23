@@ -49,6 +49,9 @@ try {
       "INSERT INTO memberships VALUES($1,$2,true,'{view,record_kill,manage_agents,manage_members,manage_billing}')",
       [clanId, userId],
     );
+    if (config.operator === true) {
+      await client.query("INSERT INTO operators(user_id) VALUES($1)", [userId]);
+    }
     await client.query(
       "INSERT INTO subscriptions(clan_id,site_until,own_agents) VALUES($1,$2,$3)",
       [clanId, until.toISOString(), config.ownAgents === true],
