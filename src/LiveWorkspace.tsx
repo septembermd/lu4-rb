@@ -42,6 +42,7 @@ const inputTime = (value = Date.now()) =>
 export function LiveWorkspace({ onExit }: { onExit: () => void }) {
   const [entry, setEntry] = useState(""),
     [token, setToken] = useState(""),
+    [operator, setOperator] = useState(false),
     [clans, setClans] = useState<Clan[]>([]),
     [clanId, setClanId] = useState("");
   const [bosses, setBosses] = useState<ApiBoss[]>([]),
@@ -95,8 +96,9 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
     setBusy(true);
     setError("");
     try {
-      const result = await request<{ clans: Clan[] }>("/api/me", entry);
+      const result = await request<{ clans: Clan[]; operator: boolean }>("/api/me", entry);
       setClans(result.clans);
+      setOperator(result.operator === true);
       setClanId(result.clans[0]?.id ?? "");
       setToken(entry);
       setEntry("");
@@ -236,6 +238,8 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
           ) : (
             <>
               <BossWorldMap connected
+                respawnRules={Object.fromEntries(bosses.map(b => [b.id, {min:b.min_minutes,max:b.max_minutes}]))}
+                onSaveRespawn={operator ? async (bossId,minMinutes,maxMinutes) => { await request(`/api/operator/bosses/${bossId}/respawn`,token,{method:"PATCH",body:JSON.stringify({serverId:"gamma",minMinutes,maxMinutes})});setRevision(v=>v+1); } : undefined}
                 lastKills={Object.fromEntries(kills.filter(k => !k.voided_at).map(k => [k.boss_id, k.killed_at]))}
                 observations={mapObservations}
                 windows={mapWindows}
