@@ -13,12 +13,13 @@ type MapData = { map: { width: number; height: number; image: string; source: st
  *  The supplied 2048px image uses the same proportions, so no XYZ conversion is needed. */
 type MapObservation = { result: 'alive' | 'not_found'; observedAt: string; source: string };
 type MapWindow = { start: number | string; end: number | string; lastKill: string | null };
-export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill, lastKills = {} }: {
+export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRecordKill, lastKills = {}, connected = false }: {
   onOpenLive?: () => void;
   observations?: Record<number, MapObservation>;
   windows?: Record<number, MapWindow>;
   onRecordKill?: (bossId: number, killedAt: string) => Promise<void>;
   lastKills?: Record<number, string>;
+  connected?: boolean;
 }) {
   const [data, setData] = useState<MapData | null>(null);
   const [error, setError] = useState('');
@@ -137,7 +138,7 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
       <div><small>В справочнике</small><strong>{data?.bosses.length ?? 0}<span>РБ</span></strong></div>
       <div><small>Точек на карте</small><strong>{data?.bosses.reduce((sum,b)=>sum+b.points.length,0)??0}</strong></div>
       <div><small>Подтверждённые наблюдения</small><strong>{Object.keys(observations).length}</strong></div>
-      <div><small>Статус разведки</small><strong className="rb-summary-muted">Не подключена</strong></div>
+      <div><small>Статус разведки</small><strong className="rb-summary-muted">{connected ? "API подключён" : "Не подключена"}</strong></div>
     </div>
     <div className="rb-map-toolbar">
       <input aria-label="Поиск босса" placeholder="Имя или NPC ID" value={query} onChange={e => setQuery(e.target.value)} />
