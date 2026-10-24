@@ -126,7 +126,7 @@ export function ScoutPanel({ token }: { token: string }) {
                         .map((c) => (
                           <form
                             className="scout-character"
-                            key={`${c.id}-${JSON.stringify(c)}`
+                            key={`${c.id}-${JSON.stringify(c)}`}
                             onSubmit={(e) => {
                               e.preventDefault();
                               const f = new FormData(e.currentTarget);
