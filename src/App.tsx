@@ -1,6 +1,7 @@
 import { BossWorldMap } from "./BossWorldMap.tsx";
 import { useEffect, useState } from "react";
 import { LiveWorkspace } from "./LiveWorkspace.tsx";
+import { readSavedToken, clearSavedToken } from "./session.ts";
 import {
   demoBosses,
   demoMember,
@@ -31,7 +32,7 @@ const localInput = (value: number) => {
 type Page = "map" | "history" | "agents" | "access";
 
 export function App() {
-  const [live, setLive] = useState(false);
+  const [live, setLive] = useState(() => Boolean(readSavedToken()));
   const [page, setPage] = useState<Page>("map");
   const [demo, setDemo] = useState(false);
   const [now, setNow] = useState(Date.now());
@@ -158,7 +159,7 @@ export function App() {
         </div>
       </aside>
       <main>
-        {live ? <LiveWorkspace onExit={() => setLive(false)} /> : <>
+        {live ? <LiveWorkspace onExit={() => { clearSavedToken(); setLive(false); }} /> : <>
         <header>
           <button className="button" onClick={() => setLive(true)}>
             Подключить API
