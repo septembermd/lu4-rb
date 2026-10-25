@@ -1,5 +1,6 @@
 import { BossWorldMap } from "./BossWorldMap.tsx";
 import { ScoutPanel } from "./ScoutPanel.tsx";
+import { readSavedToken, saveToken, clearSavedToken } from "./session.ts";
 import { useEffect, useRef, useState } from "react";
 import type { Boss, Kill } from "./domain/model.ts";
 import { respawnWindow } from "./domain/rules.ts";
@@ -42,6 +43,7 @@ const inputTime = (value = Date.now()) =>
 export function LiveWorkspace({ onExit }: { onExit: () => void }) {
   const [entry, setEntry] = useState(""),
     [token, setToken] = useState(""),
+    [restoring, setRestoring] = useState(() => Boolean(readSavedToken())),
     [operator, setOperator] = useState(false),
     [clans, setClans] = useState<Clan[]>([]),
     [clanId, setClanId] = useState("");
@@ -101,6 +103,7 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
       setOperator(result.operator === true);
       setClanId(result.clans[0]?.id ?? "");
       setToken(entry);
+      saveToken(entry);
       setEntry("");
     } catch (e) {
       setError((e as Error).message);
@@ -108,6 +111,30 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
       setBusy(false);
     }
   }
+  useEffect(() => {
+    const saved = readSavedToken();
+    if (!saved) { setRestoring(false); return; }
+    const controller = new AbortController();
+    request<{ clans: Clan[]; operator: boolean }>("/api/me", saved, {}, controller.signal)
+      .then(result => {
+        if (controller.signal.aborted) return;
+        setClans(result.clans);
+        setOperator(result.operator === true);
+        setClanId(result.clans[0]?.id ?? "");
+        setToken(saved);
+      })
+      .catch(error => {
+        if (controller.signal.aborted) return;
+        if (error instanceof Error && error.message.includes("истекла")) {
+          clearSavedToken();
+          setError("Срок действия ключа истёк. Введите новый ключ.");
+        } else {
+          setError("Не удалось восстановить подключение. Проверьте доступность API и обновите страницу.");
+        }
+      })
+      .finally(() => { if (!controller.signal.aborted) setRestoring(false); });
+    return () => controller.abort();
+  }, []);
   useEffect(() => {
     generation.current++;
     const current = generation.current;
@@ -177,15 +204,14 @@ export function LiveWorkspace({ onExit }: { onExit: () => void }) {
         </details>
       )}
       <div className="notice">
-        Ранний доступ: вход по временному ключу оператора. Ключ хранится только
-        в памяти вкладки. Карта Gamma загружается из каталога LU4. Расписание респауна рассчитывается только для боссов с известными правилами.
+        Ранний доступ: временный ключ сохраняется в этом браузере до выхода или очистки данных сайта. Карта Gamma загружается из каталога LU4. Расписание респауна рассчитывается только для боссов с известными правилами.
       </div>
       {error && (
         <p className="error" role="alert">
           {error}
         </p>
       )}
-      {!token ? (
+      {restoring ? <p className="muted">Восстанавливаем подключение…</p> : !token ? (
         <form className="content-panel" onSubmit={login}>
           <h2>Подключение к рабочему пространству</h2>
           <label>
