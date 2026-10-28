@@ -261,3 +261,75 @@
 .rb-map-rule-form input{width:100%;min-width:0;padding:8px;color:#e4f1e8;border:1px solid #456154;border-radius:5px;background:#10221e}
 .rb-map-rule-form button{padding:9px;border:1px solid #689179;border-radius:5px;background:#294d37;color:#e5f2e8;font-size:11px}
 .rb-map-rule-form small{font-size:9px;color:#95aea1;line-height:1.5}
+
+
+/* 2026 UI/UX pass: information hierarchy, accessible controls and responsive workspace. */
+.rb-map-page{--rb-border:#344b47;--rb-surface:#182b2b;--rb-muted:#a8bcb8}
+.rb-map-toolbar{gap:10px 12px;margin:16px 0 18px}
+.rb-map-toolbar input:not([type=checkbox]){flex:1 1 250px;min-width:170px}
+.rb-map-toolbar select{flex:0 1 210px;min-width:160px}
+.rb-map-toolbar input:not([type=checkbox]),.rb-map-toolbar select{min-height:42px;box-sizing:border-box;border-radius:9px;font-size:13px;padding:10px 13px}
+.rb-map-toolbar input:focus-visible,.rb-map-toolbar select:focus-visible,.rb-map-drop-controls :focus-visible,.rb-map-page button:focus-visible,.rb-map-detail a:focus-visible{outline:2px solid #b5e8bf;outline-offset:2px}
+.rb-map-result-count{font-size:12px;font-weight:650;color:#d4e6da;white-space:nowrap}
+.rb-map-help{color:var(--rb-muted);font-size:11px}
+.rb-map-summary{border-radius:12px;background:#18282a}
+.rb-map-summary>div{padding:16px 18px}
+.rb-map-summary small{font-size:12px;line-height:1.35;color:#acbfbc}
+.rb-map-summary strong{font-size:27px;line-height:1.15;font-variant-numeric:tabular-nums}
+.rb-map-layout{grid-template-columns:minmax(210px,240px) minmax(0,1fr) minmax(290px,320px);border-color:var(--rb-border);border-radius:12px}
+.rb-map-list{background:#142527}
+.rb-map-list button.boss-row{min-height:68px;padding:12px 14px;align-items:center;gap:12px;transition:background-color .15s ease}
+.rb-map-list button.boss-row:hover{background:#203632}
+.rb-map-list button.boss-row.selected{background:#294239;box-shadow:inset 3px 0 #a7e2b3}
+.rb-map-list .boss-row .level{flex-basis:32px;width:32px;height:32px;font-size:12px;font-weight:700}
+.rb-map-list .boss-row .rb-map-list-label b{font-size:12px;line-height:1.5}
+.rb-map-list .boss-row .rb-map-list-label small{margin-top:4px;font-size:11px;line-height:1.4}
+.rb-map-list-empty{padding:24px 16px;color:#bbceca;line-height:1.6;font-size:13px}
+.rb-map-list-empty button{margin-top:12px!important;border:1px solid #628879!important;border-radius:8px!important;padding:9px 12px!important;color:#d5f3db!important;font-size:12px}
+.rb-map-viewport{background:#26352f}
+.rb-map-zoom{bottom:16px;right:16px;border-radius:10px;padding:6px;gap:6px}
+.rb-map-zoom button{width:38px;height:38px;font-size:19px;cursor:pointer}
+.rb-map-zoom button:disabled{opacity:.4;cursor:not-allowed}
+.rb-map-zoom span{min-width:44px;text-align:center;font-size:12px;font-variant-numeric:tabular-nums}
+.rb-map-detail{background:#192c2b;padding:20px 20px 26px}
+.rb-map-detail-header{padding-bottom:18px}
+.rb-map-detail-header small{font-size:11px;letter-spacing:.04em}
+.rb-map-detail-header h2{font-size:20px;line-height:1.3;margin:9px 0 11px;overflow-wrap:anywhere}
+.rb-map-tag{font-size:11px;padding:6px 10px;border-radius:6px}
+.rb-map-info{padding:17px 0}
+.rb-map-info small{font-size:11px}
+.rb-map-info strong{font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+.rb-map-info p,.rb-map-drop-note{font-size:12px;line-height:1.55}
+.rb-map-accordion summary,.rb-map-drop-heading{font-size:13px;line-height:1.5}
+.rb-stat{font-size:12px;gap:12px}
+.rb-map-drop-controls select,.rb-map-drop-controls input{font-size:12px;min-height:40px;border-radius:8px}
+.rb-map-drop-row{padding:12px 2px;align-items:flex-start}
+.rb-map-drop-row a{font-size:12px;line-height:1.5}
+.rb-map-drop-row small{font-size:11px;line-height:1.6}
+.rb-map-source{font-size:12px}
+.rb-map-record,.rb-map-kill-form button{min-height:40px;font-size:12px;border-radius:8px}
+.rb-map-pin{width:25px;height:25px;min-width:25px;min-height:25px}
+.rb-map-pin-number{font-size:12px}
+@media(max-width:1250px){
+ .rb-map-layout{grid-template-columns:minmax(190px,230px) minmax(0,1fr);grid-template-rows:minmax(480px,640px) auto;height:auto}
+ .rb-map-list,.rb-map-viewport{height:100%;min-height:0}
+ .rb-map-detail{grid-column:1/-1;height:auto;max-height:none;overflow:visible;border-top:1px solid var(--rb-border)}
+ .rb-map-detail-header{padding-bottom:12px}
+ .rb-map-detail .rb-map-drop-items{max-height:310px}
+}
+@media(max-width:700px){
+ .rb-map-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .rb-map-summary>div{padding:13px 14px}
+ .rb-map-summary strong{font-size:22px}
+ .rb-map-toolbar{display:grid;grid-template-columns:1fr 1fr}
+ .rb-map-toolbar input:not([type=checkbox]){grid-column:1/-1;width:100%;min-width:0}
+ .rb-map-toolbar select{grid-column:1/-1;width:100%;min-width:0}
+ .rb-map-result-count{grid-column:1/-1}
+ .rb-map-help{grid-column:1/-1}
+ .rb-map-layout{display:flex;flex-direction:column;height:auto}
+ .rb-map-list{height:190px;max-height:190px;border-bottom:1px solid var(--rb-border)}
+ .rb-map-viewport{height:min(70vh,520px);min-height:340px;max-height:none}
+ .rb-map-detail{height:auto;max-height:none;padding:18px}
+ .rb-map-zoom{bottom:10px;right:10px}
+}
+@media(prefers-reduced-motion:reduce){.rb-map-list button.boss-row{transition:none}}
