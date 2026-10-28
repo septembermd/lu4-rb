@@ -148,11 +148,11 @@ export function BossWorldMap({ onOpenLive, observations = {}, windows = {}, onRe
         <option value="all">Все категории</option>{groups.map(v => <option key={v} value={v}>{v}</option>)}
       </select>
       
-      <span>{filtered.length} / {data?.bosses.length ?? 0} боссов</span><small>Колесо — масштаб · перетаскивание — перемещение</small>
+      <span className="rb-map-result-count" aria-live="polite">{filtered.length} из {data?.bosses.length ?? 0} боссов</span><small className="rb-map-help">Колесо — масштаб · перетаскивание — перемещение</small>
     </div>
     {error && <p role="alert">Не удалось загрузить карту: {error}</p>}
     <div className="rb-map-layout">
-      <div className="rb-map-list">{filtered.map(b => <button type="button" className={`boss-row ${b.id === selected ? 'selected' : ''}`} key={b.id} onClick={() => highlightBoss(b.id)}><span className="level">{b.level}</span><span className="rb-map-list-label"><b>{b.name}</b><small>{observations[b.id]?.result === 'alive' ? 'Обнаружен' : observations[b.id]?.result === 'not_found' ? 'Не обнаружен' : 'Нет свежих наблюдений'}</small></span></button>)}</div>
+      <div className="rb-map-list" aria-label="Список рейдовых боссов">{data && filtered.length === 0 && <div className="rb-map-list-empty">Ничего не найдено. Измените запрос или категорию.<button type="button" onClick={() => { setQuery(""); setGroup("all"); }}>Сбросить фильтры</button></div>}{!data && !error && <div className="rb-map-list-empty">Загружаем список боссов…</div>}{filtered.map(b => <button type="button" className={`boss-row ${b.id === selected ? 'selected' : ''}`} aria-pressed={b.id === selected} key={b.id} onClick={() => highlightBoss(b.id)}><span className="level">{b.level}</span><span className="rb-map-list-label"><b>{b.name}</b><small>{observations[b.id]?.result === 'alive' ? 'Обнаружен' : observations[b.id]?.result === 'not_found' ? 'Не обнаружен' : 'Нет свежих наблюдений'}</small></span></button>)}</div>
       <div className="rb-map-viewport" ref={viewport} onWheel={onWheel} onPointerDown={onPointerDown}
         onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}
         onClickCapture={e=>{if(suppressClick.current){e.stopPropagation();e.preventDefault();suppressClick.current=false;}}}
